@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://y4q31uhqr26v"]
+
+[node name="Marker" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 50
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 11.0
+offset_bottom = 12.0
+color = Color(1, 0.117647, 0.313726, 1)

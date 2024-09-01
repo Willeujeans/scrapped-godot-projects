@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d30krg0k3e53m"]
+
+[ext_resource type="PackedScene" uid="uid://dusqse6ke5nya" path="res://player.tscn" id="2_h18pw"]
+[ext_resource type="PackedScene" uid="uid://cj7sr8dhb61sp" path="res://boid_spawner.tscn" id="2_sqruc"]
+
+[node name="grassland" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 1952.0
+offset_bottom = 1506.0
+color = Color(0.352941, 0.521569, 0.25098, 1)
+
+[node name="BoidSpawner" parent="." instance=ExtResource("2_sqruc")]
+position = Vector2(932, 376)
+
+[node name="Player" parent="." instance=ExtResource("2_h18pw")]
+position = Vector2(590, 904)

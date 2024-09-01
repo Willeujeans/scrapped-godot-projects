@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxoosobkft3px"]
+
+[ext_resource type="Script" path="res://Sheep/Sheep.gd" id="1_eojpn"]
+[ext_resource type="PackedScene" uid="uid://y4q31uhqr26v" path="res://marker.tscn" id="2_136a3"]
+[ext_resource type="Texture2D" uid="uid://b3ncpmqxjgsvg" path="res://sheep_facing_down.png" id="3_hqb5q"]
+[ext_resource type="Texture2D" uid="uid://cnd4e4kk1vcn0" path="res://sheep_facing_left.png" id="4_16e1j"]
+[ext_resource type="Texture2D" uid="uid://cge30us6agwu6" path="res://sheep_facing_right.png" id="5_5fxir"]
+[ext_resource type="Texture2D" uid="uid://8lhwf3hramkq" path="res://sheep_facing_up.png" id="6_4j3f1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p6jmr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hqb5q")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_16e1j")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5fxir")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4j3f1")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2rg0d"]
+radius = 19.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e60hx"]
+radius = 130.648
+
+[node name="Sheep" type="CharacterBody2D" groups=["boid"]]
+z_index = 1
+motion_mode = 1
+script = ExtResource("1_eojpn")
+marker = ExtResource("2_136a3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_p6jmr")
+animation = &"right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2rg0d")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="VisionShape" type="CollisionShape2D" parent="VisionArea"]
+modulate = Color(0, 0.623529, 1, 1)
+z_index = 1
+position = Vector2(38, 0)
+shape = SubResource("CircleShape2D_e60hx")
+
+[node name="RayCasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(129, -6)
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(85, -62)
+
+[node name="RayCast2D4" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(118, 8)
+
+[node name="RayCast2D3" type="RayCast2D" parent="RayCasts"]
+target_position = Vector2(93, 66)
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

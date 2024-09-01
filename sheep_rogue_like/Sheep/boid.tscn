@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8e0qq4jrw6q8"]
+
+[ext_resource type="Script" path="res://Sheep/boid.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://gfeuabwuwn13" path="res://foot_prints.tscn" id="2_feddi"]
+[ext_resource type="Texture2D" uid="uid://da0nil8rcv8oa" path="res://sheep_top_down.png" id="3_1rvtw"]
+[ext_resource type="Texture2D" uid="uid://b3ncpmqxjgsvg" path="res://sheep_facing_down.png" id="3_vo1at"]
+[ext_resource type="Texture2D" uid="uid://cnd4e4kk1vcn0" path="res://sheep_facing_left.png" id="4_ixti4"]
+[ext_resource type="Texture2D" uid="uid://cge30us6agwu6" path="res://sheep_facing_right.png" id="5_ll7da"]
+[ext_resource type="Texture2D" uid="uid://8lhwf3hramkq" path="res://sheep_facing_up.png" id="6_otk1g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17apa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vo1at")
+}],
+"loop": true,
+"name": &"down",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ixti4")
+}],
+"loop": true,
+"name": &"left",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ll7da")
+}],
+"loop": true,
+"name": &"right",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_otk1g")
+}],
+"loop": true,
+"name": &"up",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(60, 35)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0ey3"]
+radius = 64.4731
+
+[node name="boid" type="Area2D" groups=["boid"]]
+script = ExtResource("2")
+speed = 2.0
+avoidance = 58
+footsteps = ExtResource("2_feddi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+rotation = -1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_1rvtw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(1.53477e-12, -4.76837e-07)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_17apa")
+animation = &"down"
+autoplay = "left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0.5)
+shape = SubResource("1")
+
+[node name="vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]
+position = Vector2(-16, 0)
+shape = SubResource("CircleShape2D_d0ey3")
+
+[node name="rayFolder" type="Node2D" parent="."]
+rotation = -3.14159
+
+[node name="RayCast2D6" type="RayCast2D" parent="rayFolder"]
+target_position = Vector2(82, -0.000207885)
+
+[node name="RayCast2D" type="RayCast2D" parent="rayFolder"]
+target_position = Vector2(76.0001, 23.9998)
+
+[node name="RayCast2D2" type="RayCast2D" parent="rayFolder"]
+target_position = Vector2(75.9999, -23.0002)
+
+[node name="RayCast2D4" type="RayCast2D" parent="rayFolder"]
+target_position = Vector2(62.9999, -44.0002)
+
+[node name="RayCast2D5" type="RayCast2D" parent="rayFolder"]
+target_position = Vector2(63.0001, 45.9998)
+
+[node name="FootStepTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ForwardsDirection" type="Marker2D" parent="."]
+position = Vector2(-86, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_boid_body_entered"]
+[connection signal="area_entered" from="vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="vision" to="." method="_on_vision_area_exited"]

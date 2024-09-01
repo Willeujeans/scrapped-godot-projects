@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj7sr8dhb61sp"]
+
+[ext_resource type="Script" path="res://boid_spawner.gd" id="1_d1m4i"]
+[ext_resource type="PackedScene" uid="uid://b8e0qq4jrw6q8" path="res://Sheep/boid.tscn" id="2_83uxl"]
+
+[node name="BoidSpawner" type="Node2D"]
+script = ExtResource("1_d1m4i")
+boid = ExtResource("2_83uxl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 3.0
