@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu0dwj7m1yjhh"]
+
+[ext_resource type="Script" path="res://user_interfaces/throw_tracker/ui_element_physical.gd" id="1_6s2yh"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_6s2yh")

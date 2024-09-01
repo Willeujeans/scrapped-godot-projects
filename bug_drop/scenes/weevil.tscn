@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://0k0ffecudg5b"]
+
+[ext_resource type="Script" path="res://scripts/bug.gd" id="1_uv1xq"]
+[ext_resource type="Texture2D" uid="uid://beke084mn13vl" path="res://images/weevel.png" id="2_7i4xv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7pxf"]
+radius = 122.004
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ua20i"]
+radius = 127.016
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 10.0
+inertia = 35.0
+can_sleep = false
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_uv1xq")
+metadata/myName = "weevil"
+metadata/pointCount = 16
+metadata/nextBugPath = "res://scenes/bee.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q7pxf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -2.00001)
+scale = Vector2(0.179688, 0.188542)
+texture = ExtResource("2_7i4xv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ua20i")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

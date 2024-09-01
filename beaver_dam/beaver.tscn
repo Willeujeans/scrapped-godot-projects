@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://jpqxowysrhcl"]
+
+[ext_resource type="Script" path="res://beaver.gd" id="1_olcjd"]
+[ext_resource type="Texture2D" uid="uid://vb21vh60p0bj" path="res://beaver_idle.png" id="2_3minq"]
+[ext_resource type="Texture2D" uid="uid://d045grm7n4gci" path="res://beaver_walk01.png" id="3_ccrmy"]
+[ext_resource type="Texture2D" uid="uid://fpg5wk7rmw6e" path="res://beaver_walk02.png" id="4_g274j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fk7lp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3minq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ccrmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g274j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkdms"]
+size = Vector2(72.0001, 199)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 2
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_olcjd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -1)
+sprite_frames = SubResource("SpriteFrames_fk7lp")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(42.5, 86.0001)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qkdms")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.45, 0.45)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0

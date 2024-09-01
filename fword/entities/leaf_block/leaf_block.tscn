@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://buqng00g511xp"]
+
+[ext_resource type="Script" path="res://entities/leaf_block/leaf_block.gd" id="1_6on4x"]
+[ext_resource type="Texture2D" uid="uid://hekjm1eo60go" path="res://entities/leaf_block/leaves_few.png" id="2_l06f5"]
+[ext_resource type="Texture2D" uid="uid://d3q0xpdaisq07" path="res://entities/leaf_block/broken_leaves.png" id="2_ugh2b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtguw"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdmqt"]
+size = Vector2(70, 70)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bm8k8"]
+radius = 44.0
+
+[node name="LeafBlock" type="StaticBody2D" groups=["leaves", "unstickable"]]
+collision_layer = 5
+collision_mask = 7
+script = ExtResource("1_6on4x")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 4
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_ugh2b")
+direction = Vector2(2.08165e-12, -1)
+spread = 90.0
+gravity = Vector2(2.08165e-12, 500)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jtguw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gdmqt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.1
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2.46793e-10)
+rotation = -0.00475663
+scale = Vector2(4, 4)
+texture = ExtResource("2_l06f5")
+
+[node name="Area2D2" type="Area2D" parent="." groups=["leaves"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_bm8k8")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

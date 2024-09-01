@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmy0orqdcw4wi"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/extender_joint.gd" id="1_ghus6"]
+[ext_resource type="Texture2D" uid="uid://dx4gkoqosnk5p" path="res://entities/player/limbs/sprites/closed_duck_foot.png" id="2_pqxhc"]
+[ext_resource type="Texture2D" uid="uid://cjnutnb1iebg5" path="res://entities/player/limbs/sprites/open_duck_foot.png" id="3_aepqe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f4mog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pqxhc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aepqe")
+}],
+"loop": true,
+"name": &"open",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bgxr"]
+size = Vector2(159, 37)
+
+[node name="Extender" type="GrooveJoint2D" groups=["limb"]]
+position = Vector2(-1, 0)
+node_b = NodePath("RigidBody2D")
+bias = 0.9
+length = 1.0
+script = ExtResource("1_ghus6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = -13.5
+offset_top = -41.0
+offset_right = 21.5
+offset_bottom = -21.0
+color = Color(0.933333, 0.694118, 0.4, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.5, -39)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_f4mog")
+animation = &"open"
+autoplay = "default"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-2.5, 8.5)
+shape = SubResource("RectangleShape2D_4bgxr")

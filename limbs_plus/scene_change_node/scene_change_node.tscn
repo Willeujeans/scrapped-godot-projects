@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyukkc7p2ok7i"]
+
+[ext_resource type="Script" path="res://scene_change_node/scene_change_node.gd" id="1_mk34k"]
+[ext_resource type="PackedScene" uid="uid://2eu1nrarx4ce" path="res://scene_change_node/transition/transition.tscn" id="2_uky6v"]
+
+[node name="SceneChangeNode" type="Node"]
+script = ExtResource("1_mk34k")
+transition_scene = ExtResource("2_uky6v")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b64e66mpfln1k"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/spring_joint.gd" id="1_57ibe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvag8"]
+size = Vector2(177, 44)
+
+[node name="Node2D" type="DampedSpringJoint2D" groups=["limb"]]
+node_b = NodePath("RigidBody2D")
+stiffness = 0.1
+script = ExtResource("1_57ibe")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(3.5, 30)
+shape = SubResource("RectangleShape2D_yvag8")

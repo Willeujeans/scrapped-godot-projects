@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://e2fk1pv7ey4o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u00d8"]
+radius = 87.367
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uag4s"]
+size = Vector2(283, 92)
+
+[node name="JointTest" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_u00d8")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(147, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2(55.5, 0)
+shape = SubResource("RectangleShape2D_uag4s")
+
+[node name="DampedSpringJoint2D" type="GrooveJoint2D" parent="."]
+position = Vector2(72, 0)
+node_a = NodePath("../RigidBody2D2")
+node_b = NodePath("../RigidBody2D")

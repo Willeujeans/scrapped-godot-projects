@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvgeejo8gc6am"]
+
+[ext_resource type="AudioStream" uid="uid://dniot7m0u50xi" path="res://settings_menu/audio_slider/piano_test.wav" id="1_83top"]
+
+[node name="Music_player" type="AudioStreamPlayer"]
+stream = ExtResource("1_83top")

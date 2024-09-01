@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://caw6f0ivdb8wv"]
+
+[ext_resource type="Script" path="res://entities/sword/sword_dead.gd" id="1_p042u"]
+[ext_resource type="Texture2D" uid="uid://da78uckowebar" path="res://entities/sword/sword.png" id="3_b777n"]
+[ext_resource type="AudioStream" uid="uid://r1g8nscltge1" path="res://entities/sword/explosion.wav" id="3_e8s8d"]
+[ext_resource type="AudioStream" uid="uid://du2p2c7r5nvdh" path="res://entities/sword/thud.wav" id="4_6wqx7"]
+[ext_resource type="Shader" path="res://shaders/single_color_shaders/0_value.gdshader" id="5_gqoh4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d2pll"]
+shader = ExtResource("5_gqoh4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kio77"]
+shader = ExtResource("5_gqoh4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08y3o"]
+size = Vector2(50, 131)
+
+[node name="DeadSword" type="StaticBody2D" groups=["dead_sword", "stickable"]]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_p042u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+texture_filter = 1
+material = SubResource("ShaderMaterial_d2pll")
+scale = Vector2(4, 4)
+texture = ExtResource("3_b777n")
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
+[node name="AnimationOtherTimer" type="Timer" parent="."]
+wait_time = 0.08
+one_shot = true
+
+[node name="AudioEmpty" type="Node" parent="."]
+
+[node name="BitExplosionAudio" type="AudioStreamPlayer" parent="AudioEmpty"]
+stream = ExtResource("3_e8s8d")
+volume_db = -15.0
+max_polyphony = 2
+
+[node name="ThudAudio" type="AudioStreamPlayer" parent="AudioEmpty"]
+stream = ExtResource("4_6wqx7")
+volume_db = -5.0
+pitch_scale = 1.3
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_kio77")
+position = Vector2(0, -16)
+emitting = false
+amount = 4
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 600)
+initial_velocity_min = 252.59
+initial_velocity_max = 401.4
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_08y3o")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -64, 8, -64, 8, -60, 12, -60, 12, -56, 16, -56, 16, 32, 24, 32, 24, 40, 4, 40, 4, 56, 8, 56, 8, 64, -8, 64, -8, 56, -4, 56, -4, 40, -24, 40, -24, 32, -16, 32, -16, -56, -12, -56, -12, -60, -8, -60, -8, -64)

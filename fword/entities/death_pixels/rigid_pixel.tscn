@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://udqmqyxs6k2j"]
+
+[ext_resource type="Script" path="res://entities/death_pixels/rigid_pixel.gd" id="1_xskfb"]
+[ext_resource type="Shader" path="res://shaders/single_color_shaders/75_value.gdshader" id="2_5vx3c"]
+[ext_resource type="AudioStream" uid="uid://clscmy06ki1ga" path="res://entities/death_pixels/pop.wav" id="3_1f0kq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbfpt"]
+shader = ExtResource("2_5vx3c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rikk"]
+size = Vector2(16, 16)
+
+[node name="rigidPixel" type="RigidBody2D" groups=["deadSquare"]]
+collision_layer = 0
+collision_mask = 7
+mass = 0.1
+gravity_scale = 0.5
+max_contacts_reported = 1
+contact_monitor = true
+linear_velocity = Vector2(100, -100)
+angular_velocity = 0.785398
+script = ExtResource("1_xskfb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dbfpt")
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 1, 1, 0.392157)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8rikk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1f0kq")
+volume_db = -15.0
+pitch_scale = 1.4
+bus = &"Effects"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjgiqajbct6de"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_7y4lw"]
+[ext_resource type="Script" path="res://entities/player/limbs/in_game/extender.gd" id="2_l5suy"]
+[ext_resource type="AudioStream" uid="uid://d0tf6vhfw8r6d" path="res://entities/player/limbs/in_game/audio/pop.wav" id="3_gytwq"]
+[ext_resource type="Texture2D" uid="uid://dt4ok1huoj8fl" path="res://entities/player/limbs/sprites/frog_foot.png" id="3_yv2m7"]
+[ext_resource type="Script" path="res://entities/player/limbs/facing_towards_player.gd" id="4_ebkqu"]
+
+[sub_resource type="Curve" id="Curve_kgv3i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.488396), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhbbq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5jsud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yv2m7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Limb" instance=ExtResource("1_7y4lw")]
+body = NodePath("Activation/RigidBody2D")
+delay_between_activation = 0.1
+attachment_point = NodePath("Activation/RigidBody2D/AttachmentPoint")
+activation_node = NodePath("Activation")
+
+[node name="Activation" type="Node2D" parent="." index="0"]
+script = ExtResource("2_l5suy")
+extended_length = 20.0
+power = 8.0
+
+[node name="ActivationSound" type="AudioStreamPlayer2D" parent="Activation" index="0"]
+stream = ExtResource("3_gytwq")
+
+[node name="DeactivationSound" type="AudioStreamPlayer2D" parent="Activation" index="1"]
+
+[node name="EndPoint" type="Marker2D" parent="Activation" index="2"]
+position = Vector2(-90, 0)
+
+[node name="Line2D" type="Line2D" parent="Activation" index="3"]
+points = PackedVector2Array(10, 0, -5, 0)
+width_curve = SubResource("Curve_kgv3i")
+default_color = Color(0.933333, 0.694118, 0.4, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 1
+round_precision = 10
+
+[node name="TimeTillRetraction" type="Timer" parent="Activation" index="4"]
+wait_time = 0.2
+one_shot = true
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="Activation" index="5"]
+rotation = 1.5708
+length = 20.0
+initial_offset = 5.0
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Activation" index="6"]
+rotation = 1.5708
+length = 7.0
+rest_length = 7.0
+stiffness = 64.0
+damping = 1.5
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Activation" index="7"]
+position = Vector2(-5, 0)
+collision_layer = 16
+collision_mask = 2
+mass = 0.1
+center_of_mass_mode = 1
+center_of_mass = Vector2(2.08167e-16, 2.08167e-16)
+can_sleep = false
+continuous_cd = 1
+script = ExtResource("4_ebkqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activation/RigidBody2D" index="0"]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Activation/RigidBody2D" index="1"]
+position = Vector2(151, 0)
+polygon = PackedVector2Array(-146, -2, -146, 3, -154, 3, -154, -11, -151, -11, -151, -2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Activation/RigidBody2D" index="2"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_rhbbq")
+position = Vector2(3, -3)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_5jsud")
+autoplay = "default"
+
+[node name="AttachmentPoint" type="Marker2D" parent="Activation/RigidBody2D" index="3"]
+position = Vector2(-1, 0)
+
+[node name="Area2D" type="Area2D" parent="Activation/RigidBody2D" index="4"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Activation/RigidBody2D/Area2D" index="0"]
+position = Vector2(151, 0)
+polygon = PackedVector2Array(-146, 3, -155, 3, -155, -10, -150, -10, -150, -2, -146, -2)
+
+[node name="CenterOfMass" type="Marker2D" parent="Activation/RigidBody2D" index="5"]
+position = Vector2(-4, 0)
+
+[node name="Cooldown" type="Timer" parent="Activation" index="8"]
+wait_time = 0.1
+one_shot = true

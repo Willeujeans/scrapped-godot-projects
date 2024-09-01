@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4shfo6rkd10o"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_3bp11"]
+[ext_resource type="Script" path="res://entities/player/limbs/Activator.gd" id="2_53ixx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwf2l"]
+size = Vector2(17, 34)
+
+[node name="Limb" instance=ExtResource("1_3bp11")]
+attachment_point = NodePath("Activator/PinPoint/AttachmentPoint")
+activation_node = NodePath("Activator")
+
+[node name="Activator" type="Node2D" parent="." index="0"]
+script = ExtResource("2_53ixx")
+
+[node name="RayCast2D" type="RayCast2D" parent="Activator" index="0"]
+target_position = Vector2(-120, 2.08165e-12)
+
+[node name="FirstPin" type="PinJoint2D" parent="Activator" index="1"]
+position = Vector2(-121, 0)
+
+[node name="PinPoint" type="RigidBody2D" parent="Activator" index="2"]
+position = Vector2(-121, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activator/PinPoint" index="0"]
+shape = SubResource("RectangleShape2D_cwf2l")
+
+[node name="AttachmentPoint" type="Marker2D" parent="Activator/PinPoint" index="1"]

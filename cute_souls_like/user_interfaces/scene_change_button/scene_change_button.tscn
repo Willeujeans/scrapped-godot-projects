@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://badlkawr8cbbh"]
+
+[ext_resource type="Script" path="res://user_interfaces/scene_change_button/scene_change_button.gd" id="1_hmn3d"]
+
+[node name="SceneChangeButton" type="Button"]
+offset_right = 58.0
+offset_bottom = 31.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "empty"
+script = ExtResource("1_hmn3d")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

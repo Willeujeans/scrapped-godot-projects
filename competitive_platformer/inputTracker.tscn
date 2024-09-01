@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuv5xr2luujq"]
+
+[ext_resource type="Script" path="res://inputTracker.gd" id="1_cdpwl"]
+
+[node name="inputTracker" type="Node"]
+script = ExtResource("1_cdpwl")

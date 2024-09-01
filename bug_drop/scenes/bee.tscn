@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://6nqtwtf2sovm"]
+
+[ext_resource type="Script" path="res://scripts/bug.gd" id="1_p807a"]
+[ext_resource type="Texture2D" uid="uid://ck841qxct6ftb" path="res://images/bee.png" id="2_y3eas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7pxf"]
+radius = 148.054
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ua20i"]
+radius = 156.003
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 10.0
+inertia = 35.0
+can_sleep = false
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_p807a")
+metadata/myName = "bee"
+metadata/pointCount = 32
+metadata/nextBugPath = "res://scenes/ant.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q7pxf")
+debug_color = Color(0.952941, 0, 0, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_y3eas")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ua20i")
+debug_color = Color(0.2, 0.639216, 0, 0.419608)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,212 @@
+[gd_scene load_steps=26 format=3 uid="uid://bl5tcm37qwdfs"]
+
+[ext_resource type="Script" path="res://2D/2D_player_character/2D_player_controller/2D_player_controller.gd" id="1_haqfs"]
+[ext_resource type="PackedScene" uid="uid://b7gvonca81un6" path="res://entities/death_pixels/death_pixels.tscn" id="2_bx4xf"]
+[ext_resource type="Shape2D" uid="uid://bjx8d15uvtr25" path="res://2D/2D_player_character/2D_player_controller/2D_player_crouching.tres" id="2_cxqkb"]
+[ext_resource type="PackedScene" uid="uid://ccoraajeeihxh" path="res://entities/sword/sword.tscn" id="2_hjxfh"]
+[ext_resource type="Shape2D" uid="uid://caajakbl42ljh" path="res://2D/2D_player_character/2D_player_controller/2D_player_standing.tres" id="2_s8hme"]
+[ext_resource type="PackedScene" uid="uid://7rox1r8mmpri" path="res://2D/2D_player_character/2D_player_camera/2D_player_camera.tscn" id="3_m6n3h"]
+[ext_resource type="Texture2D" uid="uid://6bwhehudfh1p" path="res://2D/2D_player_character/crouch_animation/000.png" id="5_qla0b"]
+[ext_resource type="Texture2D" uid="uid://da6majfvuuiht" path="res://2D/2D_player_character/crouch_animation/001.png" id="6_l3t6b"]
+[ext_resource type="Texture2D" uid="uid://cuxqin847i0l6" path="res://2D/2D_player_character/idle_animation/000.png" id="7_h037u"]
+[ext_resource type="Texture2D" uid="uid://dx5y1cd7mpqhl" path="res://2D/2D_player_character/idle_animation/001.png" id="8_ve513"]
+[ext_resource type="Texture2D" uid="uid://cgfao62keqflq" path="res://2D/2D_player_character/idle_animation/002.png" id="9_0u2w3"]
+[ext_resource type="Texture2D" uid="uid://b63cthcby0143" path="res://2D/2D_player_character/idle_animation/003.png" id="10_esvhr"]
+[ext_resource type="Texture2D" uid="uid://c3evpxp2kygj1" path="res://2D/2D_player_character/idle_animation/004.png" id="11_4uceb"]
+[ext_resource type="Texture2D" uid="uid://b1mcxju4sqfp0" path="res://2D/2D_player_character/look_up_animation/looking_up.png" id="12_k7rfc"]
+[ext_resource type="Texture2D" uid="uid://fujwmsb5xcd2" path="res://2D/2D_player_character/move_animation/001.png" id="13_5gc74"]
+[ext_resource type="Texture2D" uid="uid://c1sitaxlxnmgw" path="res://2D/2D_player_character/look_up_animation/lookupClose.png" id="13_mjinx"]
+[ext_resource type="Texture2D" uid="uid://qecq11oqhjiu" path="res://2D/2D_player_character/move_animation/002.png" id="14_317my"]
+[ext_resource type="Texture2D" uid="uid://da78uckowebar" path="res://entities/sword/sword.png" id="15_8f374"]
+[ext_resource type="Texture2D" uid="uid://k06pw80b8ptk" path="res://2D/2D_player_character/move_animation/003.png" id="15_53700"]
+[ext_resource type="Texture2D" uid="uid://dt1phqdkyu5t8" path="res://2D/2D_player_character/move_animation/000.png" id="16_7egt2"]
+[ext_resource type="AudioStream" uid="uid://cufn28qvuvtbe" path="res://2D/2D_player_character/2D_player_controller/foot_one.wav" id="19_v5nv3"]
+[ext_resource type="AudioStream" uid="uid://dsvkjkak0tbnm" path="res://2D/2D_player_character/2D_player_controller/FootTwo.wav" id="20_kv6fa"]
+[ext_resource type="AudioStream" uid="uid://khxdyagt8plt" path="res://2D/2D_player_character/2D_player_controller/FootThree.wav" id="21_im5vt"]
+[ext_resource type="AudioStream" uid="uid://drd3qa27xbplp" path="res://2D/2D_player_character/2D_player_controller/death.wav" id="24_8d5v1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x35y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qla0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l3t6b")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_h037u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h037u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ve513")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0u2w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_esvhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4uceb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h037u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h037u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"jump",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_k7rfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k7rfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mjinx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k7rfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mjinx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k7rfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k7rfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k7rfc")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5gc74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_317my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_53700")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7egt2")
+}],
+"loop": true,
+"name": &"move",
+"speed": 3.0
+}]
+
+[node name="PlayerBody" type="CharacterBody2D" groups=["player"]]
+collision_layer = 7
+collision_mask = 5
+collision_priority = 5.0
+floor_max_angle = 1.0472
+safe_margin = 0.3
+script = ExtResource("1_haqfs")
+death_animation_scene = ExtResource("2_bx4xf")
+sword_scene = ExtResource("2_hjxfh")
+friction = 25.0
+acceleration = 25.0
+standing_collision = ExtResource("2_s8hme")
+crouching_collision = ExtResource("2_cxqkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = ExtResource("2_s8hme")
+
+[node name="Head" type="Node2D" parent="CollisionShape2D"]
+position = Vector2(0, -24)
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D/Head"]
+position = Vector2(0, -31)
+scale = Vector2(0.25, 0.25)
+
+[node name="SwordSpawner" type="Node2D" parent="CollisionShape2D/Head"]
+position = Vector2(0, -77)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(0, 3)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_x35y7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -32)
+collision_mask = 7
+
+[node name="Sword" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 1
+rotation = 0.785398
+scale = Vector2(4, 4)
+texture = ExtResource("15_8f374")
+offset = Vector2(2.08165e-12, -25.35)
+
+[node name="SwordCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="RotationWalkTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="FootOne" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("19_v5nv3")
+bus = &"Sfx"
+
+[node name="FootTwo" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("20_kv6fa")
+bus = &"Sfx"
+
+[node name="FootThree" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("21_im5vt")
+bus = &"Sfx"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("24_8d5v1")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_m6n3h")]
+position = Vector2(0, 1)
+zoom = Vector2(2, 2)
+position_smoothing_speed = 2.0
+
+[node name="HoldTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

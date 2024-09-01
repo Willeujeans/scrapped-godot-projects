@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqw816cbmm6s"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_dpkoi"]
+[ext_resource type="Script" path="res://entities/player/limbs/launcher.gd" id="2_7d5h0"]
+[ext_resource type="PackedScene" uid="uid://b7f6swsjryhkn" path="res://entities/player/limbs/package_example.tscn" id="3_xfy0v"]
+
+[node name="Limb" instance=ExtResource("1_dpkoi")]
+
+[node name="Activator" type="Node2D" parent="." index="0"]
+script = ExtResource("2_7d5h0")
+package = ExtResource("3_xfy0v")
+
+[node name="RayCast2D" type="RayCast2D" parent="Activator" index="0"]
+target_position = Vector2(-100, 2.08165e-12)

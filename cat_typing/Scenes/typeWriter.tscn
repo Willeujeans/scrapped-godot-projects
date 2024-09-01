@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca4aassxng58j"]
+
+[ext_resource type="Script" path="res://scripts/player_input.gd" id="1_yw4v0"]
+[ext_resource type="Script" path="res://scripts/type_writer.gd" id="2_5u3f3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="input_handler" type="Node" parent="."]
+script = ExtResource("1_yw4v0")
+
+[node name="type_writer" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("2_5u3f3")

@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://2eu1nrarx4ce"]
+
+[ext_resource type="Script" path="res://user_interfaces/transition/transition.gd" id="1_l45c7"]
+
+[sub_resource type="Animation" id="Animation_8tysr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 1114)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-140, -34)]
+}
+
+[sub_resource type="Animation" id="Animation_vfaou"]
+resource_name = "swipe"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3840, 2160), Vector2(3840, 2160), Vector2(3840, 2160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-3840, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12), Vector2(3840, 2.08165e-12)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"total_eclipse_occured"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8686"]
+_data = {
+"RESET": SubResource("Animation_8tysr"),
+"swipe": SubResource("Animation_vfaou")
+}
+
+[node name="Transition" type="Node2D" groups=["unclearable"]]
+script = ExtResource("1_l45c7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f8686")
+}
+autoplay = "swipe"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 100
+offset_left = -140.0
+offset_top = -34.0
+offset_right = -20.0
+offset_bottom = 1080.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

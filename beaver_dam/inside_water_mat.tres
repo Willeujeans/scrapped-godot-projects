@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://mclwpdc50eku"]
+
+[ext_resource type="Shader" path="res://inside_water.gdshader" id="1_7v1nx"]
+
+[resource]
+shader = ExtResource("1_7v1nx")
+shader_parameter/crop_left = 0.0
+shader_parameter/crop_right = 0.0
+shader_parameter/crop_top = 0.0
+shader_parameter/crop_bottom = 0.25

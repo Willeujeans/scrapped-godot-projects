@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk322nkx1m260"]
+
+[ext_resource type="Script" path="res://scripts/bug.gd" id="1_tla33"]
+[ext_resource type="Texture2D" uid="uid://dt68qq2enrma7" path="res://images/ladyBug.png" id="2_8xaaj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7pxf"]
+radius = 41.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvh2q"]
+radius = 43.0116
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 3.0
+inertia = 20.0
+max_contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+script = ExtResource("1_tla33")
+metadata/nextBugPath = "res://scenes/moth.tscn"
+metadata/myName = "ladyBug"
+metadata/pointCount = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q7pxf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.00001, -5.5)
+scale = Vector2(0.10625, 0.110938)
+texture = ExtResource("2_8xaaj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wvh2q")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

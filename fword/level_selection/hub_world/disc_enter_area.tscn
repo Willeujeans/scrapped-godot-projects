@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://hf07jhupsuwq"]
+
+[ext_resource type="Script" path="res://level_selection/hub_world/disc_enter_area.gd" id="1_3b31e"]
+[ext_resource type="SpriteFrames" uid="uid://nr2eollr0xua" path="res://level_selection/hub_world/unkown_disc_animation.tres" id="2_2qkcw"]
+[ext_resource type="Texture2D" uid="uid://p8og7k75hgcf" path="res://shaders/gradient_map_shader/gradients/black_white.tres" id="3_iin1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdlne"]
+size = Vector2(322, 361.5)
+
+[node name="DiscArea" type="Area2D"]
+script = ExtResource("1_3b31e")
+animated_image = ExtResource("2_2qkcw")
+gradient = ExtResource("3_iin1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gdlne")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+scale = Vector2(3.01, 3.01)
+sprite_frames = ExtResource("2_2qkcw")
+animation = &"open"
+autoplay = "idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

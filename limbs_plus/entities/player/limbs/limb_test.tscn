@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://r4jgiitmpsxp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cisxl"]
+size = Vector2(54, 49)
+
+[node name="limb_test" type="CollisionShape2D"]
+position = Vector2(-27, 0)
+shape = SubResource("RectangleShape2D_cisxl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -143.5
+offset_top = -19.5
+offset_right = 35.5
+offset_bottom = 20.5
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -169.0
+offset_top = -19.0
+offset_right = -149.0
+offset_bottom = 21.0
+color = Color(0.996078, 0, 0.470588, 1)

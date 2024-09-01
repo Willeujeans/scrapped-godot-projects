@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgo3p8wl4y0x6"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_g7vyu"]
+[ext_resource type="Script" path="res://entities/player/limbs/puller.gd" id="2_jknk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kd1i5"]
+
+[node name="Limb" instance=ExtResource("1_g7vyu")]
+attachment_point = NodePath("Activator/RigidBody2D/AttachmentPoint")
+activation_node = NodePath("Activator")
+
+[node name="Activator" type="Node2D" parent="." index="0"]
+script = ExtResource("2_jknk0")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Activator" index="0"]
+rotation = 1.5708
+bias = 0.9
+length = 400.0
+rest_length = 500.0
+
+[node name="RigidBody2D" type="StaticBody2D" parent="Activator" index="1"]
+position = Vector2(-400, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activator/RigidBody2D" index="0"]
+shape = SubResource("RectangleShape2D_kd1i5")
+disabled = true
+
+[node name="AttachmentPoint" type="Marker2D" parent="Activator/RigidBody2D" index="1"]

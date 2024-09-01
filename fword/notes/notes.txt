@@ -1,0 +1,15 @@
+add a UI back button
+
+make the tutorial teach you the buttons
+
+discs indicate you have to click while inside them to move on
+
+add some dialogue to dad frog
+
+lock chapters until the player has beaten the prev chapter
+
+lock discs unless the player has gotten through the prev disc
+
+add confirmation on clearing save data
+
+add dad frog eating animation and idle animation

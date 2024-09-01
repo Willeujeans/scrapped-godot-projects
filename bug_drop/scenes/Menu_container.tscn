@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://buyq6oeb5lcgy"]
+
+[ext_resource type="Script" path="res://scripts/Menu_container.gd" id="1_hqntc"]
+[ext_resource type="FontFile" uid="uid://e2jsgdulh873" path="res://Zilla_Slab/ZillaSlab-Medium.ttf" id="2_6jq6n"]
+
+[node name="MenuContainer" type="Node2D"]
+script = ExtResource("1_hqntc")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 523.0
+offset_top = 283.0
+offset_right = 1392.0
+offset_bottom = 752.0
+theme_override_fonts/font = ExtResource("2_6jq6n")
+theme_override_font_sizes/font_size = 100
+text = "Play"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 1930.0
+offset_bottom = 1091.0
+mouse_filter = 2
+color = Color(0.972549, 0.756863, 0.65098, 1)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

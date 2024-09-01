@@ -1,0 +1,166 @@
+[gd_scene load_steps=26 format=3 uid="uid://cf4i07ke70dgq"]
+
+[ext_resource type="Script" path="res://entities/objects/limb_injector/limb_injector.gd" id="1_3p1x4"]
+[ext_resource type="Texture2D" uid="uid://cjnutnb1iebg5" path="res://entities/player/limbs/sprites/open_duck_foot.png" id="2_c5gi7"]
+[ext_resource type="Texture2D" uid="uid://dt4ok1huoj8fl" path="res://entities/player/limbs/sprites/frog_foot.png" id="3_l4xfv"]
+[ext_resource type="Texture2D" uid="uid://cjdj23usmxaan" path="res://entities/player/limbs/sprites/meeple.png" id="4_ycs0y"]
+[ext_resource type="PackedScene" uid="uid://dwnauhw2ubeuy" path="res://entities/player/limbs/limb_orb.tscn" id="5_2otxt"]
+[ext_resource type="PackedScene" uid="uid://pya8pv1rk1yn" path="res://entities/player/limbs/in_game/extender.tscn" id="6_qjj17"]
+[ext_resource type="PackedScene" uid="uid://cjgiqajbct6de" path="res://entities/player/limbs/in_game/jumper.tscn" id="7_3r2j7"]
+[ext_resource type="PackedScene" uid="uid://c6yyo8rroa71f" path="res://entities/player/limbs/in_game/meeple_launcher.tscn" id="8_78iuq"]
+[ext_resource type="PackedScene" uid="uid://dqph120j4n6qn" path="res://entities/player/limbs/key_label.tscn" id="9_5ybtj"]
+[ext_resource type="Texture2D" uid="uid://bunqt4rmdbl1d" path="res://world/UI/sprites/h.png" id="10_c2sip"]
+[ext_resource type="Texture2D" uid="uid://blijcqdb1q7c7" path="res://world/UI/sprites/j.png" id="11_1j81u"]
+[ext_resource type="Texture2D" uid="uid://10f0vtlh48j6" path="res://world/UI/sprites/k.png" id="12_nws8g"]
+[ext_resource type="Texture2D" uid="uid://bkm1d6kccb44" path="res://world/UI/sprites/l.png" id="13_ohbox"]
+[ext_resource type="PackedScene" uid="uid://cies4kj4go5ei" path="res://entities/player/limbs/limb_key_binding_screen.tscn" id="14_01xyd"]
+[ext_resource type="Texture2D" uid="uid://drdrvrtutnkth" path="res://entities/objects/limb_injector/sprites/mouth_close.png" id="15_efn4d"]
+[ext_resource type="Texture2D" uid="uid://bbyhsp87odrsb" path="res://entities/objects/limb_injector/sprites/mouth_open.png" id="16_5yqvd"]
+[ext_resource type="Script" path="res://entities/player/limbs/ColorRect.gd" id="17_pmfuh"]
+[ext_resource type="Texture2D" uid="uid://uexnuywxysuf" path="res://entities/objects/limb_injector/sprites/metal.png" id="18_u7too"]
+[ext_resource type="Texture2D" uid="uid://dbagcory88mso" path="res://entities/objects/limb_injector/sprites/glass.png" id="19_va77w"]
+[ext_resource type="AudioStream" uid="uid://d2u7rno2lryg1" path="res://entities/objects/limb_injector/audio/chomp.wav" id="20_lokee"]
+[ext_resource type="AudioStream" uid="uid://df382p51msng5" path="res://entities/objects/limb_injector/audio/glassbreaking.wav" id="21_cwwb6"]
+[ext_resource type="AudioStream" uid="uid://dbdesbuq5dvxt" path="res://entities/objects/limb_injector/audio/pop.wav" id="22_j63w2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mn2xl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_efn4d")
+}],
+"loop": false,
+"name": &"bite",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_5yqvd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0la01"]
+size = Vector2(47, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t717j"]
+size = Vector2(67, 25)
+
+[node name="LimbInjector" type="Node2D"]
+z_index = 1
+script = ExtResource("1_3p1x4")
+body_part_images = Array[Texture2D]([ExtResource("2_c5gi7"), ExtResource("3_l4xfv"), ExtResource("4_ycs0y")])
+orb_limb = ExtResource("5_2otxt")
+body_parts = Array[PackedScene]([ExtResource("6_qjj17"), ExtResource("7_3r2j7"), ExtResource("8_78iuq")])
+key_label = ExtResource("9_5ybtj")
+key_label_textures = Array[Texture2D]([ExtResource("10_c2sip"), ExtResource("11_1j81u"), ExtResource("12_nws8g"), ExtResource("13_ohbox")])
+key_binding_scene = ExtResource("14_01xyd")
+limb_count = 1
+
+[node name="Control" parent="." instance=ExtResource("14_01xyd")]
+visible = false
+script = null
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-58, 61)
+target_position = Vector2(0, 42)
+hit_from_inside = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(-57, 42)
+sprite_frames = SubResource("SpriteFrames_mn2xl")
+animation = &"bite"
+autoplay = "default"
+
+[node name="Orb" type="StaticBody2D" parent="."]
+position = Vector2(36, 62)
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Orb"]
+position = Vector2(191, 0)
+polygon = PackedVector2Array(-235, -38, -241, -17, -240, 9, -234, 22, -216, 40, -198, 47, -176, 45, -156, 37, -140, 15, -135, -2, -139, -27, -146, -39, -164, -54, -143, -41, -136, -27, -132, -2, -136, 16, -153, 39, -175, 48, -198, 50, -218, 43, -236, 26, -244, 10, -245, -17)
+
+[node name="ButtonPlatform" type="StaticBody2D" parent="."]
+position = Vector2(-57, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonPlatform"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_0la01")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(33, 6)
+
+[node name="EaterTrigger" type="Area2D" parent="."]
+position = Vector2(-60, -21)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EaterTrigger"]
+position = Vector2(1.5, 47.5)
+shape = SubResource("RectangleShape2D_t717j")
+
+[node name="Point1" type="Marker2D" parent="."]
+position = Vector2(29, -52)
+
+[node name="Point2" type="Marker2D" parent="."]
+position = Vector2(-60, -50)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -66.0
+offset_top = 59.0
+offset_right = -49.0
+offset_bottom = 64.0
+color = Color(0.305882, 0.576471, 0, 1)
+script = ExtResource("17_pmfuh")
+
+[node name="RayCast2D2" type="RayCast2D" parent="ColorRect"]
+position = Vector2(8, 2)
+target_position = Vector2(0, 42)
+collision_mask = 16
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TimeTillAct" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimeBetweenOrbSpawns" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(40, 46)
+texture = ExtResource("18_u7too")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(40, 45)
+texture = ExtResource("19_va77w")
+
+[node name="Chomp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_lokee")
+volume_db = 5.0
+pitch_scale = 0.8
+max_distance = 600.0
+
+[node name="GlassBreak" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_cwwb6")
+volume_db = -1.0
+max_distance = 600.0
+
+[node name="Pop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_j63w2")
+
+[connection signal="area_entered" from="EaterTrigger" to="." method="_on_eater_trigger_area_entered"]
+[connection signal="body_entered" from="EaterTrigger" to="." method="_on_eater_trigger_body_entered"]

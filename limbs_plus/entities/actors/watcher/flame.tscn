@@ -1,0 +1,179 @@
+[gd_scene load_steps=18 format=3 uid="uid://bkvc0ltiq6dgk"]
+
+[ext_resource type="Script" path="res://entities/actors/watcher/flame.gd" id="1_dvuhy"]
+[ext_resource type="PackedScene" uid="uid://dky7skxyyep1b" path="res://ray_line.tscn" id="2_2elan"]
+[ext_resource type="PackedScene" uid="uid://cxd4yy8a78fru" path="res://entities/actors/alchemist_hand/alchemist_hand.tscn" id="2_js3ns"]
+[ext_resource type="Texture2D" uid="uid://bpfg1m8ls3ce8" path="res://lighting/light_larger.png" id="3_sppjl"]
+[ext_resource type="Texture2D" uid="uid://cvdcif183klt1" path="res://entities/actors/watcher/sprites/fire_ball.png" id="4_f4jjh"]
+[ext_resource type="Texture2D" uid="uid://btt1fj6nx5a6o" path="res://entities/actors/watcher/sprites/fire_blink.png" id="4_qem6f"]
+[ext_resource type="AudioStream" uid="uid://j7qe5qx6i7yf" path="res://entities/actors/watcher/audio/buzz.wav" id="6_gl2h2"]
+[ext_resource type="AudioStream" uid="uid://j6vsmlyp86h4" path="res://entities/actors/watcher/audio/switch_on.wav" id="7_0tndu"]
+[ext_resource type="AudioStream" uid="uid://bwymwfkm1pdbg" path="res://entities/actors/watcher/audio/switch_off.wav" id="8_p1gv2"]
+[ext_resource type="Script" path="res://entities/actors/watcher/ray_gen.gd" id="10_x63j0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nqclg"]
+radius = 11.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2pl48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qem6f")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_f4jjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ot7q"]
+radius = 121.202
+
+[sub_resource type="Gradient" id="Gradient_eqrs4"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ki7ik"]
+gradient = SubResource("Gradient_eqrs4")
+width = 8
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_qflov"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0c4hw"]
+gradient = SubResource("Gradient_qflov")
+fill = 1
+fill_from = Vector2(0.502137, 0.487179)
+fill_to = Vector2(0.485043, 0)
+
+[node name="Flame" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2048
+script = ExtResource("1_dvuhy")
+wizard_hand = ExtResource("2_js3ns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nqclg")
+
+[node name="RightRayCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(15, 2.08165e-12)
+collision_mask = 2048
+hit_from_inside = true
+
+[node name="LeftRayCast" type="RayCast2D" parent="CollisionShape2D"]
+target_position = Vector2(-15, 2.08165e-12)
+collision_mask = 2048
+hit_from_inside = true
+
+[node name="innerRing" type="PointLight2D" parent="."]
+z_index = 2
+position = Vector2(-1, 0)
+energy = 4.0
+range_item_cull_mask = 3
+shadow_filter_smooth = 64.0
+shadow_item_cull_mask = 3
+texture = ExtResource("3_sppjl")
+texture_scale = 0.25
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_2pl48")
+animation = &"blink"
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3ot7q")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+lifetime = 1.5
+explosiveness = 0.15
+texture = SubResource("GradientTexture2D_ki7ik")
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector2(2.08165e-12, -50)
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+linear_accel_max = 25.0
+damping_max = 5.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color = Color(0.898039, 0.384314, 0.227451, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+light_mask = 2
+visibility_layer = 2
+z_index = -2
+offset_left = -897.0
+offset_top = -882.0
+offset_right = 855.0
+offset_bottom = 934.0
+color = Color(1, 1, 1, 0.0862745)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+light_mask = 2
+visibility_layer = 2
+z_index = -1
+scale = Vector2(38, 38)
+texture = SubResource("GradientTexture2D_0c4hw")
+
+[node name="ambient" type="PointLight2D" parent="."]
+z_index = 2
+position = Vector2(-1, 0)
+color = Color(0.854902, 0.533333, 0.192157, 1)
+range_item_cull_mask = 3
+shadow_filter_smooth = 64.0
+shadow_item_cull_mask = 3
+texture = ExtResource("3_sppjl")
+texture_scale = 0.1
+
+[node name="HummPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gl2h2")
+pitch_scale = 0.8
+autoplay = true
+max_distance = 600.0
+bus = &"Sfx"
+
+[node name="SwitchOnPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0tndu")
+volume_db = -18.0
+max_distance = 800.0
+bus = &"Sfx"
+
+[node name="SwitchOffPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_p1gv2")
+volume_db = -18.0
+max_distance = 800.0
+bus = &"Sfx"
+
+[node name="LineGen" type="Node2D" parent="."]
+script = ExtResource("10_x63j0")
+line_ray = ExtResource("2_2elan")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

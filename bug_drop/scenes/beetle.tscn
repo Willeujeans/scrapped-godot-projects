@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://eb556ml0lmkd"]
+
+[ext_resource type="Script" path="res://scripts/bug.gd" id="1_2lmrv"]
+[ext_resource type="Texture2D" uid="uid://cfuoqypqe2wni" path="res://images/beetle.png" id="2_tijpl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7pxf"]
+radius = 77.026
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxvcs"]
+radius = 81.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 7.0
+inertia = 25.0
+max_contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+script = ExtResource("1_2lmrv")
+metadata/myName = "beetle"
+metadata/nextBugPath = "res://scenes/weevil.tscn"
+metadata/pointCount = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q7pxf")
+debug_color = Color(0.854902, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.99998, -14.5)
+scale = Vector2(0.147917, 0.166146)
+texture = ExtResource("2_tijpl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oxvcs")
+debug_color = Color(0, 0.647059, 0.223529, 0.12549)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

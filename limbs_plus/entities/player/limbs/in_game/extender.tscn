@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=3 uid="uid://pya8pv1rk1yn"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_upmfi"]
+[ext_resource type="Script" path="res://entities/player/limbs/in_game/extender.gd" id="2_ge2ky"]
+[ext_resource type="AudioStream" uid="uid://c6si7nskgs68w" path="res://entities/player/limbs/in_game/audio/stretch_in.wav" id="3_5avsg"]
+[ext_resource type="Script" path="res://entities/player/limbs/facing_towards_player.gd" id="3_wkhik"]
+[ext_resource type="Texture2D" uid="uid://cjnutnb1iebg5" path="res://entities/player/limbs/sprites/open_duck_foot.png" id="4_ir4t2"]
+[ext_resource type="AudioStream" uid="uid://youdbv1joj7f" path="res://entities/player/limbs/in_game/audio/stretch_out.wav" id="5_0iwpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnx8v"]
+size = Vector2(20, 78)
+
+[sub_resource type="PackedScene" id="PackedScene_m6k7s"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("RigidBody2D", "RigidBody2D", "sleeping", "AttachmentPoint", "Marker2D", "CollisionShape2D", "CollisionShape2D", "shape"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 0, 0, 1073741825, 0, 6, 5, -1, 1, 7, 1, 0),
+"variants": [true, SubResource("RectangleShape2D_qnx8v")],
+"version": 3
+}
+
+[sub_resource type="Curve" id="Curve_5u4de"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.488396), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgkrg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ir4t2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Limb" instance=ExtResource("1_upmfi")]
+body = NodePath("Activation/RigidBody2D")
+delay_between_activation = 0.01
+attachment_point = NodePath("Activation/RigidBody2D/AttachmentPoint")
+activation_node = NodePath("Activation")
+
+[node name="Activation" type="Node2D" parent="." index="0"]
+script = ExtResource("2_ge2ky")
+extended_length = 40.0
+foot_scene = SubResource("PackedScene_m6k7s")
+
+[node name="ActivationSound" type="AudioStreamPlayer2D" parent="Activation" index="0"]
+stream = ExtResource("3_5avsg")
+max_distance = 500.0
+
+[node name="DeactivationSound" type="AudioStreamPlayer2D" parent="Activation" index="1"]
+stream = ExtResource("5_0iwpo")
+
+[node name="TimeTillRetraction" type="Timer" parent="Activation" index="2"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Line2D" type="Line2D" parent="Activation" index="3"]
+z_index = 1
+position = Vector2(5, 0)
+points = PackedVector2Array(0, 0, -11, 0)
+width = 16.0
+width_curve = SubResource("Curve_5u4de")
+default_color = Color(0.933333, 0.694118, 0.4, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="Activation" index="4"]
+rotation = 1.5708
+length = 40.0
+initial_offset = 7.0
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Activation" index="5"]
+rotation = 1.5708
+length = 7.0
+rest_length = 7.0
+stiffness = 64.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Activation" index="6"]
+position = Vector2(-6, 0)
+collision_layer = 16
+collision_mask = 2
+mass = 0.5
+center_of_mass_mode = 1
+can_sleep = false
+continuous_cd = 1
+script = ExtResource("3_wkhik")
+
+[node name="AttachmentPoint" type="Marker2D" parent="Activation/RigidBody2D" index="0"]
+position = Vector2(-2, 0)
+
+[node name="CenterOfMass" type="Marker2D" parent="Activation/RigidBody2D" index="1"]
+position = Vector2(-4, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activation/RigidBody2D" index="2"]
+z_index = 4
+debug_color = Color(0.964706, 0, 0.498039, 0.419608)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Activation/RigidBody2D" index="3"]
+polygon = PackedVector2Array(-4, 7, -4, -11, 0, -11, 0, -2, 6, -2, 6, 2, 0, 2, 0, 7)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Activation/RigidBody2D" index="4"]
+z_index = 1
+texture_filter = 1
+position = Vector2(0, -2)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_pgkrg")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="Activation/RigidBody2D" index="5"]
+collision_layer = 16
+collision_mask = 16
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Activation/RigidBody2D/Area2D" index="0"]
+visible = false
+polygon = PackedVector2Array(-4, 8, -4, -9, 0, 0, 31, 0, 31, 4, 0, 4)
+
+[node name="Cooldown" type="Timer" parent="Activation" index="7"]
+wait_time = 0.5
+one_shot = true

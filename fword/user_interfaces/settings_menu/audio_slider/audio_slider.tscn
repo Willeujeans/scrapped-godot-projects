@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://47g5hag5uxhq"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="1_ctc1p"]
+[ext_resource type="Script" path="res://user_interfaces/settings_menu/audio_slider/audio_slider.gd" id="2_3filf"]
+
+[node name="AudioSlider" type="VBoxContainer"]
+theme = ExtResource("1_ctc1p")
+script = ExtResource("2_3filf")
+bus_name = "bus"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "place_holder"
+horizontal_alignment = 1
+
+[node name="Slider" type="HSlider" parent="."]
+layout_mode = 2
+theme = ExtResource("1_ctc1p")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[connection signal="value_changed" from="Slider" to="." method="_on_h_slider_value_changed"]

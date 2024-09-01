@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj05q824o8ern"]
+
+[ext_resource type="Script" path="res://fan_area.gd" id="1_eot7k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_see61"]
+size = Vector2(70, 123)
+
+[node name="Fan" type="Area2D"]
+gravity_space_override = 1
+gravity_point_center = Vector2(2.08165e-12, -1)
+gravity_direction = Vector2(2.08165e-12, -1)
+linear_damp_space_override = 1
+script = ExtResource("1_eot7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -51.5)
+shape = SubResource("RectangleShape2D_see61")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emission_shape = 3
+emission_rect_extents = Vector2(30, 1)
+direction = Vector2(2.08165e-12, -1)
+gravity = Vector2(2.08165e-12, -300)
+scale_amount_min = 2.5
+scale_amount_max = 3.5
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, -50)

@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://hea156jlgicl"]
+
+[ext_resource type="Texture2D" uid="uid://dpx0ya6bkd7h0" path="res://splat_one.png" id="1_w77vq"]
+[ext_resource type="Script" path="res://splatter.gd" id="2_7ukf5"]
+[ext_resource type="Texture2D" uid="uid://dk0krvbryvw4r" path="res://splat_two.png" id="2_otgb6"]
+[ext_resource type="Texture2D" uid="uid://c7dsgcjxnstli" path="res://small_ball.png" id="4_jihj7"]
+[ext_resource type="Texture2D" uid="uid://c0w4trd2tnjoy" path="res://explode_one.png" id="5_4pieq"]
+[ext_resource type="Texture2D" uid="uid://b4lmh34xfiy2p" path="res://explode_two.png" id="6_hfuqb"]
+[ext_resource type="Texture2D" uid="uid://deg5dr31ydq07" path="res://explode_three.png" id="7_k1whq"]
+[ext_resource type="Texture2D" uid="uid://biqi07ul40dgp" path="res://explode_four.png" id="8_2nmsw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71fwd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w77vq")
+}],
+"loop": false,
+"name": &"one",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_otgb6")
+}],
+"loop": false,
+"name": &"two",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdgem"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4pieq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hfuqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k1whq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2nmsw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+z_index = 1
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_71fwd")
+animation = &"two"
+autoplay = "one"
+script = ExtResource("2_7ukf5")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 4
+texture_filter = 1
+emitting = false
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_jihj7")
+direction = Vector2(1, 1)
+spread = 180.0
+initial_velocity_min = 15.0
+initial_velocity_max = 500.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.16, 2.16)
+sprite_frames = SubResource("SpriteFrames_jdgem")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0

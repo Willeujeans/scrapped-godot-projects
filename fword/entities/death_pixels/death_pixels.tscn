@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7gvonca81un6"]
+
+[ext_resource type="Script" path="res://entities/death_pixels/death_pixels.gd" id="1_ta4jg"]
+[ext_resource type="PackedScene" uid="uid://udqmqyxs6k2j" path="res://entities/death_pixels/rigid_pixel.tscn" id="2_5oaf5"]
+
+[node name="pixelParent" type="Node2D"]
+script = ExtResource("1_ta4jg")
+
+[node name="rigidPixel2" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(0, -9)
+
+[node name="rigidPixel3" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(-17, -9)
+
+[node name="rigidPixel4" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(-17, -26)
+
+[node name="rigidPixel7" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(0, -43)
+
+[node name="rigidPixel8" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(-17, -43)
+
+[node name="rigidPixel5" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(17, -9)
+
+[node name="rigidPixel6" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(17, -26)
+
+[node name="rigidPixel9" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(0, -26)
+
+[node name="rigidPixel10" parent="." instance=ExtResource("2_5oaf5")]
+position = Vector2(17, -43)

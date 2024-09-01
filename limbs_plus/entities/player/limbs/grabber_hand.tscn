@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://be7scr6yvcx4h"]
+
+[ext_resource type="Script" path="res://entities/actors/Hand.gd" id="1_c42ow"]
+[ext_resource type="Texture2D" uid="uid://7jdc3htvaqrl" path="res://entities/player/limbs/sprites/tentacle.png" id="2_r7yve"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1igrp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r7yve")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r7yve")
+}],
+"loop": true,
+"name": &"grabbing",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ky2fo"]
+radius = 51.0
+
+[node name="Hand" type="RigidBody2D"]
+gravity_scale = 2.0
+script = ExtResource("1_c42ow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_1igrp")
+animation = &"grabbing"
+autoplay = "default"
+offset = Vector2(-0.25, -1.67)
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ky2fo")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-90, 2.08165e-12)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

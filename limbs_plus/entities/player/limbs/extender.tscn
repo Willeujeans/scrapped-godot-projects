@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://ko33xvookj2k"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_ecapv"]
+[ext_resource type="Script" path="res://entities/player/limbs/extender.gd" id="2_cgg2o"]
+[ext_resource type="Script" path="res://entities/player/limbs/extender_part.gd" id="3_pecdq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtow1"]
+size = Vector2(17, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evvbp"]
+size = Vector2(50, 17)
+
+[node name="Limb" instance=ExtResource("1_ecapv")]
+activation_node = NodePath("Extender")
+
+[node name="Extender" type="Node2D" parent="." index="0"]
+script = ExtResource("2_cgg2o")
+
+[node name="PinJoint2D" type="GrooveJoint2D" parent="Extender" index="0"]
+z_index = 1
+rotation = 1.5708
+length = 80.0
+
+[node name="EndPoint" type="Marker2D" parent="Extender/PinJoint2D" index="0"]
+position = Vector2(3.49691e-06, 80)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Extender" index="1"]
+position = Vector2(-25, -7.27596e-12)
+rotation = 3.14159
+lock_rotation = true
+script = ExtResource("3_pecdq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Extender/RigidBody2D" index="0"]
+position = Vector2(-2.28882e-05, -2.14976e-05)
+shape = SubResource("RectangleShape2D_jtow1")
+
+[node name="AttachmentPoint" type="Marker2D" parent="Extender/RigidBody2D" index="1"]
+position = Vector2(-2.28882e-05, -2.14976e-05)
+rotation = -1.57079
+
+[node name="Area2D" type="Area2D" parent="Extender/RigidBody2D" index="2"]
+position = Vector2(-2.28882e-05, -2.14976e-05)
+rotation = -1.5708
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Extender/RigidBody2D/Area2D" index="0"]
+position = Vector2(0, -0.499996)
+shape = SubResource("RectangleShape2D_evvbp")
+
+[node name="ColorRect" type="ColorRect" parent="Extender/RigidBody2D" index="3"]
+offset_left = -8.99989
+offset_top = -25.0
+offset_right = 9.00011
+offset_bottom = 25.0
+color = Color(0.933333, 0.117647, 0.27451, 1)

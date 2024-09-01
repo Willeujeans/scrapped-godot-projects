@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl2n6ub0catbi"]
+
+[ext_resource type="Script" path="res://settings_menu/settings.gd" id="1_51lgn"]
+[ext_resource type="PackedScene" uid="uid://c63cussnwbd6v" path="res://settings_menu/fullscreen_button/fullscreen_button.tscn" id="3_1qlgm"]
+[ext_resource type="PackedScene" uid="uid://47g5hag5uxhq" path="res://settings_menu/audio_slider/audio_slider.tscn" id="3_itu5c"]
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://themes/main_theme.tres" id="3_qdep1"]
+[ext_resource type="PackedScene" uid="uid://8pgiuptawewa" path="res://settings_menu/exit_button/exit_button.tscn" id="4_kn2qr"]
+
+[node name="Settings" type="Control" groups=["unclearable"]]
+process_mode = 3
+process_priority = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("3_qdep1")
+script = ExtResource("1_51lgn")
+
+[node name="settings" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="settings"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -181.5
+offset_right = 181.5
+offset_bottom = 803.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("3_qdep1")
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="settings/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 90
+text = "paused"
+
+[node name="Master" parent="settings/VBoxContainer" instance=ExtResource("3_itu5c")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Music" parent="settings/VBoxContainer" instance=ExtResource("3_itu5c")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="Effects" parent="settings/VBoxContainer" instance=ExtResource("3_itu5c")]
+layout_mode = 2
+bus_name = "Sfx"
+
+[node name="FullscreenButton" parent="settings/VBoxContainer" instance=ExtResource("3_1qlgm")]
+layout_mode = 2
+
+[node name="ExitButton" parent="settings/VBoxContainer" instance=ExtResource("4_kn2qr")]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="settings"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.65098)

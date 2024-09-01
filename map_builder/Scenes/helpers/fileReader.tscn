@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce3ntsjolpvyv"]
+
+[ext_resource type="Script" path="res://Scripts/s_fileReader.gd" id="1_ipeix"]
+
+[node name="fileReader" type="Node"]
+script = ExtResource("1_ipeix")

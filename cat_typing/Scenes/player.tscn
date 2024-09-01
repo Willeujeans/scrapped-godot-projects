@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dn6imy85erlmw"]
+
+[ext_resource type="Script" path="res://Scenes/game_state.gd" id="1_hwsv2"]
+[ext_resource type="Script" path="res://scripts/player_input.gd" id="1_q0dbt"]
+[ext_resource type="Script" path="res://scripts/type_writer.gd" id="2_117l3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fsb32"]
+size = Vector3(4.81, 1, 5.55)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wovny"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.921569, 0.694118, 0.494118, 1)
+
+[node name="player" type="Node3D"]
+
+[node name="game_state" type="Node" parent="."]
+script = ExtResource("1_hwsv2")
+
+[node name="input_handler" type="Node" parent="."]
+script = ExtResource("1_q0dbt")
+
+[node name="type_writer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611434, -1.39498)
+script = ExtResource("2_117l3")
+
+[node name="Paper" type="MeshInstance3D" parent="type_writer"]
+transform = Transform3D(0.376389, -2.32426e-18, 5.86552e-17, 1.3128e-16, 0.00666383, -5.86552e-17, -1.3128e-16, 2.32426e-18, 0.168169, -0.002, 0.112695, 0.150866)
+mesh = SubResource("BoxMesh_fsb32")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_wovny")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 48.7
+
+[connection signal="typed" from="input_handler" to="type_writer" method="_on_input_handler_typed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://hd1m6yfgggfp"]
+
+[ext_resource type="Script" path="res://user_interfaces/throw_tracker/throw_tracker_element.gd" id="1_luauq"]
+[ext_resource type="Texture2D" uid="uid://ciagu8uv8koo4" path="res://user_interfaces/throw_tracker/flower_ui.png" id="3_oa1j8"]
+[ext_resource type="PackedScene" uid="uid://cu0dwj7m1yjhh" path="res://user_interfaces/throw_tracker/ui_element_physical.tscn" id="4_7dyy3"]
+[ext_resource type="Shader" path="res://shaders/single_color_shaders/75_value.gdshader" id="4_rvo4r"]
+[ext_resource type="Texture2D" uid="uid://c6v44stj2rnkn" path="res://user_interfaces/throw_tracker/lilly_pad.png" id="5_fmlm7"]
+
+[node name="UIElement" type="Container"]
+script = ExtResource("1_luauq")
+dot_image = ExtResource("5_fmlm7")
+lilly_pad_image = ExtResource("3_oa1j8")
+star_shader = ExtResource("4_rvo4r")
+rigid_form = ExtResource("4_7dyy3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("5_fmlm7")

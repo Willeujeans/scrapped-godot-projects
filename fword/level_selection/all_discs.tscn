@@ -1,0 +1,23 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0g1fchajq1d0"]
+
+[ext_resource type="Script" path="res://level_selection/all_discs.gd" id="1_v1rvl"]
+[ext_resource type="PackedScene" uid="uid://b02x3b8suhefa" path="res://level_selection/disc_storage.tscn" id="1_yg8h7"]
+[ext_resource type="PackedScene" uid="uid://b5obtk0knj0n3" path="res://levels/0/tutorial_level.tscn" id="3_jbckt"]
+[ext_resource type="PackedScene" uid="uid://ntkkvjeanumh" path="res://levels/0/lvl_ground_platforming.tscn" id="4_l7uxj"]
+[ext_resource type="PackedScene" uid="uid://dtn16nrg6gyy" path="res://levels/0/lvl_simple_spikes.tscn" id="5_3c6bk"]
+[ext_resource type="PackedScene" uid="uid://goriygde8x4i" path="res://levels/0/lvl_spikes_and_leaves.tscn" id="6_fgewc"]
+[ext_resource type="PackedScene" uid="uid://ltps7mkwiufv" path="res://levels/0/lvl_advanced_spikes.tscn" id="7_nwk23"]
+[ext_resource type="PackedScene" uid="uid://7ujn4p646ous" path="res://levels/0/lvl_spikes_gear.tscn" id="8_aqj2q"]
+[ext_resource type="PackedScene" uid="uid://dejxkh5ve70yd" path="res://levels/0/lvl_spikes_gears.tscn" id="9_81loa"]
+
+[node name="AllDiscs" type="Node"]
+script = ExtResource("1_v1rvl")
+
+[node name="Disc1" parent="." instance=ExtResource("1_yg8h7")]
+levels = Array[PackedScene]([ExtResource("3_jbckt"), ExtResource("5_3c6bk"), ExtResource("4_l7uxj"), ExtResource("6_fgewc"), ExtResource("7_nwk23"), ExtResource("8_aqj2q"), ExtResource("9_81loa")])
+
+[node name="Disc2" parent="." instance=ExtResource("1_yg8h7")]
+
+[node name="Disc3" parent="." instance=ExtResource("1_yg8h7")]
+
+[node name="Disc4" parent="." instance=ExtResource("1_yg8h7")]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bynryr8qmyc5g"]
+
+[ext_resource type="Script" path="res://entities/pillbug/pillbug.gd" id="1_abeng"]
+[ext_resource type="Texture2D" uid="uid://b4vrvlmtdpgga" path="res://entities/pillbug/animation/000.png" id="2_uvidf"]
+[ext_resource type="Texture2D" uid="uid://wmyo80v7v45f" path="res://entities/pillbug/animation/001.png" id="3_4wvft"]
+[ext_resource type="Texture2D" uid="uid://b2pkwlnsnebhj" path="res://entities/pillbug/animation/002.png" id="4_sr72s"]
+[ext_resource type="Texture2D" uid="uid://cp0ho2b1f6gu" path="res://entities/pillbug/animation/003.png" id="5_exieo"]
+[ext_resource type="Script" path="res://entities/pillbug/pillbug_movement.gd" id="6_cexv5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ow1vi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uvidf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4wvft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sr72s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_exieo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k8pvp"]
+radius = 71.0
+height = 304.0
+
+[node name="PillBug" type="CharacterBody2D" groups=["unstickable"]]
+collision_layer = 3
+collision_mask = 4
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 1.39626
+script = ExtResource("1_abeng")
+speed = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_ow1vi")
+autoplay = "default"
+frame_progress = 0.180514
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource("6_cexv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.36424e-12, 8)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_k8pvp")

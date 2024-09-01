@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c8nhvy7k5wkjf"]
+
+[node name="WaterVisual" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 214.0
+color = Color(0.517647, 0.811765, 0.866667, 1)

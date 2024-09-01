@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://dw638itg630uw"]
+
+[ext_resource type="Script" path="res://Scripts/s_sceneManager.gd" id="1_u886d"]
+[ext_resource type="PackedScene" uid="uid://4afy2lppcqje" path="res://Scenes/helpers/sceneChanger.tscn" id="2_0ecs1"]
+[ext_resource type="PackedScene" uid="uid://brc842b1b4ke7" path="res://Scenes/helpers/directoryScanner.tscn" id="3_hk125"]
+[ext_resource type="Script" path="res://Scripts/s_overlayMenu.gd" id="3_uhn1u"]
+[ext_resource type="FontFile" uid="uid://b6cietr2hys0p" path="res://Zilla_Slab/ZillaSlab-Regular.ttf" id="4_lwi3g"]
+[ext_resource type="PackedScene" uid="uid://ce3ntsjolpvyv" path="res://Scenes/helpers/fileReader.tscn" id="4_t1fat"]
+[ext_resource type="PackedScene" uid="uid://cayscq5417w5y" path="res://Scenes/helpers/fileExporter.tscn" id="5_gt2i4"]
+[ext_resource type="Script" path="res://Scripts/s_exitButton.gd" id="5_mfltu"]
+[ext_resource type="Script" path="res://Scripts/s_tmp.gd" id="5_wrwh6"]
+
+[node name="shell" type="Node3D"]
+script = ExtResource("1_u886d")
+
+[node name="sceneChanger" parent="." instance=ExtResource("2_0ecs1")]
+
+[node name="directoryScanner" parent="." instance=ExtResource("3_hk125")]
+
+[node name="fileReader" parent="." instance=ExtResource("4_t1fat")]
+
+[node name="fileExporter" parent="." instance=ExtResource("5_gt2i4")]
+
+[node name="tmp" type="Node" parent="."]
+script = ExtResource("5_wrwh6")
+
+[node name="overlayMenu" type="Control" parent="."]
+visible = false
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("3_uhn1u")
+
+[node name="Button" type="Button" parent="overlayMenu"]
+z_index = 5
+layout_mode = 0
+offset_right = 122.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("4_lwi3g")
+theme_override_font_sizes/font_size = 100
+text = "X"
+script = ExtResource("5_mfltu")
+
+[node name="container" type="Node3D" parent="."]
+
+[connection signal="pressed" from="overlayMenu/Button" to="overlayMenu/Button" method="_on_pressed"]

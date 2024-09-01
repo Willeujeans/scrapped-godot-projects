@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://nvexp26y0on7"]
+
+[ext_resource type="Script" path="res://Scripts/s_block.gd" id="1_e4g4i"]
+[ext_resource type="ArrayMesh" uid="uid://c7e1k4hwmptx1" path="res://models/regular.obj" id="2_acrrp"]
+[ext_resource type="Shader" path="res://materials/terrain.gdshader" id="3_br63c"]
+[ext_resource type="Shader" path="res://materials/block.gdshader" id="4_odu8t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3js14"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4dm3"]
+render_priority = 0
+shader = ExtResource("3_br63c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4kn5"]
+render_priority = 0
+shader = ExtResource("4_odu8t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tx4ad"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.207843)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tv41i"]
+material = SubResource("StandardMaterial3D_tx4ad")
+
+[node name="block" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_e4g4i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("2_acrrp")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_3js14")
+
+[node name="terrainLayer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.003, 0, 0, 0, 0.5, 2.08165e-12, 0.51, 2.08165e-12)
+mesh = ExtResource("2_acrrp")
+surface_material_override/0 = SubResource("ShaderMaterial_p4dm3")
+
+[node name="MeshInstance3DMove" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.526371, 0, 0, 0, 0.0200141, 0, 0, 0, 0.526371, 2.08165e-12, -0.498, 2.08165e-12)
+mesh = ExtResource("2_acrrp")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("ShaderMaterial_p4kn5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.76234e-09, 0, -0.0389125, 0, 0.035173, 0, 0.0403176, 0, -1.70092e-09, -0.500113, 0.511616, -0.500402)
+mesh = SubResource("BoxMesh_tv41i")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]

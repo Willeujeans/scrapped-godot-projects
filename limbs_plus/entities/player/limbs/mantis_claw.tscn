@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhmxjlo50uuit"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/mantis_claw.gd" id="1_h51su"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8633"]
+size = Vector2(20, 54)
+
+[node name="MantisClaw" type="PinJoint2D" groups=["limb"]]
+node_b = NodePath("RigidBody2D")
+bias = 0.9
+softness = 16.0
+motor_enabled = true
+motor_target_velocity = 0.0174533
+script = ExtResource("1_h51su")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(21, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(17, -0.000226351)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_d8633")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

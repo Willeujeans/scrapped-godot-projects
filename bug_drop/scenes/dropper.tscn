@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b44giorn67k30"]
+
+[ext_resource type="Script" path="res://scripts/dropper.gd" id="1_mpk0x"]
+
+[node name="Dropper" type="Node2D"]
+z_index = 1
+position = Vector2(952, 248)
+script = ExtResource("1_mpk0x")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -75.0
+offset_top = -152.0
+offset_right = 81.0
+offset_bottom = -10.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.1, 0.1)

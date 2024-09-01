@@ -1,0 +1,122 @@
+[gd_scene load_steps=21 format=3 uid="uid://d07sdhm6bswpv"]
+
+[ext_resource type="Script" path="res://parent_level/parent_level.gd" id="1_0ujkt"]
+[ext_resource type="PackedScene" uid="uid://ckwxmnv7kjr8o" path="res://parent_level/continue_prompt/continue_prompt.tscn" id="2_8gbxq"]
+[ext_resource type="PackedScene" uid="uid://bw775qke55gl6" path="res://parent_level/ding_sound.tscn" id="2_ust00"]
+[ext_resource type="PackedScene" uid="uid://2eu1nrarx4ce" path="res://user_interfaces/transition/transition.tscn" id="2_v4b5k"]
+[ext_resource type="PackedScene" uid="uid://d3ewgssq13po5" path="res://level_selection/disc_menu/disc_menu_template.tscn" id="2_vlitx"]
+[ext_resource type="PackedScene" uid="uid://8i8tf5248qsr" path="res://user_interfaces/throw_tracker/throw_tracker.tscn" id="4_d8quj"]
+[ext_resource type="TileSet" uid="uid://b2if5yms5ebda" path="res://2D/2D_test_world/basic_tile_set.tres" id="4_y17re"]
+[ext_resource type="Script" path="res://parent_level/TileMap.gd" id="5_5hdgw"]
+[ext_resource type="Script" path="res://parent_level/opacity_fade_background.gd" id="7_2r4yo"]
+[ext_resource type="Script" path="res://parent_level/background/random_background_element.gd" id="7_fk30a"]
+[ext_resource type="PackedScene" uid="uid://d3fn1kx83yw2d" path="res://parent_level/background/background_opacity_screen.tscn" id="8_xo7k8"]
+[ext_resource type="PackedScene" uid="uid://cxcstxyue7l0v" path="res://levels/background_sprites/background_sprite.tscn" id="16_33cn2"]
+[ext_resource type="PackedScene" uid="uid://dukk2fdg14cbt" path="res://entities/door/door.tscn" id="17_bs0vx"]
+[ext_resource type="PackedScene" uid="uid://bl5tcm37qwdfs" path="res://2D/2D_player_character/2D_player_controller/2D_player_controller.tscn" id="22_epi5w"]
+[ext_resource type="Texture2D" uid="uid://cn5a1uqqaonc4" path="res://levels/background_sprites/forest_sprites/leaf_particle.png" id="22_vt502"]
+[ext_resource type="PackedScene" uid="uid://bkxrqtyknf640" path="res://managers/save_manager/save_node.tscn" id="24_epcyu"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://managers/scene_change_node/scene_change_node.tscn" id="25_qlpov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esq24"]
+size = Vector2(183, 184)
+
+[sub_resource type="Gradient" id="Gradient_x2wki"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2quss"]
+gradient = SubResource("Gradient_x2wki")
+
+[node name="World" type="Node2D" groups=["level"]]
+script = ExtResource("1_0ujkt")
+back_scene = ExtResource("2_vlitx")
+transition_scene = ExtResource("2_v4b5k")
+ding_sound = ExtResource("2_ust00")
+continue_prompt = ExtResource("2_8gbxq")
+three_star = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ThrowTracker" parent="CanvasLayer" instance=ExtResource("4_d8quj")]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+tile_set = ExtResource("4_y17re")
+format = 2
+layer_0/name = "base"
+layer_0/tile_data = PackedInt32Array(458767, 65536, 3, 458766, 65536, 3, 458765, 65536, 3, 458764, 65536, 3, 458763, 65536, 3, 458762, 65536, 3, 458761, 65536, 3, 458760, 65536, 3, 458759, 65536, 3, 458758, 65536, 3, 458757, 65536, 3, 458756, 65536, 3, 458755, 65536, 3, 458754, 65536, 3, 458753, 65536, 3, 458752, 65536, 3, 524287, 65536, 3, 524286, 65536, 3, 524285, 65536, 3, 524284, 65536, 3, 524283, 65536, 3, 524282, 65536, 3, 524281, 65536, 3, 524280, 65536, 1, -1245192, 65536, 1, -1245191, 65536, 3, -1245190, 65536, 0, -1245189, 65536, 0, -1310704, 65536, 3, -1310705, 65536, 3, -1310706, 65536, 0, -1310707, 65536, 0, -1310708, 65536, 0, -1310709, 65536, 0, -1310710, 65536, 0, -1310711, 65536, 0, -1310712, 65536, 0, -1310713, 65536, 0, -1310714, 65536, 0, -1310715, 65536, 0, -1310716, 65536, 0, -1310717, 65536, 0, -1310718, 65536, 0, -1310719, 65536, 0, -1310720, 65536, 0, -1245185, 65536, 0, -1245186, 65536, 0, -1245187, 65536, 0, -1245188, 65536, 0, -1179656, 196608, 1, -1114120, 0, 1, -1048584, 0, 1, -983048, 0, 1, -917512, 0, 1, -851976, 0, 1, -786440, 0, 1, -720904, 0, 1, -655368, 0, 1, -589832, 0, 1, -524296, 0, 1, -458760, 0, 1, -393224, 0, 1, -327688, 0, 1, -262152, 0, 1, -196616, 0, 1, -131080, 0, 1, -65544, 0, 1, -8, 0, 1, 65528, 0, 1, 131064, 0, 1, 196600, 0, 1, 262136, 0, 1, 327672, 0, 1, 393208, 196608, 1, 458744, 196608, 1, 458785, 65536, 1, 458784, 65536, 3, 458783, 65536, 3, 458782, 65536, 3, 458781, 65536, 3, 458780, 65536, 3, 458779, 65536, 3, 458778, 65536, 3, 458777, 65536, 3, 458776, 65536, 3, 458775, 65536, 3, 458774, 65536, 3, 458773, 65536, 3, 458772, 65536, 3, 458771, 65536, 3, 458770, 65536, 3, 458769, 65536, 3, 458768, 65536, 3, -1310687, 65536, 1, -1245151, 196608, 1, -1179615, 196608, 1, -1114079, 196608, 1, -1048543, 196608, 1, -983007, 196608, 1, -917471, 196608, 1, -851935, 196608, 1, -786399, 196608, 1, -720863, 196608, 1, -655327, 196608, 1, -589791, 196608, 1, -524255, 196608, 1, -458719, 196608, 1, -393183, 196608, 1, -327647, 196608, 1, -262111, 196608, 1, -196575, 196608, 1, -131039, 196608, 1, -65503, 196608, 1, 33, 196608, 1, 65569, 196608, 1, 131105, 196608, 1, 196641, 196608, 1, 262177, 196608, 1, 327713, 196608, 1, 393249, 196608, 1, -1310703, 65536, 3, -1310702, 65536, 3, -1310701, 65536, 3, -1310700, 65536, 3, -1310699, 65536, 3, -1310698, 65536, 3, -1310697, 65536, 3, -1310696, 65536, 3, -1310695, 65536, 3, -1310694, 65536, 3, -1310693, 65536, 3, -1310692, 65536, 3, -1310691, 65536, 3, -1310690, 65536, 3, -1310689, 65536, 3, -1310688, 65536, 3)
+script = ExtResource("5_5hdgw")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+script = ExtResource("7_fk30a")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
+z_index = -3
+texture_filter = 1
+position = Vector2(878, -71)
+amount = 50
+lifetime = 15.0
+texture = ExtResource("22_vt502")
+emission_shape = 3
+emission_rect_extents = Vector2(1100, 2)
+gravity = Vector2(20, 30)
+angular_velocity_min = 77.98
+angular_velocity_max = 291.12
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+color = Color(0.454902, 0.454902, 0.454902, 1)
+
+[node name="OpacityLayers" type="Node2D" parent="Background"]
+script = ExtResource("7_2r4yo")
+background_opacity_screen = ExtResource("8_xo7k8")
+
+[node name="BackgroundSprite" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite2" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite3" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite4" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite5" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite6" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite7" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite8" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="BackgroundSprite9" parent="Background" instance=ExtResource("16_33cn2")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("22_epi5w")]
+position = Vector2(299, 404)
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("25_qlpov")]
+current_parent_scene = NodePath("..")
+
+[node name="SaveNode" parent="." instance=ExtResource("24_epcyu")]
+
+[node name="Door" parent="." instance=ExtResource("17_bs0vx")]
+position = Vector2(976, 792)
+
+[node name="Area2D" type="Area2D" parent="Door"]
+position = Vector2(134, -97)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_esq24")
+
+[node name="TextureRect" type="TextureRect" parent="Door"]
+z_index = -2
+offset_left = -7.0
+offset_top = -200.0
+offset_right = 306.0
+offset_bottom = 12.0
+texture = SubResource("GradientTexture2D_2quss")
+
+[connection signal="body_entered" from="Door/Area2D" to="." method="_on_area_2d_body_entered"]

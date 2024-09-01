@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bri48oipqloxo"]
+
+[ext_resource type="Script" path="res://scripts/bug.gd" id="1_ggfab"]
+[ext_resource type="Texture2D" uid="uid://dchi3wlg3vi0p" path="res://images/ant.png" id="2_wcam7"]
+[ext_resource type="Script" path="res://scenes/movement.gd" id="3_4jcri"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldco7"]
+radius = 30.5164
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgq80"]
+radius = 35.0571
+
+[node name="RigidBody2D" type="RigidBody2D"]
+inertia = 10.0
+can_sleep = false
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_ggfab")
+metadata/myName = "ant"
+metadata/nextBugPath = "res://scenes/ladyBug.tscn"
+metadata/pointCount = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.50004, -5.29289e-05)
+shape = SubResource("CircleShape2D_ldco7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -9)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_wcam7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mgq80")
+
+[node name="movement" type="Node" parent="."]
+script = ExtResource("3_4jcri")
+
+[connection signal="body_entered" from="." to="movement" method="_on_rigid_body_2d_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

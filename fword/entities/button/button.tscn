@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch4r5o3wlxcpd"]
+
+[ext_resource type="Script" path="res://entities/button/button.gd" id="1_78sq5"]
+[ext_resource type="Texture2D" uid="uid://ctwc0fp1cc0et" path="res://entities/button/buttonPressed.png" id="2_eg4ed"]
+[ext_resource type="Texture2D" uid="uid://blx3c528nascf" path="res://entities/button/buttonUnpressed.png" id="3_whwov"]
+[ext_resource type="AudioStream" uid="uid://dsvd1n68fkg71" path="res://entities/button/analog_click.wav" id="4_rmm7j"]
+[ext_resource type="AudioStream" uid="uid://dif700qk0c0bc" path="res://entities/button/button_click.wav" id="5_4q8oo"]
+
+[node name="Button" type="Node2D" groups=["button"]]
+position = Vector2(0, -33)
+script = ExtResource("1_78sq5")
+button_pressed_image = ExtResource("2_eg4ed")
+button_unpressed_image = ExtResource("3_whwov")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("3_whwov")
+
+[node name="buttonBody" type="StaticBody2D" parent="." groups=["swordSticker"]]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="buttonBody"]
+position = Vector2(-3, 29)
+polygon = PackedVector2Array(-37, 3, -21, -11, 27, -11, 42, 3)
+
+[node name="RayCast2D" type="RayCast2D" parent="buttonBody"]
+position = Vector2(0, 23)
+target_position = Vector2(0, -33)
+collision_mask = 7
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="ClickAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rmm7j")
+volume_db = -5.0
+pitch_scale = 0.9
+
+[node name="BloopAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4q8oo")
+volume_db = -10.0

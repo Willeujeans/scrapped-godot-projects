@@ -1,0 +1,169 @@
+[gd_scene load_steps=14 format=3 uid="uid://uwo21qgh3yj7"]
+
+[ext_resource type="Script" path="res://entities/player/player_controller/bottleussy.gd" id="1_b2id3"]
+[ext_resource type="Texture2D" uid="uid://bpfg1m8ls3ce8" path="res://lighting/light_larger.png" id="5_sepne"]
+[ext_resource type="SpriteFrames" uid="uid://qpiwoovpl2w5" path="res://entities/player/player_controller/bottleussy.tres" id="6_jlxux"]
+[ext_resource type="Texture2D" uid="uid://dmkgfcnbu1lke" path="res://entities/player/player_controller/pin_marker.png" id="7_mhfin"]
+[ext_resource type="Script" path="res://entities/player/player_controller/antirotation.gd" id="8_2pdij"]
+[ext_resource type="AudioStream" uid="uid://ck1tsk5gfddrm" path="res://entities/player/player_controller/clink.wav" id="9_0a4js"]
+[ext_resource type="Texture2D" uid="uid://jxec6ngfe4ex" path="res://entities/player/animations/tag.png" id="10_mcutl"]
+[ext_resource type="PackedScene" uid="uid://7rox1r8mmpri" path="res://entities/player/player_camera/2D_player_camera.tscn" id="14_t1a3t"]
+[ext_resource type="Script" path="res://entities/player/player_controller/action_handler.gd" id="15_21ur8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i75v8"]
+size = Vector2(22, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gho32"]
+size = Vector2(22, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ygyc"]
+size = Vector2(14, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1pgd"]
+size = Vector2(22, 32)
+
+[node name="Bottleussy" type="RigidBody2D" groups=["cant_stick", "player"]]
+collision_mask = 3
+gravity_scale = 0.8
+can_sleep = false
+max_contacts_reported = 4
+contact_monitor = true
+script = ExtResource("1_b2id3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i75v8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+sprite_frames = ExtResource("6_jlxux")
+animation = &"on_side_left"
+
+[node name="PlayerCamera" parent="." instance=ExtResource("14_t1a3t")]
+position = Vector2(0, 0)
+zoom = Vector2(5, 5)
+
+[node name="ActionHandler" type="Node" parent="."]
+script = ExtResource("15_21ur8")
+
+[node name="Throw" type="Node" parent="ActionHandler"]
+
+[node name="Explode" type="Node" parent="ActionHandler"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -50)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+color = Color(0.862745, 0.517647, 0, 1)
+energy = 0.6
+texture = ExtResource("5_sepne")
+texture_scale = 0.08
+
+[node name="TargetArea" type="Area2D" parent="." groups=["target"]]
+collision_layer = 12
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("RectangleShape2D_gho32")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(-8, -10)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+bias = 0.9
+angular_limit_lower = -0.0872665
+angular_limit_upper = 0.0872665
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-8, -10)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-8, -10)
+collision_layer = 0
+collision_mask = 0
+angular_damp = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+z_index = 3
+texture_filter = 1
+position = Vector2(-4, 2.08165e-12)
+rotation = 1.57079
+texture = ExtResource("10_mcutl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_6ygyc")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_w1pgd")
+
+[node name="Top" type="Marker2D" parent="." groups=["body_point", "h"]]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+position = Vector2(0, -15)
+
+[node name="Sprite2D" type="Sprite2D" parent="Top"]
+modulate = Color(0.992157, 0.286275, 0.223529, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(-7.38265e-08, 1.90735e-06)
+rotation = 0.261799
+texture = ExtResource("7_mhfin")
+offset = Vector2(2.08165e-12, -7)
+script = ExtResource("8_2pdij")
+
+[node name="Right" type="Marker2D" parent="." groups=["body_point", "j"]]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+position = Vector2(10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Right"]
+modulate = Color(0.427451, 0.85098, 0.109804, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(-9.53674e-07, 3.56598e-07)
+rotation = 1.65024
+texture = ExtResource("7_mhfin")
+offset = Vector2(2.08165e-12, -7)
+script = ExtResource("8_2pdij")
+
+[node name="Left" type="Marker2D" parent="." groups=["body_point", "l"]]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+position = Vector2(-10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Left"]
+modulate = Color(0.733333, 0.223529, 0.780392, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(-9.53674e-07, 5.4439e-07)
+rotation = -1.49554
+texture = ExtResource("7_mhfin")
+offset = Vector2(2.08165e-12, -7)
+script = ExtResource("8_2pdij")
+
+[node name="Bottom" type="Marker2D" parent="." groups=["body_point", "k"]]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+position = Vector2(0, 15)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom"]
+modulate = Color(0.219608, 0.67451, 0.952941, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(1.22871e-08, 0)
+rotation = -3.22563
+texture = ExtResource("7_mhfin")
+offset = Vector2(2.08165e-12, -7)
+script = ExtResource("8_2pdij")
+
+[node name="Clink" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_0a4js")
+max_distance = 100.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

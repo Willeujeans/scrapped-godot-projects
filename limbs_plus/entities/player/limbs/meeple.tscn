@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://bn8i23ccxdbhc"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/meeple.gd" id="1_jxh2t"]
+[ext_resource type="Texture2D" uid="uid://cjdj23usmxaan" path="res://entities/player/limbs/sprites/meeple.png" id="1_lcq1u"]
+[ext_resource type="Texture2D" uid="uid://bpfg1m8ls3ce8" path="res://lighting/light_larger.png" id="2_nyis2"]
+[ext_resource type="Texture2D" uid="uid://c7ror4arhrc4u" path="res://entities/player/limbs/sprites/meeple_thrown.png" id="3_yt1du"]
+[ext_resource type="AudioStream" uid="uid://co0m5fal8c4a0" path="res://entities/player/limbs/in_game/audio/meeple_scream.wav" id="5_hbfgu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhwdj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lcq1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yt1du")
+}],
+"loop": true,
+"name": &"thrown",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vfuo"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx244"]
+size = Vector2(14, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r35yt"]
+radius = 7.0
+
+[node name="Meeple" type="RigidBody2D" groups=["target"]]
+collision_layer = 16
+collision_mask = 2
+mass = 0.1
+continuous_cd = 2
+script = ExtResource("1_jxh2t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_mhwdj")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6vfuo")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_nyis2")
+texture_scale = 0.03
+
+[node name="TargetArea" type="Area2D" parent="." groups=["target"]]
+collision_layer = 12
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource("RectangleShape2D_sx244")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_r35yt")
+
+[node name="Scream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hbfgu")
+volume_db = 1.0
+pitch_scale = 1.2
+max_distance = 600.0
+
+[node name="ScreamTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

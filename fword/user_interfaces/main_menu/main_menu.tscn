@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp4edyje2jl8r"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="2_iplyl"]
+[ext_resource type="Script" path="res://user_interfaces/main_menu/main_menu.gd" id="2_l7mek"]
+[ext_resource type="PackedScene" uid="uid://0cynk7htokdc" path="res://level_selection/hub_world/hub_world.tscn" id="5_4e22e"]
+[ext_resource type="SpriteFrames" uid="uid://cogpnyfimpf6p" path="res://user_interfaces/main_menu/main_menu_animation.tres" id="5_7ouir"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://managers/scene_change_node/scene_change_node.tscn" id="6_oih1q"]
+
+[node name="MainMenu" type="Control"]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 1
+theme = ExtResource("2_iplyl")
+script = ExtResource("2_l7mek")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+scale = Vector2(16.5, 16.5)
+sprite_frames = ExtResource("5_7ouir")
+autoplay = "default"
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("6_oih1q")]
+next_scene = ExtResource("5_4e22e")
+current_parent_scene = NodePath("..")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1947.0
+offset_top = -1098.0
+offset_right = 1947.0
+offset_bottom = 1104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+flat = true
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

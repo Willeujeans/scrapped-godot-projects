@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c63cussnwbd6v"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://themes/main_theme.tres" id="1_8ld75"]
+[ext_resource type="Script" path="res://settings_menu/fullscreen_button/fullscreen_button.gd" id="1_b32v1"]
+[ext_resource type="Texture2D" uid="uid://yn8ut0d4en" path="res://settings_menu/fullscreen_button/fullscreen_white.svg" id="3_ftxuy"]
+[ext_resource type="Texture2D" uid="uid://ck3th3fi7shwo" path="res://settings_menu/fullscreen_button/unfullscreen_white.svg" id="4_fj71j"]
+
+[node name="FullscreenButton" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -432.0
+offset_right = 432.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ld75")
+text = " "
+icon = ExtResource("3_ftxuy")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_b32v1")
+fullscreen_icon = ExtResource("3_ftxuy")
+unfullscreen_icon = ExtResource("4_fj71j")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

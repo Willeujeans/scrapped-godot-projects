@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw775qke55gl6"]
+
+[ext_resource type="Script" path="res://parent_level/ding_sound.gd" id="1_3erm8"]
+[ext_resource type="AudioStream" uid="uid://csnaef3ee6kdp" path="res://parent_level/clink.wav" id="1_t2ft6"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_t2ft6")
+volume_db = -1.0
+script = ExtResource("1_3erm8")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

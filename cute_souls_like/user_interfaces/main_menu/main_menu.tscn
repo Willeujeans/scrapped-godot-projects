@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp4edyje2jl8r"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="2_iplyl"]
+[ext_resource type="Script" path="res://user_interfaces/main_menu/main_menu.gd" id="2_l7mek"]
+[ext_resource type="PackedScene" uid="uid://y5xw0k1drmsd" path="res://user_interfaces/saves_menu/saves_menu.tscn" id="3_byk1w"]
+[ext_resource type="PackedScene" uid="uid://badlkawr8cbbh" path="res://user_interfaces/scene_change_button/scene_change_button.tscn" id="4_hu8ky"]
+
+[node name="MainMenu" type="Control"]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 1
+theme = ExtResource("2_iplyl")
+script = ExtResource("2_l7mek")
+next_scene = ExtResource("3_byk1w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -111.5
+offset_right = 207.0
+offset_bottom = 111.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SceneChangeButton" parent="VBoxContainer" instance=ExtResource("4_hu8ky")]
+layout_mode = 2
+text = "start"
+scene_to_change_to = ExtResource("3_byk1w")

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bowx8k4s5kg6j"]
+
+[ext_resource type="Material" uid="uid://bqef1ehpil5pu" path="res://materials/outLineMaterial.tres" id="1_suqxb"]
+
+[resource]
+next_pass = ExtResource("1_suqxb")

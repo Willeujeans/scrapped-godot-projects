@@ -1,0 +1,13 @@
+Grass hopper will jump
+moth will float down
+ant will move left or right
+
+ALL ABILITIES
+	-Move left
+	-Move right
+	-Jump
+	-Float
+	-Dig
+	-Climb
+	-wall stick
+	-stick to another object

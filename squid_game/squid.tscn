@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5n0n5cillp8g"]
+
+[ext_resource type="Script" path="res://squid.gd" id="1_vx336"]
+[ext_resource type="PackedScene" uid="uid://7rox1r8mmpri" path="res://2D_player_camera.tscn" id="3_h517e"]
+[ext_resource type="Texture2D" uid="uid://gop2su50idl0" path="res://squid_64.png" id="3_jfvsf"]
+[ext_resource type="Texture2D" uid="uid://cyhuw4i8qe86h" path="res://squid_64_two.png" id="4_dgq3k"]
+[ext_resource type="PackedScene" uid="uid://ciqtf1jnwwain" path="res://ink.tscn" id="5_q8t4p"]
+[ext_resource type="Texture2D" uid="uid://b03qlvs1la01r" path="res://aim_one.png" id="6_d57ai"]
+[ext_resource type="Texture2D" uid="uid://cx1jj8xunsp7m" path="res://aim_two.png" id="7_qfaf5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iio7e"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xekxg"]
+radius = 61.7454
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cnh34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jfvsf")
+}],
+"loop": false,
+"name": &"one",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dgq3k")
+}],
+"loop": false,
+"name": &"two",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nj2nt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_d57ai")
+}],
+"loop": false,
+"name": &"one",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qfaf5")
+}],
+"loop": false,
+"name": &"two",
+"speed": 1.0
+}]
+
+[node name="Squid" type="RigidBody2D" groups=["player"]]
+z_index = 3
+physics_material_override = SubResource("PhysicsMaterial_iio7e")
+angular_damp = 50.0
+script = ExtResource("1_vx336")
+ink_scene = ExtResource("5_q8t4p")
+
+[node name="Up" type="Marker2D" parent="."]
+position = Vector2(2.08165e-12, -200)
+gizmo_extents = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_xekxg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4.16, 4.16)
+sprite_frames = SubResource("SpriteFrames_cnh34")
+animation = &"two"
+autoplay = "one"
+offset = Vector2(6.43, -0.06)
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_h517e")]
+position = Vector2(2.08165e-12, 2.08165e-12)
+position_smoothing_enabled = false
+
+[node name="Reticle" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.15, 2.15)
+sprite_frames = SubResource("SpriteFrames_nj2nt")
+animation = &"one"
+autoplay = "one"
+
+[node name="Pointer" type="Marker2D" parent="Reticle"]
+position = Vector2(92.093, 0)
+scale = Vector2(0.465116, 0.465116)
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

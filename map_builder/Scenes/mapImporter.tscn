@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://b04m375rn2h0k"]
+
+[ext_resource type="Script" path="res://Scripts/s_fileImporter.gd" id="1_o2j8m"]
+[ext_resource type="PackedScene" uid="uid://ce3ntsjolpvyv" path="res://Scenes/helpers/fileReader.tscn" id="2_705wp"]
+[ext_resource type="PackedScene" uid="uid://lm2pn2q6aybi" path="res://Scenes/helpers/threeDArray.tscn" id="3_8rvde"]
+[ext_resource type="PackedScene" uid="uid://cqyjcjgrboaij" path="res://Scenes/helpers/numberChecker.tscn" id="4_pov73"]
+[ext_resource type="PackedScene" uid="uid://c25qkapsjas7e" path="res://Scenes/helpers/array.tscn" id="5_br6kw"]
+[ext_resource type="Script" path="res://Scripts/s_array.gd" id="6_gf5se"]
+
+[node name="mapImporter" type="Node"]
+script = ExtResource("1_o2j8m")
+
+[node name="fileReader" parent="." instance=ExtResource("2_705wp")]
+
+[node name="numberChecker" parent="." instance=ExtResource("4_pov73")]
+
+[node name="threeDArray" parent="." instance=ExtResource("3_8rvde")]
+
+[node name="array" parent="." instance=ExtResource("5_br6kw")]
+script = ExtResource("6_gf5se")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs7x8ad4hb7js"]
+
+[ext_resource type="Script" path="res://scenes/pointBugTester.gd" id="1_2ee85"]
+
+[node name="pointBugTester" type="Node2D"]
+visible = false
+z_index = 5
+script = ExtResource("1_2ee85")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -47.0
+offset_top = -3.0
+offset_right = -7.0
+offset_bottom = 3.0
+color = Color(1, 0, 1, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 47.0
+offset_bottom = 3.0
+color = Color(1, 0, 1, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = -7.0
+offset_right = 37.0
+offset_bottom = -1.0
+rotation = -1.5708
+color = Color(1, 0, 1, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = 47.0
+offset_right = 37.0
+offset_bottom = 53.0
+rotation = -1.5708
+color = Color(1, 0, 1, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

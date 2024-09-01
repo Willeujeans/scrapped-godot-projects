@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://uej5e5tmjr75"]
+
+[ext_resource type="Script" path="res://entities/death_pixels/death_area.gd" id="1_do8xh"]
+[ext_resource type="PackedScene" uid="uid://b7gvonca81un6" path="res://entities/death_pixels/death_pixels.tscn" id="2_ui81u"]
+
+[node name="DeathArea" type="Area2D"]
+script = ExtResource("1_do8xh")
+death_pixels_scene = ExtResource("2_ui81u")
+
+[node name="DeathDelay" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

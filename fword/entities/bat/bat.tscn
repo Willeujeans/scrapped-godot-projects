@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://vu8fjr87onr5"]
+
+[ext_resource type="PackedScene" uid="uid://uej5e5tmjr75" path="res://entities/death_pixels/death_area.tscn" id="1_vppiv"]
+[ext_resource type="Shader" path="res://shaders/single_color_shaders/100_value.gdshader" id="2_dxodw"]
+[ext_resource type="Texture2D" uid="uid://cxq0co204r8nk" path="res://entities/bat/000.png" id="3_50yc2"]
+[ext_resource type="Texture2D" uid="uid://bdsdhpveigqaa" path="res://entities/bat/001.png" id="4_ibmaa"]
+[ext_resource type="Texture2D" uid="uid://h2wmwxe0bo0o" path="res://entities/bat/002.png" id="5_gwxcx"]
+[ext_resource type="Texture2D" uid="uid://dk0io41h6nir7" path="res://entities/bat/003.png" id="6_tohkq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4d4oo"]
+radius = 20.025
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbmq8"]
+radius = 26.0192
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loj77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_50yc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ibmaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gwxcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tohkq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bat" type="CharacterBody2D" groups=["enemy", "unstickable"]]
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4d4oo")
+
+[node name="DeathArea" parent="." instance=ExtResource("1_vppiv")]
+collision_layer = 4
+collision_mask = 4
+death_cube_shader_material = ExtResource("2_dxodw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("CircleShape2D_tbmq8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_loj77")
+autoplay = "default"
+frame_progress = 0.728552
+
+[node name="Movement" type="Node" parent="."]

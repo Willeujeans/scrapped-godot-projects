@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3vkxt4q43woq"]
+
+[ext_resource type="Script" path="res://entities/actors/watcher/watcher.gd" id="1_rat0o"]
+[ext_resource type="Texture2D" uid="uid://b7wuje4sjgy27" path="res://entities/actors/watcher/sprites/eye_down.png" id="2_bdaij"]
+[ext_resource type="Texture2D" uid="uid://dvck3qf4dcehf" path="res://entities/actors/watcher/sprites/eye_down_blink.png" id="2_hdptk"]
+[ext_resource type="PackedScene" uid="uid://cis6bbp4gw1if" path="res://entities/actors/watcher/hand.tscn" id="9_jvv6q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6qdk"]
+radius = 87.023
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvot5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hdptk")
+}],
+"loop": false,
+"name": &"blink",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bdaij")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_024hx"]
+offsets = PackedFloat32Array(0.558411, 0.616822)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gegru"]
+gradient = SubResource("Gradient_024hx")
+fill = 1
+fill_from = Vector2(0.50641, 0.523504)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l55ub"]
+polygon = PackedVector2Array(-57, 62, -90, 12, -73, -50, -42, -76, -2, -86, 37, -78, 63, -57, 90, 13, 60, 63, -1, -2)
+
+[node name="Watcher" type="CharacterBody2D"]
+motion_mode = 1
+platform_wall_layers = 1
+script = ExtResource("1_rat0o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x6qdk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_yvot5")
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 9)
+color = Color(0, 0.678431, 0.901961, 1)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter_smooth = 64.0
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_gegru")
+texture_scale = 29.32
+
+[node name="RightRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(91, 1)
+hit_from_inside = true
+
+[node name="LeftRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-90, 0)
+hit_from_inside = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_l55ub")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-553, 605, -1, -1, 560, 601, 417, 715, 215, 795, -1, 827, -219, 795, -416, 713)
+
+[node name="SeenUntilAct" type="Timer" parent="."]
+
+[node name="HandA" parent="." instance=ExtResource("9_jvv6q")]
+position = Vector2(-163, 0)
+
+[node name="HandB" parent="." instance=ExtResource("9_jvv6q")]
+position = Vector2(179, 0)
+scale = Vector2(-1, 1)
+
+[node name="Refactory" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

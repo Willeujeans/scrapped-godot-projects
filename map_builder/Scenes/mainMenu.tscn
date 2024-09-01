@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfexoxgw5c2eo"]
+
+[ext_resource type="Script" path="res://Scripts/s_mainMenu.gd" id="1_7ooxc"]
+[ext_resource type="FontFile" uid="uid://e2jsgdulh873" path="res://Zilla_Slab/ZillaSlab-Medium.ttf" id="2_f054p"]
+[ext_resource type="Script" path="res://Scripts/s_fileVisualPopulator.gd" id="2_gpjih"]
+[ext_resource type="FontFile" uid="uid://b6cietr2hys0p" path="res://Zilla_Slab/ZillaSlab-Regular.ttf" id="6_081nc"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_7ooxc")
+
+[node name="MenuTitle" type="RichTextLabel" parent="."]
+offset_right = 1919.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("2_f054p")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] MAIN MENU [/center]"
+
+[node name="fileVisualContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 104.0
+offset_right = 1922.0
+offset_bottom = 1086.0
+script = ExtResource("2_gpjih")
+
+[node name="createNewMapButton" type="Button" parent="."]
+offset_left = 1660.0
+offset_top = 44.0
+offset_right = 1855.0
+offset_bottom = 229.0
+theme_override_fonts/font = ExtResource("6_081nc")
+theme_override_font_sizes/font_size = 100
+text = "+"
+
+[connection signal="pressed" from="createNewMapButton" to="." method="_on_create_new_map_button_pressed"]

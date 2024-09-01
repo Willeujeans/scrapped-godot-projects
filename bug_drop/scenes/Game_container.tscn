@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://vfdwe77dhsdh"]
+
+[ext_resource type="Script" path="res://scenes/Game_container.gd" id="1_cas3n"]
+[ext_resource type="PackedScene" uid="uid://b44giorn67k30" path="res://scenes/dropper.tscn" id="1_nhu1h"]
+[ext_resource type="PackedScene" uid="uid://oetmyga48oik" path="res://scenes/box.tscn" id="2_f7q77"]
+[ext_resource type="FontFile" uid="uid://b6cietr2hys0p" path="res://Zilla_Slab/ZillaSlab-Regular.ttf" id="3_4cr2k"]
+[ext_resource type="Texture2D" uid="uid://dchi3wlg3vi0p" path="res://images/ant.png" id="4_c6hwx"]
+
+[node name="GameContainer" type="Node"]
+script = ExtResource("1_cas3n")
+
+[node name="background" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -30.0
+offset_top = -38.0
+offset_right = 1950.0
+offset_bottom = 1116.0
+color = Color(0.831373, 0.635294, 0.490196, 1)
+
+[node name="Dropper" parent="." instance=ExtResource("1_nhu1h")]
+
+[node name="Box" parent="." instance=ExtResource("2_f7q77")]
+position = Vector2(602, 264)
+
+[node name="Score" type="RichTextLabel" parent="."]
+offset_left = 25.0
+offset_top = 68.0
+offset_right = 511.0
+offset_bottom = 413.0
+theme_override_fonts/normal_font = ExtResource("3_4cr2k")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center] 0 [/center]"
+
+[node name="NextBox" type="Node2D" parent="."]
+position = Vector2(1586.67, 157.94)
+
+[node name="Sprite2D" type="Sprite2D" parent="NextBox"]
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("4_c6hwx")

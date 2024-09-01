@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0coc503om2vq"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/extender_old.gd" id="1_ps5m5"]
+[ext_resource type="Texture2D" uid="uid://dx4gkoqosnk5p" path="res://entities/player/limbs/sprites/closed_duck_foot.png" id="2_sxqar"]
+[ext_resource type="Texture2D" uid="uid://cjnutnb1iebg5" path="res://entities/player/limbs/sprites/open_duck_foot.png" id="3_j6rmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8wkq"]
+size = Vector2(89, 148)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f4mog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sxqar")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_j6rmp")
+}],
+"loop": true,
+"name": &"open",
+"speed": 1.0
+}]
+
+[node name="Extender" type="CollisionShape2D" groups=["limb"]]
+position = Vector2(-44.5, 1)
+shape = SubResource("RectangleShape2D_u8wkq")
+script = ExtResource("1_ps5m5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = 14.0
+offset_top = -10.0
+offset_right = 52.0
+offset_bottom = 26.0
+color = Color(0.933333, 0.694118, 0.4, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(27.25, 2)
+rotation = 1.57079
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_f4mog")
+animation = &"open"
+autoplay = "default"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-500, 2.08165e-12)

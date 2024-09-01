@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba4cnak0ew863"]
+
+[ext_resource type="PackedScene" uid="uid://cs8mh7s7m8kf1" path="res://Scenes/mapManager.tscn" id="1_6uf5w"]
+[ext_resource type="PackedScene" uid="uid://bgmmn2hvtjrvt" path="res://Scenes/player.tscn" id="2_y6rts"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6v23"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jwur5"]
+material = SubResource("StandardMaterial3D_q6v23")
+
+[node name="mapWorld" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("2_y6rts")]
+
+[node name="mapManager" parent="." instance=ExtResource("1_6uf5w")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.998067, 0.0438925, 0.0439953, -3.3141e-09, -0.707933, 0.706279, 0.0621461, 0.704914, 0.706565, 0, 2.82056, 0)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.770936, -0.449838, -0.450892, 1.64886e-08, -0.707933, 0.706279, -0.636913, -0.544496, -0.545771, 0, 2.82056, 1.73114)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(41.2056, 0, 0, 0, 1, 0, 0, 0, 26.5734, 0, -0.781919, 0)
+mesh = SubResource("PlaneMesh_jwur5")

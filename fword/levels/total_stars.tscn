@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyhbip1edwnyr"]
+
+[ext_resource type="Script" path="res://levels/total_stars.gd" id="1_457fl"]
+[ext_resource type="PackedScene" uid="uid://bkxrqtyknf640" path="res://managers/save_manager/save_node.tscn" id="2_e7ok2"]
+
+[node name="TotalStars" type="Node"]
+script = ExtResource("1_457fl")
+
+[node name="SaveNode" parent="." instance=ExtResource("2_e7ok2")]
+generate_new_save_key = true
+readable_name = "TotalStars"
+unique_key = "s6q7mltnw18or1lo"
+id = "TotalStarss6q7mltnw18or1lo"
+has_key = true

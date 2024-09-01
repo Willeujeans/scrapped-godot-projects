@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm6y7w2psc0fx"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/eyeball_limb.gd" id="1_2qwsx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgnel"]
+size = Vector2(50, 50)
+
+[node name="Eyeball_limb" type="Node2D"]
+script = ExtResource("1_2qwsx")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(-64, 0)
+node_b = NodePath("../RigidBody2D")
+disable_collision = false
+motor_enabled = true
+motor_target_velocity = 1.74533
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-64, 0)
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" groups=["can_hold_limb", "limb"]]
+shape = SubResource("RectangleShape2D_lgnel")
+
+[node name="AttatchmentPoint" type="Node2D" parent="RigidBody2D"]

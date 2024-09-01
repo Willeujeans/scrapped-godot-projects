@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6yyo8rroa71f"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_5rat7"]
+[ext_resource type="Script" path="res://entities/player/limbs/in_game/meeple_launcher.gd" id="2_yngbv"]
+[ext_resource type="PackedScene" uid="uid://bn8i23ccxdbhc" path="res://entities/player/limbs/meeple.tscn" id="3_i6qqe"]
+[ext_resource type="AudioStream" uid="uid://c6rdwdq3utplv" path="res://entities/player/limbs/in_game/audio/meeple.wav" id="3_kkbi4"]
+[ext_resource type="AudioStream" uid="uid://dbdesbuq5dvxt" path="res://entities/objects/limb_injector/audio/pop.wav" id="4_1k44s"]
+[ext_resource type="AudioStream" uid="uid://dnmcpf14wsc3j" path="res://entities/player/limbs/in_game/audio/hup.wav" id="5_h57yj"]
+
+[node name="Limb" instance=ExtResource("1_5rat7")]
+body = NodePath("Activator/Meeple")
+attachment_point = NodePath("Activator/Meeple/AttachmentPoint")
+activation_node = NodePath("Activator")
+can_have_children = false
+
+[node name="Activator" type="Node2D" parent="." index="0"]
+script = ExtResource("2_yngbv")
+self_force = 300.0
+
+[node name="ActivationSound" type="AudioStreamPlayer2D" parent="Activator" index="0"]
+stream = ExtResource("3_kkbi4")
+pitch_scale = 1.1
+
+[node name="ActivationSound2" type="AudioStreamPlayer2D" parent="Activator" index="1"]
+stream = ExtResource("4_1k44s")
+pitch_scale = 1.1
+
+[node name="Holder" type="GrooveJoint2D" parent="Activator" index="2"]
+rotation = 1.57079
+length = 40.0
+initial_offset = 4.0
+
+[node name="HolderSpring" type="DampedSpringJoint2D" parent="Activator" index="3"]
+rotation = 1.5708
+length = 7.0
+rest_length = 7.0
+stiffness = 64.0
+
+[node name="Meeple" parent="Activator" index="4" instance=ExtResource("3_i6qqe")]
+position = Vector2(-3, 0)
+mass = 0.25
+
+[node name="AttachmentPoint" type="Marker2D" parent="Activator/Meeple" index="5"]
+
+[node name="ComingBack" type="AudioStreamPlayer2D" parent="Activator/Meeple" index="6"]
+position = Vector2(3, 0)
+stream = ExtResource("5_h57yj")
+max_distance = 700.0
+
+[node name="ComingBackBetween" type="Timer" parent="Activator/Meeple" index="7"]
+wait_time = 0.8
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Activator" index="5"]
+target_position = Vector2(-20, 2.08165e-12)
+collision_mask = 2
+
+[node name="TimeTillMeeplePulled" type="Timer" parent="Activator" index="6"]
+wait_time = 6.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="Activator" index="7"]
+one_shot = true
+
+[node name="MeepleSpot" type="Marker2D" parent="Activator" index="8"]
+position = Vector2(-3, 0)
+
+[connection signal="timeout" from="Activator/TimeTillMeeplePulled" to="Activator" method="_on_time_till_meeple_pulled_timeout"]

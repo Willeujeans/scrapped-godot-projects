@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccghtfmaqe13r"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://themes/main_theme.tres" id="1_sdopl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evnq2"]
+
+[node name="CheckBox" type="CheckBox"]
+offset_right = 24.0
+offset_bottom = 24.0
+theme = ExtResource("1_sdopl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_evnq2")

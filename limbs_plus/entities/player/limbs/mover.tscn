@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://vml6dggblewk"]
+
+[ext_resource type="PackedScene" uid="uid://cph6vipnt5nt0" path="res://entities/player/limbs/limb.tscn" id="1_rccga"]
+[ext_resource type="Script" path="res://entities/player/limbs/mover.gd" id="2_50x6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auclj"]
+size = Vector2(141, 20)
+
+[node name="Limb" instance=ExtResource("1_rccga")]
+attachment_point = NodePath("Activator/RigidBody2D/Marker2D")
+activation_node = NodePath("Activator")
+
+[node name="Activator" type="Node2D" parent="." index="0"]
+script = ExtResource("2_50x6m")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Activator" index="0"]
+bias = 0.9
+motor_enabled = true
+motor_target_velocity = 17.4533
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Activator" index="1"]
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activator/RigidBody2D" index="0"]
+position = Vector2(-60.5, 0)
+shape = SubResource("RectangleShape2D_auclj")
+
+[node name="Marker2D" type="Marker2D" parent="Activator/RigidBody2D" index="1"]
+position = Vector2(-60, 0)

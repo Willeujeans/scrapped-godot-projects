@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://byr75ftkvb0re"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/leg.gd" id="1_tmcjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_peqom"]
+size = Vector2(65, 139)
+
+[node name="Leg" type="GrooveJoint2D"]
+node_b = NodePath("RigidBody2D")
+disable_collision = false
+length = 1.0
+initial_offset = 1.0
+script = ExtResource("1_tmcjo")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0.5, 72.5)
+shape = SubResource("RectangleShape2D_peqom")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjn2txf4mlylr"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="1_eqt5p"]
+[ext_resource type="Script" path="res://user_interfaces/saves_menu/select_delete_save_button.gd" id="2_futqs"]
+
+[node name="SetSaveButton" type="Button"]
+theme = ExtResource("1_eqt5p")
+text = "..."
+script = ExtResource("2_futqs")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

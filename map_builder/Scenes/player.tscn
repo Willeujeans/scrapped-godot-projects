@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgmmn2hvtjrvt"]
+
+[ext_resource type="Script" path="res://Scripts/s_userControls.gd" id="1_qntdn"]
+[ext_resource type="Script" path="res://Scripts/s_mapControls.gd" id="2_pjc2v"]
+
+[node name="player" type="Node3D"]
+script = ExtResource("1_qntdn")
+
+[node name="playerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19.513, 0)
+projection = 1
+fov = 20.0
+size = 5.0
+
+[node name="Control" type="Control" parent="playerCamera"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -958.0
+offset_top = -142.0
+offset_right = 958.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_pjc2v")
+
+[node name="DoorButton" type="Button" parent="playerCamera/Control"]
+layout_mode = 0
+offset_left = 916.0
+offset_top = 49.0
+offset_right = 993.0
+offset_bottom = 113.0
+text = "Door"
+
+[node name="saveButton" type="Button" parent="playerCamera/Control"]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 64.0
+offset_right = 1168.0
+offset_bottom = 110.0
+text = "SAVE"
+
+[connection signal="mouse_entered" from="playerCamera/Control" to="playerCamera/Control" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="playerCamera/Control" to="playerCamera/Control" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="playerCamera/Control/DoorButton" to="playerCamera/Control" method="_on_door_button_mouse_entered"]
+[connection signal="mouse_exited" from="playerCamera/Control/DoorButton" to="playerCamera/Control" method="_on_door_button_mouse_exited"]
+[connection signal="pressed" from="playerCamera/Control/DoorButton" to="playerCamera/Control" method="_on_door_button_pressed"]
+[connection signal="mouse_entered" from="playerCamera/Control/saveButton" to="playerCamera/Control" method="_on_save_button_mouse_entered"]
+[connection signal="mouse_exited" from="playerCamera/Control/saveButton" to="playerCamera/Control" method="_on_save_button_mouse_exited"]
+[connection signal="pressed" from="playerCamera/Control/saveButton" to="playerCamera/Control" method="_on_save_button_pressed"]

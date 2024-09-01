@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3rt77attq76o"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/tentacle.gd" id="1_veuk0"]
+[ext_resource type="Script" path="res://entities/player/limbs/limb_meta_null.gd" id="2_pf8sh"]
+[ext_resource type="Texture2D" uid="uid://7jdc3htvaqrl" path="res://entities/player/limbs/sprites/tentacle.png" id="3_50oss"]
+
+[sub_resource type="Curve" id="Curve_72xs3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.500843, 0.276956), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fyki"]
+radius = 51.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01n5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_50oss")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_50oss")
+}],
+"loop": true,
+"name": &"grabbing",
+"speed": 5.0
+}]
+
+[node name="Grabber" type="Node2D" groups=["limb"]]
+position = Vector2(-1, 1.5)
+script = ExtResource("1_veuk0")
+
+[node name="ResetPoint" type="Node2D" parent="."]
+position = Vector2(-60, 0.5)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 50, 2.08165e-12, 100, 2.08165e-12)
+width = 35.0
+width_curve = SubResource("Curve_72xs3")
+default_color = Color(0.933333, 0.694118, 0.4, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Hand" type="RigidBody2D" parent="." groups=["cant_stick"]]
+position = Vector2(-61, 0.5)
+collision_layer = 32
+collision_mask = 2
+freeze = true
+continuous_cd = 2
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand" groups=["can_hold_limb"]]
+shape = SubResource("CircleShape2D_6fyki")
+script = ExtResource("2_pf8sh")
+
+[node name="TriggerChildrenDelay" type="Timer" parent="Hand/CollisionShape2D"]
+one_shot = true
+
+[node name="AttatchmentPoint" type="Node2D" parent="Hand"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hand"]
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_01n5b")
+animation = &"grabbing"
+autoplay = "default"
+offset = Vector2(-0.25, -1.67)
+flip_h = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-90, 2.08165e-12)
+
+[connection signal="body_entered" from="Hand" to="." method="_on_hand_body_entered"]

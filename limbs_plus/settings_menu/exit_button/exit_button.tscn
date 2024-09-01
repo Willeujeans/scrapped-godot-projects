@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://8pgiuptawewa"]
+
+[ext_resource type="Script" path="res://settings_menu/exit_button/exit_button.gd" id="1_btyed"]
+
+[node name="ExitButton" type="Button"]
+text = "quit game"
+script = ExtResource("1_btyed")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

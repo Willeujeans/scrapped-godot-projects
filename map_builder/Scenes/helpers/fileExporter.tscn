@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cayscq5417w5y"]
+
+[ext_resource type="Script" path="res://Scripts/s_fileExporter.gd" id="1_x75cg"]
+[ext_resource type="Script" path="res://Scripts/s_mapEncoder.gd" id="2_m5wgc"]
+
+[node name="fileExporter" type="Node"]
+script = ExtResource("1_x75cg")
+
+[node name="mapEncoder" type="Node" parent="."]
+script = ExtResource("2_m5wgc")

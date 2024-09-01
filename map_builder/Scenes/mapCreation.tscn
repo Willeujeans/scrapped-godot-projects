@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwj8etwupd2j"]
+
+[ext_resource type="Script" path="res://Scripts/s_mapCreation.gd" id="1_iq04u"]
+[ext_resource type="FontFile" uid="uid://e2jsgdulh873" path="res://Zilla_Slab/ZillaSlab-Medium.ttf" id="1_u0a53"]
+
+[node name="mapCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iq04u")
+
+[node name="title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 38.0
+offset_right = 1518.0
+offset_bottom = 212.0
+theme_override_fonts/normal_font = ExtResource("1_u0a53")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] new map creation[/center]"
+
+[node name="mapName" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 246.0
+offset_right = 1332.0
+offset_bottom = 324.0
+placeholder_text = "name your file"
+
+[node name="createMap" type="Button" parent="."]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 860.0
+offset_right = 1130.0
+offset_bottom = 1038.0
+text = "create map"
+
+[node name="gridSizeButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="thirtyTwo" type="Button" parent="gridSizeButtons"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 366.0
+offset_right = 694.0
+offset_bottom = 594.0
+text = "32x32"
+
+[node name="sixtyFour" type="Button" parent="gridSizeButtons"]
+layout_mode = 0
+offset_left = 758.0
+offset_top = 366.0
+offset_right = 1064.0
+offset_bottom = 594.0
+text = "64x64"
+
+[node name="oneTwentyEight" type="Button" parent="gridSizeButtons"]
+layout_mode = 0
+offset_left = 1118.0
+offset_top = 366.0
+offset_right = 1424.0
+offset_bottom = 594.0
+text = "128x128"
+
+[connection signal="pressed" from="createMap" to="." method="_on_create_map_pressed"]
+[connection signal="pressed" from="gridSizeButtons/thirtyTwo" to="." method="_on_thirty_two_pressed"]
+[connection signal="pressed" from="gridSizeButtons/sixtyFour" to="." method="_on_sixty_four_pressed"]
+[connection signal="pressed" from="gridSizeButtons/oneTwentyEight" to="." method="_on_one_twenty_eight_pressed"]

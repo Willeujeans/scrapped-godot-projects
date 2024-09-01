@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://y5xw0k1drmsd"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="1_rfyhj"]
+[ext_resource type="Script" path="res://user_interfaces/saves_menu/saves_menu.gd" id="2_rpmqw"]
+[ext_resource type="PackedScene" uid="uid://cmutexpl8e4oh" path="res://user_interfaces/saves_menu/select_delete_save_button.tscn" id="3_ssiif"]
+[ext_resource type="PackedScene" uid="uid://powgd8el4hoc" path="res://2D/2D_test_world/test_world2D.tscn" id="4_mmijm"]
+
+[node name="SavesMenu" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.5
+offset_right = 296.5
+offset_bottom = 307.0
+grow_horizontal = 2
+theme = ExtResource("1_rfyhj")
+script = ExtResource("2_rpmqw")
+select_save_button_scene = ExtResource("3_ssiif")
+next_scene = ExtResource("4_mmijm")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "saves"
+horizontal_alignment = 1
+
+[node name="NewSaveButton" type="Button" parent="."]
+layout_mode = 2
+text = "new save"
+
+[node name="DeleteAllSaves" type="Button" parent="."]
+layout_mode = 2
+text = "delete all saves"
+
+[connection signal="pressed" from="NewSaveButton" to="." method="_on_new_save_button_pressed"]
+[connection signal="pressed" from="DeleteAllSaves" to="." method="_on_delete_all_saves_pressed"]

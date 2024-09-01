@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2xg75b7hvcvc"]
+
+[ext_resource type="Script" path="res://scripts/bug.gd" id="1_3nnbj"]
+[ext_resource type="Texture2D" uid="uid://b1vvqtwigryr" path="res://images/moth.png" id="2_hd7tg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7pxf"]
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5frmp"]
+radius = 64.0078
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 3.0
+inertia = 17.0
+gravity_scale = 0.2
+max_contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+script = ExtResource("1_3nnbj")
+metadata/myName = "moth"
+metadata/pointCount = 4
+metadata/nextBugPath = "res://scenes/scorpion.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q7pxf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.99999, -9)
+scale = Vector2(0.096875, 0.0958333)
+texture = ExtResource("2_hd7tg")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5frmp")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

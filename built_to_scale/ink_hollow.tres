@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cus11e33mmyib"]
+
+[ext_resource type="Texture2D" uid="uid://d3i1qent2634q" path="res://ink_hollow_64_one.png" id="1_4o0ff"]
+[ext_resource type="Texture2D" uid="uid://sevs5x75nojg" path="res://ink_hollow_64_two.png" id="2_c38cx"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4o0ff")
+}],
+"loop": false,
+"name": &"one",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c38cx")
+}],
+"loop": true,
+"name": &"two",
+"speed": 5.0
+}]

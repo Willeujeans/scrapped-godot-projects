@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b61j164yi5rjw"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/turtle_shell.gd" id="1_2p513"]
+[ext_resource type="Texture2D" uid="uid://bltgk11owaj1" path="res://entities/player/limbs/turtle.png" id="2_bpe81"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m4hbn"]
+polygon = PackedVector2Array(-53, -43, 54, -43, 76, -33, 96, -18, 96, -1, 53, 17, -60, 17, -96, -1, -96, -18, -79, -31)
+
+[node name="shell" type="CollisionPolygon2D" groups=["can_hold_limb", "limb"]]
+polygon = PackedVector2Array(-33, 41, -36, -39, -3, -95, 14, -93, 37, -43, 36, 50, 12, 95, -5, 95)
+script = ExtResource("1_2p513")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(14, 0)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_m4hbn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(6, 6)
+texture = ExtResource("2_bpe81")
+
+[node name="AttatchmentPoint" type="Node2D" parent="."]
+position = Vector2(-37, 0)
+
+[node name="TriggerChildrenDelay" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true

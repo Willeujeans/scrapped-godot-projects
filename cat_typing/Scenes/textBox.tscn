@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ys5ph4xeabsb"]
+
+[ext_resource type="FontFile" uid="uid://b6cietr2hys0p" path="res://Zilla_Slab/ZillaSlab-Regular.ttf" id="1_3cpff"]
+[ext_resource type="Script" path="res://scripts/letter.gd" id="1_bxh2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qk3k5"]
+
+[node name="textBox" type="Control"]
+layout_mode = 3
+anchor_right = 0.031
+anchor_bottom = 0.071
+offset_right = -0.520018
+offset_bottom = 0.31999
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bxh2c")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 53.0
+offset_bottom = 61.0
+theme_override_colors/default_color = Color(0.129412, 0.0588235, 0.0117647, 1)
+theme_override_fonts/normal_font = ExtResource("1_3cpff")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]*[/center]"
+fit_content = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_qk3k5")
+debug_color = Color(1, 0.0705882, 0.0431373, 0.929412)

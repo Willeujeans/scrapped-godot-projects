@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgujpy8hjwxxk"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="1_3qbr7"]
+[ext_resource type="Script" path="res://level_selection/disc_menu/level_item.gd" id="2_4jef1"]
+[ext_resource type="Shader" path="res://shaders/single_color_shaders/75_value.gdshader" id="3_n6fqc"]
+[ext_resource type="Texture2D" uid="uid://blds2qyr1c0ls" path="res://level_selection/disc_menu/text_file.png" id="3_ttv20"]
+[ext_resource type="Shader" path="res://shaders/single_color_shaders/0_value.gdshader" id="5_vsc8j"]
+[ext_resource type="FontFile" uid="uid://cbglohs0q6vrw" path="res://user_interfaces/assets/roboto_mono/RobotoMono-VariableFont_wght.ttf" id="6_mr17h"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://managers/scene_change_node/scene_change_node.tscn" id="7_jldcs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojos2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aa265"]
+shader = ExtResource("3_n6fqc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8q3kc"]
+shader = ExtResource("5_vsc8j")
+
+[node name="LevelItem" type="Control"]
+z_index = 1
+material = SubResource("ShaderMaterial_ojos2")
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_3qbr7")
+script = ExtResource("2_4jef1")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -141.0
+offset_top = -182.0
+offset_right = 146.0
+offset_bottom = 182.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_aa265")
+position = Vector2(0, -1)
+scale = Vector2(12, 12)
+texture = ExtResource("3_ttv20")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_8q3kc")
+layout_mode = 0
+offset_left = -17.59
+offset_top = 58.32
+offset_right = 20.41
+offset_bottom = 97.32
+theme_override_fonts/font = ExtResource("6_mr17h")
+theme_override_font_sizes/font_size = 32
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="CollectedStars" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = -57.0
+offset_top = -2.0
+offset_right = 57.0
+offset_bottom = 169.0
+theme_override_fonts/font = ExtResource("6_mr17h")
+theme_override_font_sizes/font_size = 60
+
+[node name="shadowOfStars" type="Label" parent="."]
+layout_mode = 0
+offset_left = -57.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_mr17h")
+theme_override_font_sizes/font_size = 60
+text = "***"
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("7_jldcs")]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

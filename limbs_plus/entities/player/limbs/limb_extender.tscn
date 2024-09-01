@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwye0vbnrvwqi"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/limb_extender.gd" id="1_6rho0"]
+[ext_resource type="Texture2D" uid="uid://dx4gkoqosnk5p" path="res://entities/player/limbs/sprites/closed_duck_foot.png" id="1_acqod"]
+[ext_resource type="Shape2D" uid="uid://c0qh4i6bloi7c" path="res://entities/player/limbs/limb_extender_starter.tres" id="2_652ab"]
+[ext_resource type="Texture2D" uid="uid://cjnutnb1iebg5" path="res://entities/player/limbs/sprites/open_duck_foot.png" id="2_tbroe"]
+[ext_resource type="Script" path="res://entities/player/limbs/limb_meta.gd" id="3_s77vx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdor2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_acqod")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tbroe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_q54ap"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.488396), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Limb_extender" type="Node2D" groups=["limb"]]
+position = Vector2(0, 0.5)
+script = ExtResource("1_6rho0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["can_hold_limb"]]
+position = Vector2(-17.5, -4.25)
+shape = ExtResource("2_652ab")
+script = ExtResource("3_s77vx")
+
+[node name="FrontRay" type="RayCast2D" parent="."]
+position = Vector2(-17, 2.08165e-12)
+target_position = Vector2(-200, 2.08165e-12)
+
+[node name="AttatchmentPoint" type="Node2D" parent="."]
+position = Vector2(-17, 2.08165e-12)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AttatchmentPoint"]
+position = Vector2(12, 0.5)
+rotation = 1.5708
+scale = Vector2(2.77, 2.77)
+sprite_frames = SubResource("SpriteFrames_pdor2")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(7.63, 2.08165e-12, 50, 2.08165e-12)
+width = 60.0
+width_curve = SubResource("Curve_q54ap")
+default_color = Color(0.933333, 0.694118, 0.4, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TriggerChildrenDelay" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

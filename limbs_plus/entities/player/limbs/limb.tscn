@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cph6vipnt5nt0"]
+
+[ext_resource type="Script" path="res://entities/player/limbs/limb.gd" id="1_sho27"]
+
+[node name="Limb" type="Node2D" groups=["limb"]]
+script = ExtResource("1_sho27")
+delay_between_activation = 0.001

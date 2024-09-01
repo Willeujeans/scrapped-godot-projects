@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmutexpl8e4oh"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="2_1f6o3"]
+[ext_resource type="Script" path="res://user_interfaces/saves_menu/select_delete_save_button.gd" id="2_2ff8i"]
+
+[node name="SetSaveDeleteSaveButton" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_1f6o3")
+script = ExtResource("2_2ff8i")
+
+[node name="SetSaveButton" type="Button" parent="."]
+layout_mode = 2
+text = "..."
+
+[node name="DeleteSaveButton" type="Button" parent="."]
+layout_mode = 2
+text = "X"
+
+[connection signal="pressed" from="SetSaveButton" to="." method="_on_set_save_button_pressed"]
+[connection signal="pressed" from="DeleteSaveButton" to="." method="_on_delete_save_button_pressed"]

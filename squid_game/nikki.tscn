@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi5o8cuuna7bu"]
+
+[ext_resource type="Texture2D" uid="uid://bqokaw4glowrx" path="res://nikki_one.png" id="1_2mr8g"]
+[ext_resource type="Script" path="res://nikki.gd" id="1_d455g"]
+[ext_resource type="Texture2D" uid="uid://cm0cs1hcnp8yx" path="res://nikki_two.png" id="2_1d0ji"]
+[ext_resource type="PackedScene" uid="uid://b2lj7i7cyjcb6" path="res://paint_detector.tscn" id="4_wd3m3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k22f2"]
+size = Vector2(197, 148)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kpd5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2mr8g")
+}],
+"loop": false,
+"name": &"one",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1d0ji")
+}],
+"loop": false,
+"name": &"two",
+"speed": 1.0
+}]
+
+[node name="Nikki" type="CharacterBody2D"]
+z_index = 4
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_d455g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 29)
+shape = SubResource("RectangleShape2D_k22f2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_6kpd5")
+animation = &"two"
+
+[node name="LeftRay" type="RayCast2D" parent="."]
+z_index = 11
+position = Vector2(0, 37)
+target_position = Vector2(-120, 2.08165e-12)
+hit_from_inside = true
+
+[node name="RightRay" type="RayCast2D" parent="."]
+z_index = 11
+position = Vector2(0, 37)
+target_position = Vector2(150, 2.08165e-12)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="PaintDetector" parent="." instance=ExtResource("4_wd3m3")]

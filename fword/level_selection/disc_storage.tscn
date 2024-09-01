@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b02x3b8suhefa"]
+
+[ext_resource type="Script" path="res://level_selection/chapter_storage.gd" id="1_7yc50"]
+
+[node name="disc_storage" type="Node"]
+script = ExtResource("1_7yc50")

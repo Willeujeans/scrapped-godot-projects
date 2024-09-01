@@ -1,0 +1,146 @@
+[gd_scene load_steps=17 format=3 uid="uid://bl5tcm37qwdfs"]
+
+[ext_resource type="Script" path="res://entities/player/player_controller/2D_player_controller.gd" id="1_haqfs"]
+[ext_resource type="Shape2D" uid="uid://bjx8d15uvtr25" path="res://entities/player/player_controller/2D_player_crouching.tres" id="2_cxqkb"]
+[ext_resource type="Shape2D" uid="uid://caajakbl42ljh" path="res://entities/player/player_controller/2D_player_standing.tres" id="2_s8hme"]
+[ext_resource type="PackedScene" uid="uid://7rox1r8mmpri" path="res://entities/player/player_camera/2D_player_camera.tscn" id="3_m6n3h"]
+[ext_resource type="Script" path="res://entities/player/player_controller/action_handler.gd" id="12_nvq0l"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aww5s"]
+load_path = "res://.godot/imported/redpanda.png-900819627b432c8097380b8239a0bfda.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_20qlq"]
+load_path = "res://.godot/imported/000.png-54fd3dacb852c6e915dd1710e9cc154b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1mrii"]
+load_path = "res://.godot/imported/001.png-4f6540d7884b2606281b78d8f9180a3f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_clbaj"]
+load_path = "res://.godot/imported/002.png-eaf30d0f18fe352fbf530d280cb5258c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_awxkg"]
+load_path = "res://.godot/imported/003.png-273a1421998bcb07890fc8122f153262.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j5mep"]
+load_path = "res://.godot/imported/004.png-df5e90f2cb11da9870d2dde718343f7f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_th8at"]
+load_path = "res://.godot/imported/000.png-a355e18143a3e26fa5484808a6eccef6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_27so8"]
+load_path = "res://.godot/imported/001.png-9a744af3cd5ecb7807410c2c2423b5d8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j360g"]
+load_path = "res://.godot/imported/002.png-159753d64d52ecf27be02dd524297abc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2cast"]
+load_path = "res://.godot/imported/003.png-77699e6cd9163cc36e5faeeac864a0db.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x35y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_aww5s")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_20qlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1mrii")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_clbaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_awxkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_j5mep")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_20qlq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_aww5s")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_aww5s")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_th8at")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_27so8")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_j360g")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_2cast")
+}],
+"loop": true,
+"name": &"move",
+"speed": 3.0
+}]
+
+[node name="PlayerBody" type="CharacterBody2D"]
+script = ExtResource("1_haqfs")
+standing_collision = ExtResource("2_s8hme")
+crouching_collision = ExtResource("2_cxqkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = ExtResource("2_s8hme")
+
+[node name="Head" type="Node2D" parent="CollisionShape2D"]
+position = Vector2(0, -24)
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D/Head"]
+position = Vector2(0, -31)
+scale = Vector2(0.25, 0.25)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 3)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_x35y7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_m6n3h")]
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="ActionHandler" type="Node" parent="."]
+script = ExtResource("12_nvq0l")
+
+[node name="Throw" type="Node" parent="ActionHandler"]
+
+[node name="Explode" type="Node" parent="ActionHandler"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -50)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

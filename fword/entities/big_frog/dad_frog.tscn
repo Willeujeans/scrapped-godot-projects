@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://durfdx6xu1k4f"]
+
+[ext_resource type="Script" path="res://entities/big_frog/BigFrog.gd" id="1_2iyuj"]
+[ext_resource type="Texture2D" uid="uid://ret4vr54e78u" path="res://entities/big_frog/big_frog.png" id="2_2hof5"]
+[ext_resource type="Texture2D" uid="uid://bokbuc0rxydvy" path="res://entities/big_frog/frog_closed.png" id="3_7o8lu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25e7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2hof5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7o8lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2hof5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7o8lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2hof5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2hof5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2hof5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2hof5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxnmk"]
+size = Vector2(373, 267)
+
+[node name="DadFrog" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_2iyuj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_25e7e")
+autoplay = "default"
+frame_progress = 1.0
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6.5, 58.5)
+shape = SubResource("RectangleShape2D_kxnmk")

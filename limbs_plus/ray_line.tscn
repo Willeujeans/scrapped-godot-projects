@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dky7skxyyep1b"]
+
+[ext_resource type="Script" path="res://line_ray_combo.gd" id="1_acvk0"]
+[ext_resource type="Curve" uid="uid://bdvsqpveuhs1x" path="res://entities/actors/watcher/curve.tres" id="2_tpur7"]
+[ext_resource type="Gradient" uid="uid://cxf586lthpe0w" path="res://entities/actors/watcher/light_gradient.tres" id="3_kcgbd"]
+
+[node name="RayLine" type="Node2D"]
+z_index = -1
+z_as_relative = false
+use_parent_material = true
+script = ExtResource("1_acvk0")
+curve = ExtResource("2_tpur7")
+gradient = ExtResource("3_kcgbd")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, 200)
+collision_mask = 5

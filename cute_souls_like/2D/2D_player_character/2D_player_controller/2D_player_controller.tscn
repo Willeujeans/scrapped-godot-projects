@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl5tcm37qwdfs"]
+
+[ext_resource type="Script" path="res://2D/2D_player_character/2D_player_controller/2D_player_controller.gd" id="1_haqfs"]
+[ext_resource type="Shape2D" uid="uid://caajakbl42ljh" path="res://2D/2D_player_character/2D_player_controller/2D_player_standing.tres" id="2_s8hme"]
+[ext_resource type="PackedScene" uid="uid://7rox1r8mmpri" path="res://2D/2D_player_character/2D_player_camera/2D_player_camera.tscn" id="3_m6n3h"]
+[ext_resource type="Texture2D" uid="uid://dpf70l25iprnt" path="res://turtle.png" id="4_dc7kd"]
+[ext_resource type="Script" path="res://2D/2D_player_character/2D_player_controller/action_handler.gd" id="12_nvq0l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ouqsa"]
+radius = 169.706
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x35y7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc7kd")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc7kd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc7kd")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc7kd")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dc7kd")
+}],
+"loop": true,
+"name": &"move",
+"speed": 3.0
+}]
+
+[node name="PlayerBody" type="CharacterBody2D"]
+script = ExtResource("1_haqfs")
+standing_collision = ExtResource("2_s8hme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -33)
+shape = SubResource("CircleShape2D_ouqsa")
+
+[node name="Head" type="Node2D" parent="CollisionShape2D"]
+position = Vector2(0, -24)
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D/Head"]
+position = Vector2(0, -31)
+scale = Vector2(0.25, 0.25)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-8, -51)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_x35y7")
+animation = &"move"
+autoplay = "idle"
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_m6n3h")]
+zoom = Vector2(0.5, 0.5)
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="ActionHandler" type="Node" parent="."]
+script = ExtResource("12_nvq0l")
+
+[node name="Throw" type="Node" parent="ActionHandler"]
+
+[node name="Explode" type="Node" parent="ActionHandler"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -50)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

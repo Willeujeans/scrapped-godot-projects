@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw34g600rsf4x"]
+
+[ext_resource type="Script" path="res://goal.gd" id="1_ckxau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dd0t"]
+size = Vector2(234, 249)
+
+[node name="goal" type="Node2D"]
+script = ExtResource("1_ckxau")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -112.0
+offset_top = -244.0
+offset_right = 117.0
+color = Color(0.870588, 0.678431, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, -35.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, -86)
+shape = SubResource("RectangleShape2D_3dd0t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

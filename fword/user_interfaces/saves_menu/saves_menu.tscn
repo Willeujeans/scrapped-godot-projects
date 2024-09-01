@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://y5xw0k1drmsd"]
+
+[ext_resource type="Theme" uid="uid://bj1as4ca50bb0" path="res://user_interfaces/assets/main_theme.tres" id="1_rfyhj"]
+[ext_resource type="Script" path="res://user_interfaces/saves_menu/saves_menu.gd" id="2_rpmqw"]
+[ext_resource type="PackedScene" uid="uid://cmutexpl8e4oh" path="res://user_interfaces/saves_menu/select_delete_save_button.tscn" id="3_ssiif"]
+[ext_resource type="PackedScene" uid="uid://dbds20sju0fbq" path="res://user_interfaces/level_select/level_select.tscn" id="4_soguv"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://managers/scene_change_node/scene_change_node.tscn" id="5_bs1fq"]
+[ext_resource type="PackedScene" uid="uid://0cynk7htokdc" path="res://level_selection/hub_world/hub_world.tscn" id="6_xse6b"]
+
+[node name="SavesMenu" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.5
+offset_right = 296.5
+offset_bottom = 307.0
+grow_horizontal = 2
+theme = ExtResource("1_rfyhj")
+script = ExtResource("2_rpmqw")
+select_save_button_scene = ExtResource("3_ssiif")
+next_scene = ExtResource("4_soguv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "saves"
+horizontal_alignment = 1
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("5_bs1fq")]
+next_scene = ExtResource("6_xse6b")
+current_parent_scene = NodePath("..")

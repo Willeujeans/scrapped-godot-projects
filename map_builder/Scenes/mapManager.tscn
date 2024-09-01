@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs8mh7s7m8kf1"]
+
+[ext_resource type="Script" path="res://Scripts/s_map.gd" id="1_tdsv0"]
+[ext_resource type="Script" path="res://Scripts/s_lineGenerator.gd" id="2_gcjtx"]
+[ext_resource type="PackedScene" uid="uid://b04m375rn2h0k" path="res://Scenes/mapImporter.tscn" id="4_7dpse"]
+[ext_resource type="PackedScene" uid="uid://lm2pn2q6aybi" path="res://Scenes/helpers/threeDArray.tscn" id="4_p8hxm"]
+
+[node name="mapManager" type="Node3D"]
+script = ExtResource("1_tdsv0")
+
+[node name="lineGenerator" type="Node3D" parent="."]
+script = ExtResource("2_gcjtx")
+
+[node name="mapImporter" parent="." instance=ExtResource("4_7dpse")]
+
+[node name="threeDArray" parent="." instance=ExtResource("4_p8hxm")]

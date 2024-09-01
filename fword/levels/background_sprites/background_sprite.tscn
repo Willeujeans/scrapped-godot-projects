@@ -1,0 +1,31 @@
+[gd_scene load_steps=22 format=3 uid="uid://cxcstxyue7l0v"]
+
+[ext_resource type="Texture2D" uid="uid://j8sj30wfck7k" path="res://levels/background_sprites/forest_sprites/rock.png" id="1_sedh2"]
+[ext_resource type="Script" path="res://levels/background_sprites/background_sprite.gd" id="2_iyk8k"]
+[ext_resource type="Texture2D" uid="uid://dkrf4bh5bp8nr" path="res://levels/background_sprites/forest_sprites/bush.png" id="3_nr0dv"]
+[ext_resource type="Texture2D" uid="uid://ckrn743s3ab2j" path="res://levels/background_sprites/forest_sprites/fern.png" id="4_r7ag2"]
+[ext_resource type="Texture2D" uid="uid://ckeuxmfnoql31" path="res://levels/background_sprites/forest_sprites/flowerSmall.png" id="5_jcmam"]
+[ext_resource type="Texture2D" uid="uid://cctecc1k5nmua" path="res://levels/background_sprites/forest_sprites/little_rock.png" id="7_3oxdn"]
+[ext_resource type="Texture2D" uid="uid://4ngai5450y60" path="res://levels/background_sprites/forest_sprites/little_sticks.png" id="8_no6md"]
+[ext_resource type="Texture2D" uid="uid://ctx0w2a6o1nkw" path="res://levels/background_sprites/forest_sprites/little_tuft.png" id="9_xr7sj"]
+[ext_resource type="Texture2D" uid="uid://ce3mscraq0m8v" path="res://levels/background_sprites/forest_sprites/rock2.png" id="10_j0cyc"]
+[ext_resource type="Texture2D" uid="uid://ccik66ilbprvk" path="res://levels/background_sprites/forest_sprites/stump.png" id="11_83el1"]
+[ext_resource type="Texture2D" uid="uid://8llm5vjeo7p3" path="res://levels/background_sprites/cave_srpites/000.png" id="11_p3g8a"]
+[ext_resource type="Texture2D" uid="uid://nuy38m8fhwq0" path="res://levels/background_sprites/cave_srpites/001.png" id="12_dglgp"]
+[ext_resource type="Texture2D" uid="uid://b7vk7jq8djcmo" path="res://levels/background_sprites/cave_srpites/002.png" id="13_m0bu7"]
+[ext_resource type="Texture2D" uid="uid://bkn707ix215ud" path="res://levels/background_sprites/cave_srpites/003.png" id="14_0fwvj"]
+[ext_resource type="Texture2D" uid="uid://cys26rd0lyrhd" path="res://levels/background_sprites/cave_srpites/004.png" id="15_ebmw0"]
+[ext_resource type="Texture2D" uid="uid://1johvaxkakkx" path="res://levels/background_sprites/cave_srpites/005.png" id="16_rnd8f"]
+[ext_resource type="Texture2D" uid="uid://uk6gt8tb04m2" path="res://levels/background_sprites/cave_srpites/006.png" id="17_mucej"]
+[ext_resource type="Texture2D" uid="uid://coyuouhydtwi" path="res://levels/background_sprites/cave_srpites/007.png" id="18_yk45p"]
+[ext_resource type="Texture2D" uid="uid://dxrxn16wq2p47" path="res://levels/background_sprites/cave_srpites/008.png" id="19_n0ajj"]
+[ext_resource type="Texture2D" uid="uid://bo5vrl3mg6qaa" path="res://levels/background_sprites/cave_srpites/009.png" id="20_384pl"]
+[ext_resource type="Texture2D" uid="uid://bp6wy0j760myl" path="res://levels/background_sprites/cave_srpites/010.png" id="21_itjnw"]
+
+[node name="BackgroundSprite" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("1_sedh2")
+script = ExtResource("2_iyk8k")
+disc1_sprite_list = Array[Texture2D]([ExtResource("3_nr0dv"), ExtResource("4_r7ag2"), ExtResource("5_jcmam"), ExtResource("7_3oxdn"), ExtResource("8_no6md"), ExtResource("9_xr7sj"), ExtResource("10_j0cyc"), ExtResource("1_sedh2"), ExtResource("11_83el1")])
+disc2_sprite_list = Array[Texture2D]([ExtResource("11_p3g8a"), ExtResource("12_dglgp"), ExtResource("13_m0bu7"), ExtResource("14_0fwvj"), ExtResource("15_ebmw0"), ExtResource("16_rnd8f"), ExtResource("17_mucej"), ExtResource("18_yk45p"), ExtResource("19_n0ajj"), ExtResource("20_384pl"), ExtResource("21_itjnw")])

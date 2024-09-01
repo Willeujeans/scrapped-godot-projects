@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://8i8tf5248qsr"]
+
+[ext_resource type="PackedScene" uid="uid://hd1m6yfgggfp" path="res://user_interfaces/throw_tracker/throw_tracker_element.tscn" id="1_4kq2i"]
+[ext_resource type="Script" path="res://user_interfaces/throw_tracker/throw_tracker.gd" id="1_w27rp"]
+
+[node name="ThrowTracker" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 4
+script = ExtResource("1_w27rp")
+ui_scene = ExtResource("1_4kq2i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = 126.22
+offset_right = 315.0
+offset_bottom = 126.22
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 210
+alignment = 1

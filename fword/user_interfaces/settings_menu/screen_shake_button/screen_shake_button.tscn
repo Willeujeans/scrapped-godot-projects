@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3mym7xhtouoy"]
+
+[ext_resource type="Script" path="res://user_interfaces/settings_menu/screen_shake_button/screen_shake_button.gd" id="1_ie8bg"]
+
+[node name="ScreenShakeButton" type="CheckButton"]
+text = "screen shake"
+script = ExtResource("1_ie8bg")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

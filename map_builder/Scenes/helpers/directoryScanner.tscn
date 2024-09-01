@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brc842b1b4ke7"]
+
+[ext_resource type="Script" path="res://Scripts/s_directoryScanner.gd" id="1_pw1xq"]
+
+[node name="directoryScanner" type="Node"]
+script = ExtResource("1_pw1xq")

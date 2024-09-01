@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgdw4v20iiakk"]
+
+[ext_resource type="Script" path="res://parent_level/player_spawner/player_spawner.gd" id="1_qv16m"]
+[ext_resource type="PackedScene" uid="uid://bl5tcm37qwdfs" path="res://2D/2D_player_character/2D_player_controller/2D_player_controller.tscn" id="2_ffyms"]
+
+[node name="PlayerSpawner" type="Node2D" groups=["spawner"]]
+script = ExtResource("1_qv16m")
+player_scene = ExtResource("2_ffyms")

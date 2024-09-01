@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cis6bbp4gw1if"]
+
+[ext_resource type="Texture2D" uid="uid://bu0yywma5yv6o" path="res://entities/actors/watcher/sprites/hand_up.png" id="2_35dvs"]
+[ext_resource type="Texture2D" uid="uid://c7mljdbruf2t6" path="res://entities/actors/watcher/sprites/hand_up_1.png" id="2_trayu"]
+[ext_resource type="Texture2D" uid="uid://bj8greeuc3gl7" path="res://entities/actors/watcher/sprites/hand_grabbing.png" id="4_rhvkm"]
+[ext_resource type="Texture2D" uid="uid://2d42ur55n8u8" path="res://entities/actors/watcher/sprites/hand_looking.png" id="5_2f4k2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4qxjk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_trayu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_35dvs")
+}],
+"loop": true,
+"name": &"down",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rhvkm")
+}],
+"loop": true,
+"name": &"grabbing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2f4k2")
+}],
+"loop": true,
+"name": &"reaching",
+"speed": 5.0
+}]
+
+[node name="Hand" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_4qxjk")
+animation = &"reaching"
+autoplay = "default"

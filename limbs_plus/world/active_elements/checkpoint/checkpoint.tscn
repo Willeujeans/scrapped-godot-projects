@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4bv25u3ncopr"]
+
+[ext_resource type="Script" path="res://world/active_elements/checkpoint/checkpoint.gd" id="1_tdb0b"]
+[ext_resource type="Texture2D" uid="uid://bpfg1m8ls3ce8" path="res://lighting/light_larger.png" id="2_8m5q2"]
+[ext_resource type="PackedScene" uid="uid://dv37ii7fswfuv" path="res://world/active_elements/checkpoint/end_notif.tscn" id="2_wud4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oepxm"]
+size = Vector2(108.5, 128)
+
+[sub_resource type="Gradient" id="Gradient_oy464"]
+colors = PackedColorArray(0, 0, 0, 0, 0.427451, 0.827451, 0.972549, 0.670588)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jcq2b"]
+gradient = SubResource("Gradient_oy464")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5eyu"]
+size = Vector2(235, 20)
+
+[node name="Checkpoint" type="Area2D"]
+script = ExtResource("1_tdb0b")
+display = ExtResource("2_wud4n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(103.25, 0)
+shape = SubResource("RectangleShape2D_oepxm")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(126, 0)
+color = Color(0.505882, 0.941176, 1, 1)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("2_8m5q2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(46.5, 0)
+scale = Vector2(3.45312, 2)
+texture = SubResource("GradientTexture2D_jcq2b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(59.5, 74)
+shape = SubResource("RectangleShape2D_u5eyu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
