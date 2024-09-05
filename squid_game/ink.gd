@@ -45,6 +45,7 @@ func increase_ink_size(sprite_scale, collision_size, explosion_size, explosion_f
 	var tween = get_tree().create_tween()
 	tween.tween_property($AnimatedSprite2D, "scale", Vector2($AnimatedSprite2D.scale.x + 2, $AnimatedSprite2D.scale.y + 2), 0.8).set_trans(Tween.TRANS_ELASTIC)
 
+
 func explode():
 	for each in $ExplosionDetection.get_overlapping_bodies():
 		if each.is_class("RigidBody2D"):
