@@ -7,8 +7,8 @@ var size_factor = 1.0
 
 func _ready():
 	var my_circle = CircleShape2D.new()
-	my_circle.set_radius(80.0 * size_factor)
-	$Area2D/CollisionShape2D.call_deferred("set_shape", my_circle)
+	my_circle.set_radius(300.0 * (size_factor/2))
+	$PaintArea/CollisionShape2D.call_deferred("set_shape", my_circle)
 	$Splat.scale *= size_factor
 	$Explosion.scale *= size_factor
 	$CPUParticles2D.scale *= size_factor
@@ -17,10 +17,12 @@ func _ready():
 	get_tree().get_first_node_in_group("AnimationHandler").animate.connect(play_next_frame)
 	$Splat.rotation_degrees = randf_range(-360, 360)
 	set_splat_radius()
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.5, 1.1)
+	$AudioStreamPlayer2D.play()
 
 
 func set_splat_radius():
-	$Area2D/CollisionShape2D.shape.radius = 1.0 * size_factor
+	$PaintArea/CollisionShape2D.shape.radius = 1.0 * size_factor
 
 
 func play_next_frame(current_frame):
@@ -41,4 +43,6 @@ func _process(delta):
 
 func _on_explosion_animation_finished():
 	$Splat.visible = true
-	$Area2D.queue_free()
+	$Timer.start()
+	await $Timer.timeout
+	$PaintArea.queue_free()

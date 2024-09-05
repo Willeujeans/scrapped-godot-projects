@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://qjqoqs3gokgo"]
+[gd_scene load_steps=12 format=3 uid="uid://qjqoqs3gokgo"]
 
 [ext_resource type="Script" path="res://splatter.gd" id="1_0b3hw"]
-[ext_resource type="Texture2D" uid="uid://c0w4trd2tnjoy" path="res://explode_one.png" id="1_d0in2"]
-[ext_resource type="Texture2D" uid="uid://b4lmh34xfiy2p" path="res://explode_two.png" id="2_7jc0u"]
-[ext_resource type="Texture2D" uid="uid://bbk60lunac3ag" path="res://splat_64_one.png" id="2_hr563"]
-[ext_resource type="Texture2D" uid="uid://deg5dr31ydq07" path="res://explode_three.png" id="3_d76p0"]
-[ext_resource type="Texture2D" uid="uid://du7eecdby7703" path="res://splat_64_two.png" id="3_gqkvw"]
-[ext_resource type="Texture2D" uid="uid://c7dsgcjxnstli" path="res://small_ball.png" id="7_byc66"]
+[ext_resource type="Texture2D" uid="uid://bbg17krls4ohk" path="res://explode_one.png" id="1_d0in2"]
+[ext_resource type="Texture2D" uid="uid://q1fw6nu83hkl" path="res://explode_two.png" id="2_7jc0u"]
+[ext_resource type="Texture2D" uid="uid://c8lldklj8f0wh" path="res://splat_64_one.png" id="2_hr563"]
+[ext_resource type="Texture2D" uid="uid://cthatg7clh18g" path="res://explode_four.png" id="3_d76p0"]
+[ext_resource type="Texture2D" uid="uid://brt47w1u68d76" path="res://splat_64_two.png" id="3_gqkvw"]
+[ext_resource type="Texture2D" uid="uid://b0barcaqhxomy" path="res://small_ball.png" id="7_byc66"]
+[ext_resource type="AudioStream" uid="uid://c8dl71nephd1r" path="res://splat.wav" id="8_jp4dd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kub34"]
 animations = [{
@@ -40,11 +41,14 @@ animations = [{
 "texture": ExtResource("3_d76p0")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_d76p0")
+}, {
+"duration": 1.0,
 "texture": null
 }],
 "loop": false,
 "name": &"default",
-"speed": 24.0
+"speed": 18.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgjyf"]
@@ -55,14 +59,14 @@ script = ExtResource("1_0b3hw")
 [node name="Splat" type="AnimatedSprite2D" parent="."]
 z_index = 1
 texture_filter = 1
-scale = Vector2(3.5, 3.5)
+scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_kub34")
 animation = &"two"
 
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
-z_index = 2
+z_index = 3
 texture_filter = 1
-scale = Vector2(7, 7)
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_hb7mq")
 autoplay = "default"
 
@@ -81,11 +85,21 @@ initial_velocity_max = 500.0
 scale_amount_min = 2.0
 scale_amount_max = 2.0
 
-[node name="Area2D" type="Area2D" parent="." groups=["splat"]]
+[node name="PaintArea" type="Area2D" parent="." groups=["splat"]]
 z_index = 5
+collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaintArea"]
 shape = SubResource("CircleShape2D_vgjyf")
 debug_color = Color(0.317647, 0.490196, 1, 0.419608)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jp4dd")
+volume_db = -5.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]

@@ -1,0 +1,317 @@
+[gd_scene load_steps=16 format=3 uid="uid://dkft88acm2b7d"]
+
+[ext_resource type="Texture2D" uid="uid://bbe3npe734t28" path="res://level_question_one.png" id="1_2k7hv"]
+[ext_resource type="Texture2D" uid="uid://dy23axpdsru5k" path="res://back_one.png" id="1_m01qi"]
+[ext_resource type="Texture2D" uid="uid://de8q8vn6bgrfp" path="res://level_question_two.png" id="2_akrti"]
+[ext_resource type="Texture2D" uid="uid://kai8mdpgbvjc" path="res://back_two.png" id="2_n03mi"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://scene_change_node.tscn" id="3_83vel"]
+[ext_resource type="Script" path="res://change_scene_button.gd" id="3_ahc7v"]
+[ext_resource type="Texture2D" uid="uid://bcjhajbhl45ey" path="res://house_level_one.png" id="6_4pcpp"]
+[ext_resource type="Texture2D" uid="uid://ccltuuqou24yo" path="res://house_level_two.png" id="7_0fhg5"]
+[ext_resource type="PackedScene" uid="uid://yhy3y0jk7rci" path="res://world_one.tscn" id="8_7bwn1"]
+[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://daydream_3/Daydream.ttf" id="10_kahgp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx4f5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m01qi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n03mi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ua50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5cr4m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bim84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_4pcpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0fhg5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2d2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2k7hv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_akrti")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 350
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Control"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_kx4f5")
+autoplay = "default"
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer/Control"]
+layout_mode = 0
+offset_left = -143.0
+offset_top = -155.0
+offset_right = 130.0
+offset_bottom = 171.0
+theme_override_constants/outline_size = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
+flat = true
+script = ExtResource("3_ahc7v")
+scene_changer = NodePath("../SceneChangeNode")
+can_be_clicked = true
+
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control" instance=ExtResource("3_83vel")]
+next_scene = ExtResource("8_7bwn1")
+current_parent_scene = NodePath("../../../..")
+
+[node name="Control5" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Control5"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bim84")
+autoplay = "default"
+
+[node name="WorldOneButton" type="Button" parent="VBoxContainer/HBoxContainer/Control5"]
+layout_mode = 0
+offset_left = -133.0
+offset_top = -144.0
+offset_right = 140.0
+offset_bottom = 182.0
+theme_override_constants/outline_size = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
+flat = true
+script = ExtResource("3_ahc7v")
+scene_changer = NodePath("../SceneChangeNode")
+can_be_clicked = true
+
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control5" instance=ExtResource("3_83vel")]
+next_scene = ExtResource("8_7bwn1")
+current_parent_scene = NodePath("../../../..")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control5"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = 215.0
+offset_right = 109.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] 30m [/center]"
+
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Control2"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_v2d2a")
+autoplay = "default"
+
+[node name="WorldTwoButton" type="Button" parent="VBoxContainer/HBoxContainer/Control2"]
+layout_mode = 0
+offset_left = -131.0
+offset_top = -144.0
+offset_right = 142.0
+offset_bottom = 182.0
+theme_override_constants/outline_size = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
+flat = true
+script = ExtResource("3_ahc7v")
+scene_changer = NodePath("../SceneChangeNode")
+
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control2" instance=ExtResource("3_83vel")]
+current_parent_scene = NodePath("../../../..")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 209.0
+offset_right = 106.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] 40m [/center]"
+
+[node name="Control3" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Control3"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_v2d2a")
+autoplay = "default"
+
+[node name="WorldThreeButton" type="Button" parent="VBoxContainer/HBoxContainer/Control3"]
+layout_mode = 0
+offset_left = -133.0
+offset_top = -144.0
+offset_right = 140.0
+offset_bottom = 182.0
+theme_override_constants/outline_size = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
+flat = true
+script = ExtResource("3_ahc7v")
+scene_changer = NodePath("../SceneChangeNode")
+
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control3" instance=ExtResource("3_83vel")]
+current_parent_scene = NodePath("../../../..")
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control3"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 208.0
+offset_right = 106.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] 60m [/center]"
+
+[node name="Control4" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer/Control4"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_v2d2a")
+autoplay = "default"
+
+[node name="WorldFourButton" type="Button" parent="VBoxContainer/HBoxContainer/Control4"]
+layout_mode = 0
+offset_left = -132.0
+offset_top = -144.0
+offset_right = 141.0
+offset_bottom = 182.0
+theme_override_constants/outline_size = 0
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
+flat = true
+script = ExtResource("3_ahc7v")
+scene_changer = NodePath("../SceneChangeNode")
+
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control4" instance=ExtResource("3_83vel")]
+current_parent_scene = NodePath("../../../..")
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control4"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 209.0
+offset_right = 106.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] 100m [/center]"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -700.0
+offset_top = 127.0
+offset_right = 700.0
+offset_bottom = 277.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center] you gotta paint these buildings!!! [/center]"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control/BackButton" to="VBoxContainer/HBoxContainer/Control/BackButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control5/WorldOneButton" to="VBoxContainer/HBoxContainer/Control5/WorldOneButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control2/WorldTwoButton" to="VBoxContainer/HBoxContainer/Control2/WorldTwoButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control3/WorldThreeButton" to="VBoxContainer/HBoxContainer/Control3/WorldThreeButton" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Control4/WorldFourButton" to="VBoxContainer/HBoxContainer/Control4/WorldFourButton" method="_on_pressed"]

@@ -2,7 +2,7 @@ extends Node
 
 
 @export var transition_scene: PackedScene
-@export var next_scene: PackedScene
+@export var next_scene: PackedScene = load("res://main_menu.tscn")
 @export var current_parent_scene: NodePath
 
 

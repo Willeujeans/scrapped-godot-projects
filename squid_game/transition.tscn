@@ -79,7 +79,6 @@ _data = {
 
 [node name="Transition" type="CanvasLayer" groups=["unclearable"]]
 layer = 5
-follow_viewport_enabled = true
 script = ExtResource("1_x2ssf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

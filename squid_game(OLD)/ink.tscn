@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciqtf1jnwwain"]
+
+[ext_resource type="Script" path="res://ink.gd" id="1_4y1cs"]
+[ext_resource type="PackedScene" uid="uid://qjqoqs3gokgo" path="res://splatter_node.tscn" id="2_ws8vx"]
+[ext_resource type="SpriteFrames" uid="uid://bt67ggmtpx7dn" path="res://ink_filled.tres" id="3_2wev3"]
+[ext_resource type="SpriteFrames" uid="uid://cus11e33mmyib" path="res://ink_hollow.tres" id="3_5mcrs"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ucv5s"]
+
+[node name="Ink" type="RigidBody2D" groups=["ink"]]
+z_index = 3
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_ucv5s")
+lock_rotation = true
+script = ExtResource("1_4y1cs")
+ink_splatter_scene = ExtResource("2_ws8vx")
+ink_filled_anim = ExtResource("3_2wev3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("3_5mcrs")
+animation = &"one"
+
+[node name="ExplosionDetection" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionDetection"]
+
+[node name="HitDetection" type="Area2D" parent="." groups=["ink"]]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
+
+[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]
+[connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]

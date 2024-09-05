@@ -1,40 +1,76 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciqtf1jnwwain"]
+[gd_scene load_steps=8 format=3 uid="uid://ciqtf1jnwwain"]
 
 [ext_resource type="Script" path="res://ink.gd" id="1_4y1cs"]
 [ext_resource type="PackedScene" uid="uid://qjqoqs3gokgo" path="res://splatter_node.tscn" id="2_ws8vx"]
-[ext_resource type="SpriteFrames" uid="uid://bt67ggmtpx7dn" path="res://ink_filled.tres" id="3_2wev3"]
-[ext_resource type="SpriteFrames" uid="uid://cus11e33mmyib" path="res://ink_hollow.tres" id="3_5mcrs"]
+[ext_resource type="Texture2D" uid="uid://c1y5ayeme62o7" path="res://ink_hollow_64_one.png" id="3_yslrr"]
+[ext_resource type="Texture2D" uid="uid://h5krrqlsb64u" path="res://ink_hollow_64_two.png" id="4_41j32"]
+[ext_resource type="AudioStream" uid="uid://y0tme6ipf4q4" path="res://gloop.wav" id="5_8yt26"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ucv5s"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_akmtp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yslrr")
+}],
+"loop": false,
+"name": &"one",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_41j32")
+}],
+"loop": false,
+"name": &"two",
+"speed": 1.0
+}]
+
 [node name="Ink" type="RigidBody2D" groups=["ink"]]
-z_index = 3
+position = Vector2(-1, 0)
 collision_layer = 2
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_ucv5s")
+gravity_scale = 1.1
 lock_rotation = true
 script = ExtResource("1_4y1cs")
 ink_splatter_scene = ExtResource("2_ws8vx")
-ink_filled_anim = ExtResource("3_2wev3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = -1
+z_index = 3
 texture_filter = 1
-scale = Vector2(6, 6)
-sprite_frames = ExtResource("3_5mcrs")
-animation = &"one"
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_akmtp")
+animation = &"two"
 
 [node name="ExplosionDetection" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+priority = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionDetection"]
 
-[node name="HitDetection" type="Area2D" parent="." groups=["ink"]]
-collision_layer = 3
-collision_mask = 3
+[node name="HitDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
+disabled = true
 
-[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8yt26")
+
+[node name="InkDetection" type="Area2D" parent="." groups=["ink"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InkDetection"]
+disabled = true
+
+[node name="TillExplode" type="Timer" parent="."]
+wait_time = 0.04
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
+[connection signal="area_entered" from="InkDetection" to="." method="_on_ink_detection_area_entered"]
+[connection signal="timeout" from="TillExplode" to="." method="_on_till_explode_timeout"]
