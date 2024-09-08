@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qjqoqs3gokgo"]
+[gd_scene load_steps=13 format=3 uid="uid://qjqoqs3gokgo"]
 
 [ext_resource type="Script" path="res://splatter.gd" id="1_0b3hw"]
 [ext_resource type="Texture2D" uid="uid://bbg17krls4ohk" path="res://explode_one.png" id="1_d0in2"]
@@ -51,6 +51,10 @@ animations = [{
 "speed": 18.0
 }]
 
+[sub_resource type="Curve" id="Curve_sysct"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgjyf"]
 
 [node name="Splatter" type="Node2D"]
@@ -78,12 +82,14 @@ lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 texture = ExtResource("7_byc66")
-direction = Vector2(1, 1)
-spread = 180.0
-initial_velocity_min = 15.0
-initial_velocity_max = 500.0
-scale_amount_min = 2.0
-scale_amount_max = 2.0
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(2.08165e-12, -1)
+spread = 90.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1000.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_sysct")
 
 [node name="PaintArea" type="Area2D" parent="." groups=["splat"]]
 z_index = 5

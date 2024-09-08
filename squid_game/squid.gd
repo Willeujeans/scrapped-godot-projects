@@ -11,6 +11,7 @@ var speed = 20.0
 var time_till_reset = 5.0
 var can_play_squish = true
 var world_position
+var is_controller = false
 
 
 func _ready():
@@ -24,6 +25,10 @@ func _physics_process(delta):
 	if linear_velocity.y > max_speed:
 		linear_velocity.y = max_speed
 	var sound_number_remapped = remap(linear_velocity.length(), 0, 3000, -55, -15) # Returns 0.5
+	if linear_velocity.length() >= 2000:
+		$AirStreams/AirStream.emitting = true
+	else:
+		$AirStreams/AirStream.emitting = false
 	$AnimatedSprite2D.scale.x = remap(linear_velocity.length(), 0, 3000, total_scale_pool/2.0, (total_scale_pool/2.0) + 0.1)
 	$AnimatedSprite2D.scale.y = total_scale_pool - $AnimatedSprite2D.scale.x
 	$WindSound.volume_db = lerp($WindSound.volume_db, sound_number_remapped, delta * 10.0)
@@ -36,7 +41,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ink"):
 		if $Cooldown.is_stopped():
 			shoot_ink()
-	$Reticle.look_at(get_global_mouse_position())
+	var aim_direction = Vector2.ZERO
+	aim_direction.x = Input.get_axis("aim_left", "aim_right")
+	aim_direction.y = Input.get_axis("aim_up", "aim_down")
+	if aim_direction.x != 0.0 or aim_direction.y != 0.0:
+		aim_direction += global_position
+		$Reticle.look_at(aim_direction)
+		
+		# tapping joystick to shoot mode!!! This is a demo
+		#if aim_direction.length() >= 1.0 and $Cooldown.is_stopped():
+			#shoot_ink()
+			
+	else:
+		$Reticle.look_at(get_global_mouse_position())
 
 
 func shoot_ink():
@@ -53,15 +70,10 @@ func shoot_ink():
 	ink_instance.global_position = self.global_position
 	
 
-func _process(_delta):
-	if Input.is_action_pressed("reset"):
-		time_till_reset -= 0.1
-	if Input.is_action_just_released("reset"):
-		time_till_reset = 5.0
-	if time_till_reset <= 0.0 or global_position.distance_to(world_position) >= 50_000:
+func _process(delta):
+	if Input.is_action_pressed("reset") or global_position.distance_to(world_position) >= 50_000:
 		linear_velocity = Vector2.ZERO
 		global_position = start_position
-		time_till_reset = 5.0
 	var look_pos = Vector2(linear_velocity.x * 1.1, linear_velocity.y * 1.1)
 	$AnimatedSprite2D.look_at(to_global(look_pos))
 	if linear_velocity.length() <= 100.0:

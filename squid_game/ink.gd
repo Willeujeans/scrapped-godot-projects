@@ -1,6 +1,6 @@
 extends RigidBody2D
 @export var ink_size = 1.0
-@onready var force = 1000.0
+@onready var force = 900.0
 @export var ink_splatter_scene: PackedScene
 @onready var splatted = false
 var can_explode = false
@@ -10,7 +10,6 @@ var instance_number = 0
 func _ready():
 	var tween = get_tree().create_tween()
 	tween.tween_property($AnimatedSprite2D, "scale", Vector2($AnimatedSprite2D.scale.x + 2, $AnimatedSprite2D.scale.y + 2), 0.8).set_trans(Tween.TRANS_ELASTIC)
-	
 	
 	get_tree().get_first_node_in_group("AnimationHandler").animate.connect(play_next_frame)
 	var hit_circle = CircleShape2D.new()
@@ -25,17 +24,13 @@ func _ready():
 	ink_circle.set_radius(60.0)
 	$InkDetection/CollisionShape2D.call_deferred("set_shape", ink_circle)
 	
-	modulate = Color(randf(), randf(), randf(), 1.0)
-	if modulate.r < 0.1 and modulate.g < 0.1 and modulate.b < 0.1:
-		modulate.r = randf()
-		modulate.g = randf()
-		modulate.b = randf()
+	modulate = Color.from_hsv(randf_range(0.0, 1.0), 1.0, 1.0, 1.0)
 
 
 func increase_ink_size(sprite_scale, collision_size, explosion_size, explosion_force, ink_color):
 	if ink_size >= 6:
 		return
-	var ink_scale = 0.5
+	var ink_scale = 0.9
 	ink_size += 1
 	$AnimatedSprite2D.scale += sprite_scale * ink_scale
 	$HitDetection/CollisionShape2D.shape.radius += collision_size * ink_scale
@@ -70,6 +65,16 @@ func explode():
 		ink_splatter_instance.modulate = self.get_modulate()
 		get_parent().call_deferred("add_child", ink_splatter_instance)
 		ink_splatter_instance.global_position = self.global_position
+
+
+func fizzle():
+	if not splatted:
+		call_deferred("set_freeze_enabled", true)
+		$InkDetection.queue_free()
+		$HitDetection.queue_free()
+		$AnimatedSprite2D.visible = false
+		splatted = true
+		$Fizzle.emitting = true
 
 
 func _on_hit_detection_body_entered(body):

@@ -1,33 +1,33 @@
 [gd_scene load_steps=27 format=3 uid="uid://dkft88acm2b7d"]
 
-[ext_resource type="Script" path="res://level_select.gd" id="1_28umn"]
-[ext_resource type="Texture2D" uid="uid://b10jrpusvfj6p" path="res://back_one.png" id="1_m01qi"]
-[ext_resource type="Texture2D" uid="uid://6i7k7p5b26om" path="res://back_two.png" id="2_n03mi"]
-[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://scene_change_node.tscn" id="3_83vel"]
-[ext_resource type="Script" path="res://change_scene_button.gd" id="3_ahc7v"]
-[ext_resource type="Texture2D" uid="uid://dbnr1gufy0gyr" path="res://house_level_one.png" id="6_4pcpp"]
-[ext_resource type="Texture2D" uid="uid://dr8bj5356128p" path="res://house_level_two.png" id="7_0fhg5"]
-[ext_resource type="PackedScene" uid="uid://dut8t0p6qgkds" path="res://world_tree.tscn" id="8_cwy3m"]
-[ext_resource type="PackedScene" uid="uid://dqisoqw8sxg0r" path="res://world_tutorial.tscn" id="8_tqcr8"]
-[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://daydream_3/Daydream.ttf" id="10_kahgp"]
-[ext_resource type="Texture2D" uid="uid://cnrwkn57fqgss" path="res://bridge_one.png" id="10_omc0u"]
-[ext_resource type="AudioStream" uid="uid://cj6834otcc4jc" path="res://paper.wav" id="11_cpaeo"]
-[ext_resource type="Texture2D" uid="uid://bkljm8p66nec" path="res://bridge_two.png" id="11_vt287"]
-[ext_resource type="PackedScene" uid="uid://cj5wb0iupbv5k" path="res://world_bridge.tscn" id="12_ucfqe"]
-[ext_resource type="Texture2D" uid="uid://yhsbkpijevwo" path="res://tree_one.png" id="13_ovhb6"]
-[ext_resource type="Texture2D" uid="uid://c337gy4w1ib1r" path="res://tree_two.png" id="14_fnewl"]
-[ext_resource type="PackedScene" uid="uid://ipq1c4yiyx7b" path="res://world_pipes.tscn" id="14_kxa11"]
-[ext_resource type="Texture2D" uid="uid://b8j8pagwavrdg" path="res://pipe.png" id="16_20d6j"]
-[ext_resource type="Texture2D" uid="uid://ddt524jkgq70q" path="res://pipe_two.png" id="17_b0t3a"]
+[ext_resource type="Script" path="res://level_select.gd" id="1_rap64"]
+[ext_resource type="Texture2D" uid="uid://b10jrpusvfj6p" path="res://back_one.png" id="2_coqao"]
+[ext_resource type="Texture2D" uid="uid://6i7k7p5b26om" path="res://back_two.png" id="3_3wrhh"]
+[ext_resource type="Script" path="res://change_scene_button.gd" id="4_4lkbv"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://scene_change_node.tscn" id="5_i4osk"]
+[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://daydream_3/Daydream.ttf" id="6_h75v8"]
+[ext_resource type="Texture2D" uid="uid://dbnr1gufy0gyr" path="res://house_level_one.png" id="7_41elt"]
+[ext_resource type="Texture2D" uid="uid://dr8bj5356128p" path="res://house_level_two.png" id="8_2hg8x"]
+[ext_resource type="PackedScene" uid="uid://dqisoqw8sxg0r" path="res://world_tutorial.tscn" id="9_f1fcm"]
+[ext_resource type="Texture2D" uid="uid://cnrwkn57fqgss" path="res://bridge_one.png" id="10_qmxws"]
+[ext_resource type="Texture2D" uid="uid://bkljm8p66nec" path="res://bridge_two.png" id="11_ls2x1"]
+[ext_resource type="PackedScene" uid="uid://cj5wb0iupbv5k" path="res://world_bridge.tscn" id="12_cldyp"]
+[ext_resource type="Texture2D" uid="uid://yhsbkpijevwo" path="res://tree_one.png" id="13_km645"]
+[ext_resource type="Texture2D" uid="uid://c337gy4w1ib1r" path="res://tree_two.png" id="14_hd315"]
+[ext_resource type="PackedScene" uid="uid://dut8t0p6qgkds" path="res://world_tree.tscn" id="15_crdml"]
+[ext_resource type="Texture2D" uid="uid://b8j8pagwavrdg" path="res://pipe.png" id="16_quxmo"]
+[ext_resource type="Texture2D" uid="uid://ddt524jkgq70q" path="res://pipe_two.png" id="17_vviov"]
+[ext_resource type="PackedScene" uid="uid://ipq1c4yiyx7b" path="res://world_pipes.tscn" id="18_ikuci"]
+[ext_resource type="AudioStream" uid="uid://cj6834otcc4jc" path="res://paper.wav" id="19_dhl3j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kx4f5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_m01qi")
+"texture": ExtResource("2_coqao")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_n03mi")
+"texture": ExtResource("3_3wrhh")
 }],
 "loop": true,
 "name": &"default",
@@ -42,10 +42,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_4pcpp")
+"texture": ExtResource("7_41elt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_0fhg5")
+"texture": ExtResource("8_2hg8x")
 }],
 "loop": true,
 "name": &"default",
@@ -56,10 +56,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_omc0u")
+"texture": ExtResource("10_qmxws")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_vt287")
+"texture": ExtResource("11_ls2x1")
 }],
 "loop": true,
 "name": &"default",
@@ -70,10 +70,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_ovhb6")
+"texture": ExtResource("13_km645")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_fnewl")
+"texture": ExtResource("14_hd315")
 }],
 "loop": true,
 "name": &"default",
@@ -84,10 +84,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("16_20d6j")
+"texture": ExtResource("16_quxmo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_b0t3a")
+"texture": ExtResource("17_vviov")
 }],
 "loop": true,
 "name": &"default",
@@ -101,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_28umn")
+script = ExtResource("1_rap64")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -146,11 +146,11 @@ theme_override_constants/outline_size = 0
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
 flat = true
-script = ExtResource("3_ahc7v")
+script = ExtResource("4_4lkbv")
 scene_changer = NodePath("../SceneChangeNode")
 can_be_clicked = true
 
-[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control" instance=ExtResource("3_83vel")]
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control" instance=ExtResource("5_i4osk")]
 current_parent_scene = NodePath("../../../..")
 
 [node name="Control5" type="Control" parent="VBoxContainer/HBoxContainer"]
@@ -170,7 +170,7 @@ offset_right = 109.0
 offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] [wave]0:00 [/wave][/center]"
@@ -192,12 +192,12 @@ theme_override_constants/outline_size = 0
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
 flat = true
-script = ExtResource("3_ahc7v")
+script = ExtResource("4_4lkbv")
 scene_changer = NodePath("../SceneChangeNode")
 can_be_clicked = true
 
-[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control5" instance=ExtResource("3_83vel")]
-next_scene = ExtResource("8_tqcr8")
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control5" instance=ExtResource("5_i4osk")]
+next_scene = ExtResource("9_f1fcm")
 current_parent_scene = NodePath("../../../..")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control5"]
@@ -214,7 +214,7 @@ offset_right = 109.0
 offset_bottom = 315.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] [wave]30 ft [/wave][/center]"
@@ -238,12 +238,12 @@ theme_override_constants/outline_size = 0
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
 flat = true
-script = ExtResource("3_ahc7v")
+script = ExtResource("4_4lkbv")
 scene_changer = NodePath("../SceneChangeNode")
 can_be_clicked = true
 
-[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control2" instance=ExtResource("3_83vel")]
-next_scene = ExtResource("12_ucfqe")
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control2" instance=ExtResource("5_i4osk")]
+next_scene = ExtResource("12_cldyp")
 current_parent_scene = NodePath("../../../..")
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control2"]
@@ -260,7 +260,7 @@ offset_right = 106.0
 offset_bottom = 315.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] 40 ft [/center]"
@@ -279,7 +279,7 @@ offset_right = 109.0
 offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] [wave]0:00 [/wave][/center]"
@@ -304,12 +304,12 @@ theme_override_constants/outline_size = 0
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
 flat = true
-script = ExtResource("3_ahc7v")
+script = ExtResource("4_4lkbv")
 scene_changer = NodePath("../SceneChangeNode")
 can_be_clicked = true
 
-[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control3" instance=ExtResource("3_83vel")]
-next_scene = ExtResource("8_cwy3m")
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control3" instance=ExtResource("5_i4osk")]
+next_scene = ExtResource("15_crdml")
 current_parent_scene = NodePath("../../../..")
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control3"]
@@ -326,7 +326,7 @@ offset_right = 106.0
 offset_bottom = 308.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] 60 ft [/center]"
@@ -345,7 +345,7 @@ offset_right = 109.0
 offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] [wave]0:00 [/wave][/center]"
@@ -370,12 +370,12 @@ theme_override_constants/outline_size = 0
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ua50")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5cr4m")
 flat = true
-script = ExtResource("3_ahc7v")
+script = ExtResource("4_4lkbv")
 scene_changer = NodePath("../SceneChangeNode")
 can_be_clicked = true
 
-[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control4" instance=ExtResource("3_83vel")]
-next_scene = ExtResource("14_kxa11")
+[node name="SceneChangeNode" parent="VBoxContainer/HBoxContainer/Control4" instance=ExtResource("5_i4osk")]
+next_scene = ExtResource("18_ikuci")
 current_parent_scene = NodePath("../../../..")
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/Control4"]
@@ -392,7 +392,7 @@ offset_right = 144.0
 offset_bottom = 294.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] 100 ft [/center]"
@@ -411,14 +411,14 @@ offset_right = 109.0
 offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center] [wave]0:00 [/wave][/center]"
 autowrap_mode = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_cpaeo")
+stream = ExtResource("19_dhl3j")
 volume_db = -10.0
 autoplay = true
 
@@ -431,7 +431,7 @@ offset_top = -12.0
 offset_right = 1501.0
 offset_bottom = 273.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("10_kahgp")
+theme_override_fonts/normal_font = ExtResource("6_h75v8")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center]

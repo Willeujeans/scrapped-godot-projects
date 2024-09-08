@@ -51,7 +51,7 @@ func update_paint_percent():
 		$"../SceneChangeNode".next_scene = level_select
 		$"../SceneChangeNode".go_next_scene()
 
-var escape_time_bank = 2.5
+var escape_time_bank = 1.0
 func _process(delta):
 	if Input.is_action_pressed("escape"):
 		escape_time_bank -= 1.0 * delta
@@ -60,7 +60,7 @@ func _process(delta):
 			$"../SceneChangeNode".next_scene = level_select
 			$"../SceneChangeNode".go_next_scene()
 	if Input.is_action_just_released("escape") and escape_time_bank > 0:
-		escape_time_bank = 5.0
+		escape_time_bank = 1.0
 		$"../CanvasLayer/Control/HoldForLevelSelect".visible = false
 	if world_timer_active:
 		var current_time = (Time.get_ticks_msec() - start_time) * 0.001

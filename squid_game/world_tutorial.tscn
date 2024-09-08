@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://dqisoqw8sxg0r"]
 
-[ext_resource type="PackedScene" path="res://ink_detector.tscn" id="1_kgi2a"]
+[ext_resource type="PackedScene" uid="uid://d0ymxfeme5luf" path="res://ink_detector.tscn" id="1_kgi2a"]
 [ext_resource type="Texture2D" uid="uid://bvstgy244wgbn" path="res://tiles.png" id="2_lblmp"]
 [ext_resource type="Script" path="res://paint_checker.gd" id="3_ts3g6"]
 [ext_resource type="PackedScene" uid="uid://b5n0n5cillp8g" path="res://squid.tscn" id="4_bykjf"]
