@@ -101,6 +101,7 @@ volume_db = -15.0
 autoplay = true
 
 [node name="SceneChangeNode" parent="." instance=ExtResource("6_tnd1p")]
+transition_speed = 10.0
 current_parent_scene = NodePath("..")
 
 [node name="TillNextScene" type="Timer" parent="SceneChangeNode"]

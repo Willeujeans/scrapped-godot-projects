@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cka2cpgvj7jwp" path="res://menus/main_menu/stars_one.png" id="6_57hwv"]
 [ext_resource type="Texture2D" uid="uid://cfwy45cpt6evx" path="res://menus/main_menu/stars_two.png" id="7_dnmuh"]
 [ext_resource type="AudioStream" uid="uid://nskwytaosy10" path="res://menus/crickets.wav" id="8_jauqe"]
-[ext_resource type="PackedScene" uid="uid://bn2nl2mfog3nf" path="res://menus/level_select/level_selection.tscn" id="9_46qq5"]
+[ext_resource type="PackedScene" uid="uid://bn2nl2mfog3nf" path="res://menus/level_select/level_selection_carousell.tscn" id="9_46qq5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfic5"]
 

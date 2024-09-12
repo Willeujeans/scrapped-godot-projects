@@ -71,16 +71,7 @@ func update_paint_percent():
 		$"../SceneChangeNode".go_next_scene()
 
 
-var escape_time_bank = 2.5
 func _process(delta):
-	if Input.is_action_pressed("escape"):
-		escape_time_bank -= 1.0 * delta
-		$"../UI/Control/HoldForLevelSelect".visible = true
-		if escape_time_bank <= 0:
-			$"../SceneChangeNode".go_next_scene()
-	if Input.is_action_just_released("escape") and escape_time_bank > 0:
-		escape_time_bank = 5.0
-		$"../UI/Control/HoldForLevelSelect".visible = false
 	if world_timer_active:
 		var current_time = (Time.get_ticks_msec() - start_time) * 0.001
 		var current_time_string = "%.1f" % current_time

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn2nl2mfog3nf"]
+
+[ext_resource type="Script" path="res://menus/level_select/level_selection_carousell.gd" id="1_f0fc4"]
+[ext_resource type="PackedScene" uid="uid://beos0mhvg5ym6" path="res://levels/parent_level/world_template.tscn" id="2_w533n"]
+[ext_resource type="PackedScene" uid="uid://c3l43bw5i6lk2" path="res://levels/all_levels/playable_levels/tutorial.tscn" id="3_1rj3e"]
+[ext_resource type="PackedScene" uid="uid://c77rya46ib0rg" path="res://menus/level_select/level_container.tscn" id="3_54qhh"]
+
+[node name="SelectionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f0fc4")
+levels = Array[PackedScene]([ExtResource("2_w533n"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e")])
+level_container_scene = ExtResource("3_54qhh")
+
+[node name="Carousell" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 304.0
+offset_bottom = 304.0
