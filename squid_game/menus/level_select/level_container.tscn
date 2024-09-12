@@ -15,18 +15,19 @@ offset_bottom = 500.0
 pivot_offset = Vector2(250, 250)
 script = ExtResource("1_csrqu")
 
-[node name="StarCount" type="RichTextLabel" parent="."]
-clip_contents = false
+[node name="Time" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-offset_top = -71.0
+offset_top = -83.0
 offset_right = 500.0
-offset_bottom = 21.0
+offset_bottom = 95.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center]***[/center]"
+text = "[center]00:00[/center]"
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 clip_contents = true
@@ -38,17 +39,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5
 alignment = 1
-
-[node name="Time" type="RichTextLabel" parent="HBoxContainer"]
-custom_minimum_size = Vector2(500, 50)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-text = "[center]00:00[/center]"
 
 [node name="ScreenShotPlaceholder" type="ColorRect" parent="HBoxContainer"]
 clip_contents = true
@@ -69,6 +59,17 @@ theme_override_fonts/normal_font = ExtResource("1_lh7uk")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]name[/center]"
+
+[node name="StarCount" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_lh7uk")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]***[/center]"
 
 [node name="Button" type="Button" parent="."]
 z_index = -1
