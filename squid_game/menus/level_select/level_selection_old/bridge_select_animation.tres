@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b7hqap57hmhfs"]
+
+[ext_resource type="Texture2D" uid="uid://cnrwkn57fqgss" path="res://menus/level_select/level_selection_old/bridge_one.png" id="1_fdqwe"]
+[ext_resource type="Texture2D" uid="uid://bkljm8p66nec" path="res://menus/level_select/level_selection_old/bridge_two.png" id="2_ebnug"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fdqwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ebnug")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]

@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://c77rya46ib0rg"]
+
+[ext_resource type="Script" path="res://menus/level_select/level_container.gd" id="1_csrqu"]
+[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="1_lh7uk"]
+[ext_resource type="StyleBox" uid="uid://c8splfuvu8vq2" path="res://menus/level_select/level_container_button.tres" id="2_4123d"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="3_v8mbk"]
+
+[node name="level_container" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_csrqu")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="StarCount" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_lh7uk")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]***[/center]"
+
+[node name="Time" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_lh7uk")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]00:00[/center]"
+
+[node name="ScreenShotPlaceholder" type="ColorRect" parent="HBoxContainer"]
+z_index = -1
+clip_contents = true
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[node name="Name" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_lh7uk")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]name[/center]"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("2_4123d")
+theme_override_styles/hover = ExtResource("2_4123d")
+theme_override_styles/pressed = ExtResource("2_4123d")
+theme_override_styles/focus = ExtResource("2_4123d")
+clip_text = true
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("3_v8mbk")]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

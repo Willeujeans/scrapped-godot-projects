@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="squid_game"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="res://menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-LevelProgress="*res://level_progress.tscn"
+LevelProgress="*res://levels/level_progress.tscn"
 
 [display]
 
@@ -25,7 +25,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
 window/stretch/mode="canvas_items"
-mouse_cursor/custom_image="res://cursor.png"
+mouse_cursor/custom_image="res://entities/squid/cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2(32, 32)
 
 [input]
@@ -61,22 +61,22 @@ escape={
 ]
 }
 aim_right={
-"deadzone": 0.1,
+"deadzone": 0.3,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
 aim_left={
-"deadzone": 0.1,
+"deadzone": 0.3,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
 ]
 }
 aim_up={
-"deadzone": 0.1,
+"deadzone": 0.3,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
 ]
 }
 aim_down={
-"deadzone": 0.1,
+"deadzone": 0.3,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
 ]
 }

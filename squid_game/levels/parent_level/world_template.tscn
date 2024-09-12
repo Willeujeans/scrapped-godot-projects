@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://beos0mhvg5ym6"]
+
+[ext_resource type="Script" path="res://levels/parent_level/world_template_script.gd" id="1_lmbtd"]
+[ext_resource type="TileSet" uid="uid://d11labxuh1as2" path="res://levels/parent_level/tiles/new_tile_set.tres" id="2_py2ig"]
+[ext_resource type="PackedScene" uid="uid://2eu1nrarx4ce" path="res://menus/transition.tscn" id="2_t6sg4"]
+[ext_resource type="Script" path="res://levels/parent_level/tiles/advanced_tiles.gd" id="3_ukm8o"]
+[ext_resource type="Script" path="res://levels/parent_level/animation_handler.gd" id="4_iqln3"]
+[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="5_vmk3t"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="6_tnd1p"]
+[ext_resource type="AudioStream" uid="uid://r1rhthusqeos" path="res://music/chill_beat.ogg" id="13_j77fx"]
+[ext_resource type="PackedScene" uid="uid://b5n0n5cillp8g" path="res://entities/squid/squid.tscn" id="14_spfy5"]
+
+[node name="WorldTemplate" type="Node2D" groups=["world"]]
+script = ExtResource("1_lmbtd")
+transition_scene = ExtResource("2_t6sg4")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -304.5
+offset_right = 304.5
+offset_bottom = 173.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.933333, 0.588235, 0.152941, 1)
+theme_override_fonts/normal_font = ExtResource("5_vmk3t")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]0%[/center]"
+
+[node name="HoldForLevelSelect" type="RichTextLabel" parent="UI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -342.0
+offset_top = 213.0
+offset_right = 349.0
+offset_bottom = 407.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.933333, 0.588235, 0.152941, 1)
+theme_override_fonts/normal_font = ExtResource("5_vmk3t")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][wave]hold  (L)  to exit  level[/wave][/center]"
+
+[node name="TimeText" type="RichTextLabel" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -740.0
+offset_right = -94.0
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.933333, 0.588235, 0.152941, 1)
+theme_override_fonts/normal_font = ExtResource("5_vmk3t")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "0:0"
+autowrap_mode = 0
+
+[node name="Squid" parent="." instance=ExtResource("14_spfy5")]
+position = Vector2(244, -69)
+
+[node name="TileMap" type="TileMap" parent="." groups=["paint_tiles"]]
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_py2ig")
+format = 2
+layer_0/name = "white"
+layer_0/z_index = 1
+layer_1/name = "black"
+layer_1/z_index = 2
+layer_1/tile_data = PackedInt32Array()
+script = ExtResource("3_ukm8o")
+
+[node name="UntilTilesAreReplaced" type="Timer" parent="TileMap"]
+wait_time = 0.5
+
+[node name="AnimationHandler" type="Node" parent="." groups=["AnimationHandler"]]
+script = ExtResource("4_iqln3")
+
+[node name="Timer" type="Timer" parent="AnimationHandler"]
+one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_j77fx")
+volume_db = -15.0
+autoplay = true
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("6_tnd1p")]
+current_parent_scene = NodePath("..")
+
+[node name="TillNextScene" type="Timer" parent="SceneChangeNode"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerEndGame" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerReset" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
