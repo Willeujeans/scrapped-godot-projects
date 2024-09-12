@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c77rya46ib0rg"]
+[gd_scene load_steps=8 format=3 uid="uid://c77rya46ib0rg"]
 
 [ext_resource type="Script" path="res://menus/level_select/level_container.gd" id="1_csrqu"]
 [ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="1_lh7uk"]
 [ext_resource type="StyleBox" uid="uid://c8splfuvu8vq2" path="res://menus/level_select/level_container_button.tres" id="2_4123d"]
 [ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="3_v8mbk"]
 [ext_resource type="StyleBox" uid="uid://bn8w6ryjwujws" path="res://menus/level_select/level_container_button_focus.tres" id="4_8vcr3"]
+[ext_resource type="AudioStream" uid="uid://ce6xsgjdkpp1k" path="res://entities/squid/pop.wav" id="6_0p7hj"]
+[ext_resource type="AudioStream" uid="uid://dt0ecaox8pf86" path="res://menus/single_shuffle.wav" id="7_ounao"]
 
 [node name="level_container" type="Control"]
 custom_minimum_size = Vector2(500, 500)
@@ -86,5 +88,13 @@ theme_override_styles/focus = ExtResource("4_8vcr3")
 clip_text = true
 
 [node name="SceneChangeNode" parent="." instance=ExtResource("3_v8mbk")]
+
+[node name="FipThrough" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0p7hj")
+volume_db = -15.0
+
+[node name="Shuffle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ounao")
+volume_db = -5.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

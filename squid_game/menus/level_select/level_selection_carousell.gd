@@ -3,7 +3,17 @@ extends Control
 @export var level_container_scene: PackedScene
 var level_elements = []
 var elements_random_rotations = []
+var elements_random_y = []
 
+func format_time(milliseconds: int) -> String:
+	var total_seconds = milliseconds / 1000
+	var minutes = total_seconds / 60
+	var seconds = total_seconds % 60
+	var ms = milliseconds % 1000
+	if minutes == 0:
+		return str(seconds) + "." + str(ms)[0]
+	else:
+		return str(minutes) + ":" + str(seconds) + "." + str(ms)[0]
 
 func _ready():
 	var set_focus = false
@@ -14,16 +24,23 @@ func _ready():
 		level_container.set_level(each)
 		level_container.get_node("SceneChangeNode").current_parent_scene = self.get_path()
 		level_container.get_node("HBoxContainer").get_node("Name").set_text("[center]" + str(each.get_state().get_node_name(0)) + "[/center]")
+		if get_tree().get_first_node_in_group("level_progress").level_times.has(str(each.get_state().get_node_name(0))):
+			level_container.get_node("Time").set_text("[center]" + format_time(get_tree().get_first_node_in_group("level_progress").level_times[str(each.get_state().get_node_name(0))]) + "[/center]")
+		else:
+			level_container.get_node("Time").set_text("[center]" + "00:00" + "[/center]")
 		$Carousell.add_child(level_container)
 		level_container.position.x = current_x
-		current_x += 420
+		current_x += 450
 		if not set_focus:
 			level_container.get_node("Button").grab_focus()
 			set_focus = true
 		level_elements.append(level_container)
 		var rando_rotation = deg_to_rad(randf_range(-8.0, 8.0))
+		var rando_y = randf_range(-10.0, 10.0)
 		level_container.rotation = rando_rotation
+		level_container.position.y = rando_y
 		elements_random_rotations.append(rando_rotation)
+		elements_random_y.append(rando_y)
 	
 	for i in range(len(level_elements)):
 		if i - 1 >= 0:
@@ -46,6 +63,7 @@ func _process(delta):
 			level_elements[i].position.y = lerp(level_elements[i].position.y, -100.0, delta * speed)
 			level_elements[i].scale = lerp(level_elements[i].scale, Vector2(1.2, 1.2), delta * speed)
 		else:
+			level_elements[i].position.y = lerp(level_elements[i].position.y, elements_random_y[i], delta * speed)
 			level_elements[i].rotation = lerp(level_elements[i].rotation, elements_random_rotations[i], delta * speed)
 			level_elements[i].z_index = 0
 			level_elements[i].position.y = lerp(level_elements[i].position.y, 0.0, delta * speed)

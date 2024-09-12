@@ -65,7 +65,13 @@ func update_paint_percent():
 		can_change_scene = false
 		end_time = Time.get_ticks_msec()
 		world_time = end_time - start_time
-		get_tree().get_first_node_in_group("level_progress").level_times[current_level] = world_time
+		if get_tree().get_first_node_in_group("level_progress").level_times.has($"..".name):
+			if world_time < get_tree().get_first_node_in_group("level_progress").level_times[$"..".name]:
+				get_tree().get_first_node_in_group("level_progress").level_times[$"..".name] = world_time
+				get_tree().get_first_node_in_group("level_progress").save_data_to_disc()
+		else:
+			get_tree().get_first_node_in_group("level_progress").level_times[$"..".name] = world_time
+			get_tree().get_first_node_in_group("level_progress").save_data_to_disc()
 		$"../SceneChangeNode/TillNextScene".start()
 		await $"../SceneChangeNode/TillNextScene".timeout
 		$"../SceneChangeNode".go_next_scene()
