@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b5n0n5cillp8g"]
+[gd_scene load_steps=20 format=3 uid="uid://b5n0n5cillp8g"]
 
 [ext_resource type="Script" path="res://entities/squid/squid.gd" id="1_tps31"]
 [ext_resource type="PackedScene" uid="uid://ciqtf1jnwwain" path="res://entities/ink/bubble/ink.tscn" id="2_q1qh2"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://di57wewnh5x5y" path="res://entities/squid/aim_two.png" id="7_cyo64"]
 [ext_resource type="AudioStream" uid="uid://ce6xsgjdkpp1k" path="res://entities/squid/pop.wav" id="8_8nwac"]
 [ext_resource type="AudioStream" uid="uid://b5h8hl17iym02" path="res://entities/squid/windwhistling.wav" id="9_qbais"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1rpqb"]
+friction = 0.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xekxg"]
 radius = 54.037
@@ -91,6 +94,7 @@ _data = {
 
 [node name="Squid" type="RigidBody2D" groups=["player"]]
 z_index = 4
+physics_material_override = SubResource("PhysicsMaterial_1rpqb")
 lock_rotation = true
 angular_damp = 50.0
 script = ExtResource("1_tps31")
@@ -173,3 +177,7 @@ autoplay = true
 libraries = {
 "": SubResource("AnimationLibrary_d5pol")
 }
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+z_index = 3
+target_position = Vector2(0, 69)

@@ -12,7 +12,7 @@ var time_till_reset = 5.0
 var can_play_squish = true
 var world_position
 var is_controller = false
-
+var is_on_floor = false
 
 func _ready():
 	world_position = get_tree().get_first_node_in_group("world").global_position
@@ -20,6 +20,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	if !$FloorChecker.is_colliding():
+		is_on_floor = false
+	else:
+		is_on_floor = true
 	if linear_velocity.length() >= 2000:
 		$PlayerCamera.zoom.x = lerp($PlayerCamera.zoom.x, 0.3, delta)
 		$PlayerCamera.zoom.y = lerp($PlayerCamera.zoom.y, 0.3, delta)
@@ -41,9 +45,9 @@ func _physics_process(delta):
 	$WindSound.volume_db = lerp($WindSound.volume_db, sound_number_remapped, delta * 10.0)
 	if $WindSound.volume_db > -5:
 		$WindSound.volume_db = -5
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left") and not is_on_floor:
 		apply_central_impulse(Vector2(-1.0 * speed, 0.0))
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right") and not is_on_floor:
 		apply_central_impulse(Vector2(1.0 * speed, 0.0))
 	if Input.is_action_just_pressed("ink"):
 		if $Cooldown.is_stopped():

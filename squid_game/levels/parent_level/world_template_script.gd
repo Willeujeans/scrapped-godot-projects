@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var color_pal: Array[Vector3] = []
 @export var transition_scene: PackedScene
 @onready var can_restart = true
 var escape_time_bank = 1.0
