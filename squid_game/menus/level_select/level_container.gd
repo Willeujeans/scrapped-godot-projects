@@ -1,10 +1,12 @@
 extends Control
 var can_play = true
+@export var list_of_stars = []
 @export var list_of_colors = []
 
 
 func _ready():
 	set_color_swatches()
+
 
 func set_level(level_scene):
 	$SceneChangeNode.next_scene = level_scene
@@ -29,4 +31,3 @@ func set_color_swatches():
 	$Color1.color = list_of_colors[0]
 	$Color2.color = list_of_colors[1]
 	$Color3.color = list_of_colors[2]
-	$Color4.color = list_of_colors[3]

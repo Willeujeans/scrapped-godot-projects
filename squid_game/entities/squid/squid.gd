@@ -4,6 +4,7 @@ extends RigidBody2D
 @onready var start_position = global_position
 @export var ink_scene: PackedScene
 @onready var total_scale_pool = $AnimatedSprite2D.scale.x + $AnimatedSprite2D.scale.y
+@export var color_list = []
 var max_speed = 2700
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var instance_tracker = 0
@@ -73,6 +74,7 @@ func shoot_ink():
 	$AudioStreamPlayer2D.pitch_scale = randf_range(0.7, 1.2)
 	$AudioStreamPlayer2D.play()
 	var ink_instance = ink_scene.instantiate()
+	ink_instance.ink_color = color_list.pick_random()
 	var direction = ($Reticle/Pointer.global_position - self.global_position).normalized()
 	var magnitude = 2000.0
 	ink_instance.instance_number = instance_tracker

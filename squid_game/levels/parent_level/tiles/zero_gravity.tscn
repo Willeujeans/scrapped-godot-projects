@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmaqcb63vyvd6"]
+[gd_scene load_steps=6 format=3 uid="uid://bmaqcb63vyvd6"]
 
 [ext_resource type="Script" path="res://levels/parent_level/tiles/zero_gravity.gd" id="1_md2ha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnnta"]
 size = Vector2(128, 128)
 
+[sub_resource type="Gradient" id="Gradient_mk6dn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.323864, 0.5625, 0.689168)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_apgi0"]
+gradient = SubResource("Gradient_mk6dn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_21nng"]
+offsets = PackedFloat32Array(0.0104167, 0.489583, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="ZeroGravityBlock" type="Node2D"]
+modulate = Color(0, 0.858824, 0.921569, 1)
 script = ExtResource("1_md2ha")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -18,3 +33,23 @@ angular_damp = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_fnnta")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 41)
+amount = 1
+lifetime = 1.4
+preprocess = 2.0
+speed_scale = 0.7
+texture = SubResource("GradientTexture2D_apgi0")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 10)
+gravity = Vector2(2.08165e-12, -100)
+orbit_velocity_min = -0.15
+orbit_velocity_max = 0.15
+tangential_accel_min = -10.0
+tangential_accel_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_21nng")

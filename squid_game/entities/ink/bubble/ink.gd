@@ -1,4 +1,6 @@
 extends RigidBody2D
+
+@export var ink_color = Color(1.0,1.0,1.0,1.0)
 @export var ink_size = 1.0
 @onready var force = 1200.0
 @export var ink_splatter_scene: PackedScene
@@ -24,7 +26,8 @@ func _ready():
 	ink_circle.set_radius(60.0)
 	$InkDetection/CollisionShape2D.call_deferred("set_shape", ink_circle)
 	
-	modulate = Color.from_hsv(randf_range(0.0, 1.0), 1.0, 1.0, 1.0)
+	modulate = ink_color
+	modulate.s += randf_range(-0.5,0.5)
 
 
 func increase_ink_size(sprite_scale, collision_size, explosion_size, explosion_force, ink_color):

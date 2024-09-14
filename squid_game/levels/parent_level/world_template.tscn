@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://beos0mhvg5ym6"]
 
 [ext_resource type="Script" path="res://levels/parent_level/world_template_script.gd" id="1_lmbtd"]
-[ext_resource type="TileSet" uid="uid://d11labxuh1as2" path="res://levels/parent_level/tiles/new_tile_set.tres" id="2_py2ig"]
 [ext_resource type="PackedScene" uid="uid://2eu1nrarx4ce" path="res://menus/transition.tscn" id="2_t6sg4"]
 [ext_resource type="Script" path="res://levels/parent_level/tiles/advanced_tiles.gd" id="3_ukm8o"]
 [ext_resource type="Script" path="res://levels/parent_level/animation_handler.gd" id="4_iqln3"]
+[ext_resource type="TileSet" uid="uid://d11labxuh1as2" path="res://levels/parent_level/tiles/tile_set.tres" id="5_5455h"]
 [ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="5_vmk3t"]
 [ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="6_tnd1p"]
 [ext_resource type="AudioStream" uid="uid://r1rhthusqeos" path="res://music/chill_beat.ogg" id="13_j77fx"]
@@ -79,7 +79,7 @@ position = Vector2(244, -69)
 
 [node name="TileMap" type="TileMap" parent="." groups=["paint_tiles"]]
 scale = Vector2(2, 2)
-tile_set = ExtResource("2_py2ig")
+tile_set = ExtResource("5_5455h")
 format = 2
 layer_0/name = "white"
 layer_0/z_index = 1
@@ -103,7 +103,7 @@ volume_db = -15.0
 autoplay = true
 
 [node name="SceneChangeNode" parent="." instance=ExtResource("6_tnd1p")]
-transition_speed = 10.0
+transition_speed = 2.0
 current_parent_scene = NodePath("..")
 
 [node name="TillNextScene" type="Timer" parent="SceneChangeNode"]

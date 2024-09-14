@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn2nl2mfog3nf"]
+[gd_scene load_steps=11 format=3 uid="uid://bn2nl2mfog3nf"]
 
 [ext_resource type="Script" path="res://menus/level_select/level_selection_carousell.gd" id="1_f0fc4"]
 [ext_resource type="PackedScene" uid="uid://c3l43bw5i6lk2" path="res://levels/all_levels/playable_levels/tutorial.tscn" id="3_1rj3e"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://f7ylrin73saf" path="res://levels/all_levels/playable_levels/little_trees.tscn" id="3_c2u2v"]
 [ext_resource type="PackedScene" uid="uid://bge24x8jreuqp" path="res://levels/all_levels/playable_levels/SandTemple.tscn" id="4_rq0te"]
 [ext_resource type="PackedScene" uid="uid://cvr08fog6msw7" path="res://levels/all_levels/playable_levels/tower.tscn" id="5_76ude"]
+[ext_resource type="PackedScene" uid="uid://c5ngfveyp23ka" path="res://levels/all_levels/playable_levels/cookie.tscn" id="6_4io5n"]
+[ext_resource type="PackedScene" uid="uid://3jpcjagtscq7" path="res://levels/all_levels/playable_levels/sewers.tscn" id="7_cf4ur"]
+[ext_resource type="PackedScene" uid="uid://b5vru4haa8lv3" path="res://levels/all_levels/playable_levels/cave.tscn" id="8_rn3t1"]
+[ext_resource type="PackedScene" uid="uid://dkbp4olhd8emd" path="res://levels/all_levels/playable_levels/bubbleShoot.tscn" id="9_ycccx"]
 
 [node name="SelectionPage" type="Control"]
 layout_mode = 3
@@ -15,7 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f0fc4")
-levels = Array[PackedScene]([ExtResource("3_1rj3e"), ExtResource("3_c2u2v"), ExtResource("4_rq0te"), ExtResource("5_76ude"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e"), ExtResource("3_1rj3e")])
+levels = Array[PackedScene]([ExtResource("3_1rj3e"), ExtResource("3_c2u2v"), ExtResource("4_rq0te"), ExtResource("5_76ude"), ExtResource("6_4io5n"), ExtResource("7_cf4ur"), ExtResource("8_rn3t1"), ExtResource("9_ycccx")])
 level_container_scene = ExtResource("3_54qhh")
 
 [node name="Carousell" type="Control" parent="."]

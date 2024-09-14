@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0ymxfeme5luf"]
 
-[ext_resource type="Script" path="res://levels/parent_level/tiles/paint_detector.gd" id="1_ga385"]
+[ext_resource type="Script" path="res://levels/parent_level/tiles/ink_detector.gd" id="1_usp8u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u62e5"]
 size = Vector2(128, 128)
@@ -12,7 +12,7 @@ size = Vector2(129, 128)
 size = Vector2(128, 128)
 
 [node name="InkDetector" type="Node2D"]
-script = ExtResource("1_ga385")
+script = ExtResource("1_usp8u")
 
 [node name="PaintDetection" type="Area2D" parent="." groups=["white_tiles"]]
 collision_layer = 2

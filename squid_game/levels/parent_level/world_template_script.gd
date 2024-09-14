@@ -7,7 +7,14 @@ var escape_time_bank = 1.0
 
 
 func _ready():
+	print(name)
 	$SceneChangeNode.next_scene = load("res://menus/level_select/level_selection_carousell.tscn")
+	var color_string = get_children()[0].name
+	var colors_string_as_list = color_string.split("_")
+	var color_list = []
+	for each in colors_string_as_list:
+		color_list.append(Color(each))
+	$Squid.color_list = color_list
 
 
 func _process(delta):
@@ -32,6 +39,8 @@ func restart():
 
 
 func finish_restart():
+	var parent_node = get_parent()
+	parent_node.remove_child(self)
 	var scene = load(self.get_scene_file_path()).instantiate()
-	get_parent().call_deferred("add_child", scene)
+	parent_node.call_deferred("add_child", scene)
 	queue_free()

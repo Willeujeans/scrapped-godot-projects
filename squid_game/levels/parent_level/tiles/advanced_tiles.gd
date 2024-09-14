@@ -8,7 +8,7 @@ var world_time = 0.0
 var world_timer_active = false
 var start_time = 0.0
 var end_time
-var full_black_atlas_coordinate = Vector2(7,4)
+var full_black_atlas_coordinate = Vector2(1,9)
 
 
 func _ready():

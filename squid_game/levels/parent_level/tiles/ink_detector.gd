@@ -14,11 +14,10 @@ func _on_area_2d_area_entered(area):
 func _process(delta):
 	if has_box or not is_painted:
 		return
-		
+	
 	for each in $PlayerDetection.get_overlapping_bodies():
 		if each.is_in_group("player"):
 			return
 	
 	has_box = true
 	$Platform/PlatformShape2D.call_deferred("set_disabled", false)
-	print("I made a box!")
