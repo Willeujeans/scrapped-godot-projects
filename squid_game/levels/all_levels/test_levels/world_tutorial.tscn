@@ -8,10 +8,10 @@
 [ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="6_18nd5"]
 [ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="7_80kjg"]
 [ext_resource type="AudioStream" uid="uid://d07v41srv6hi0" path="res://menus/night_ambience.wav" id="8_m6euw"]
-[ext_resource type="Texture2D" uid="uid://cvnoc1qgcia2y" path="res://levels/all_levels/playable_levels/left_click.png" id="9_1wb5y"]
+[ext_resource type="Texture2D" uid="uid://cvnoc1qgcia2y" path="res://levels/all_levels/playable_levels/assets/left_click.png" id="9_1wb5y"]
 [ext_resource type="Texture2D" uid="uid://b0barcaqhxomy" path="res://levels/small_ball.png" id="10_uerj6"]
-[ext_resource type="Texture2D" uid="uid://2csq1db6qgdf" path="res://levels/all_levels/playable_levels/arrow.png" id="11_o3b4p"]
-[ext_resource type="Texture2D" uid="uid://bif0exslhd4mo" path="res://levels/all_levels/playable_levels/movement_both_sprite.png" id="12_oheh3"]
+[ext_resource type="Texture2D" uid="uid://2csq1db6qgdf" path="res://levels/all_levels/playable_levels/assets/arrow.png" id="11_o3b4p"]
+[ext_resource type="Texture2D" uid="uid://bif0exslhd4mo" path="res://levels/all_levels/playable_levels/assets/movement_both_sprite.png" id="12_oheh3"]
 [ext_resource type="AudioStream" uid="uid://r1rhthusqeos" path="res://music/chill_beat.ogg" id="13_gdkx8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jnxrf"]

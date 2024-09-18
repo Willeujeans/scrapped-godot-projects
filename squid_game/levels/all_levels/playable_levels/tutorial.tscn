@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://beos0mhvg5ym6" path="res://levels/parent_level/world_template.tscn" id="1_chmic"]
 [ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="2_khn8s"]
-[ext_resource type="Texture2D" uid="uid://cvnoc1qgcia2y" path="res://levels/all_levels/playable_levels/left_click.png" id="3_1nd1m"]
-[ext_resource type="Texture2D" uid="uid://2csq1db6qgdf" path="res://levels/all_levels/playable_levels/arrow.png" id="5_tw7tm"]
-[ext_resource type="Texture2D" uid="uid://bif0exslhd4mo" path="res://levels/all_levels/playable_levels/movement_both_sprite.png" id="6_nbj00"]
+[ext_resource type="Texture2D" uid="uid://cvnoc1qgcia2y" path="res://levels/all_levels/playable_levels/assets/left_click.png" id="3_d70v7"]
+[ext_resource type="Texture2D" uid="uid://2csq1db6qgdf" path="res://levels/all_levels/playable_levels/assets/arrow.png" id="4_xkhjs"]
+[ext_resource type="Texture2D" uid="uid://bif0exslhd4mo" path="res://levels/all_levels/playable_levels/assets/movement_both_sprite.png" id="5_0hq1c"]
 
 [sub_resource type="Animation" id="Animation_n6jjy"]
 length = 0.001
@@ -163,7 +163,7 @@ z_index = 3
 texture_filter = 1
 position = Vector2(957, -316.58)
 scale = Vector2(2.81, 2.81)
-texture = ExtResource("3_1nd1m")
+texture = ExtResource("3_d70v7")
 
 [node name="Aim_here4" type="Sprite2D" parent="TileMap" index="11"]
 z_index = 3
@@ -171,7 +171,7 @@ texture_filter = 1
 position = Vector2(2906, -548.5)
 rotation = 2.98062
 scale = Vector2(2.81, 2.81)
-texture = ExtResource("5_tw7tm")
+texture = ExtResource("4_xkhjs")
 flip_h = true
 flip_v = true
 
@@ -181,7 +181,7 @@ texture_filter = 1
 position = Vector2(3943.5, -251.5)
 rotation = 1.22523
 scale = Vector2(2.81, 2.81)
-texture = ExtResource("5_tw7tm")
+texture = ExtResource("4_xkhjs")
 flip_h = true
 flip_v = true
 
@@ -191,14 +191,14 @@ texture_filter = 1
 position = Vector2(1150.5, -165.08)
 rotation = -1.85005
 scale = Vector2(2.81, 2.81)
-texture = ExtResource("5_tw7tm")
+texture = ExtResource("4_xkhjs")
 
 [node name="MovementSprite" type="Sprite2D" parent="TileMap" index="14"]
 z_index = 3
 texture_filter = 1
 position = Vector2(1664, -486)
 scale = Vector2(2.81, 2.81)
-texture = ExtResource("6_nbj00")
+texture = ExtResource("5_0hq1c")
 
 [node name="SceneChangeNode" parent="." index="7"]
 transition_speed = 1.0

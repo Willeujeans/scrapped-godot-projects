@@ -7,14 +7,7 @@ var elements_random_position = []
 var total_stars = 0
 var speed = 10.0
 var center_index = 0
-
-
-func format_time(milliseconds: int) -> String:
-	var total_seconds = milliseconds / 1000
-	#var minutes = total_seconds / 60
-	var seconds = total_seconds
-	var ms = milliseconds % 1000
-	return str(seconds) + "." + str(ms)[0] + " s"
+var can_move_carousell = false
 
 
 func _ready():
@@ -77,14 +70,17 @@ func _ready():
 			level_elements[i].get_node("Control").get_node("Button").focus_neighbor_left = level_elements[i - 1].get_node("Control").get_node("Button").get_path()
 		if i + 1 < len(level_elements):
 			level_elements[i].get_node("Control").get_node("Button").focus_neighbor_right = level_elements[i + 1].get_node("Control").get_node("Button").get_path()
-
+	can_move_carousell = true
 
 func _process(delta):
-	if Input.is_action_just_pressed("reset"):
-		for i in range(len(level_elements)):
-			if level_elements[i].get_node("Control").get_node("Button").has_focus():
-				level_elements[i].flip()
-	var center_of_screen = get_viewport().get_visible_rect().size / 2
+	if can_move_carousell:
+		flip_input_check()
+		var center_of_screen = get_viewport().get_visible_rect().size / 2
+		var current_center = hover_animation(delta, center_of_screen)
+		$Carousell.position.x = lerp($Carousell.position.x, center_of_screen.x - (current_center.position.x + 200), delta * speed)
+
+
+func hover_animation(delta, center_of_screen):
 	var current_center = null
 	for i in range(len(level_elements)):
 		if level_elements[i].get_node("Control").get_node("Button").has_focus():
@@ -102,5 +98,18 @@ func _process(delta):
 			level_elements[i].z_index = 0
 			level_elements[i].position.y = lerp(level_elements[i].position.y, 0.0, delta * speed)
 			level_elements[i].scale = lerp(level_elements[i].scale, Vector2(1.0, 1.0), delta * speed)
-	if $Carousell:
-		$Carousell.position.x = lerp($Carousell.position.x, center_of_screen.x - (current_center.position.x + 200), delta * speed)
+	return current_center
+
+func flip_input_check():
+	if Input.is_action_just_pressed("reset"):
+		for i in range(len(level_elements)):
+			if level_elements[i].get_node("Control").get_node("Button").has_focus():
+				level_elements[i].flip()
+
+
+func format_time(milliseconds: int) -> String:
+	var total_seconds = milliseconds / 1000
+	#var minutes = total_seconds / 60
+	var seconds = total_seconds
+	var ms = milliseconds % 1000
+	return str(seconds) + "." + str(ms)[0] + " s"

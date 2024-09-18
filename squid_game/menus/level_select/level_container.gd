@@ -6,6 +6,8 @@ var is_flipping = false
 @export var list_of_colors = []
 @export var normal_theme: Resource
 @export var flipped_theme: Resource
+@export var golden_theme: Resource
+
 
 func _ready():
 	set_color_swatches()

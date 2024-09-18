@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvnoc1qgcia2y"
-path="res://.godot/imported/left_click.png-0a881e174408a5a63f603930860b20d3.ctex"
+uid="uid://bif0exslhd4mo"
+path="res://.godot/imported/movement_both_sprite.png-4a7ae186da774a4b221d5493925e8108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/all_levels/playable_levels/left_click.png"
-dest_files=["res://.godot/imported/left_click.png-0a881e174408a5a63f603930860b20d3.ctex"]
+source_file="res://levels/all_levels/playable_levels/assets/movement_both_sprite.png"
+dest_files=["res://.godot/imported/movement_both_sprite.png-4a7ae186da774a4b221d5493925e8108.ctex"]
 
 [params]
 
