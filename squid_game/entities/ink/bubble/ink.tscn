@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ciqtf1jnwwain"]
+[gd_scene load_steps=11 format=3 uid="uid://ciqtf1jnwwain"]
 
 [ext_resource type="Script" path="res://entities/ink/bubble/ink.gd" id="1_1kp2t"]
 [ext_resource type="PackedScene" uid="uid://qjqoqs3gokgo" path="res://entities/ink/splat/splatter_node.tscn" id="2_o51bp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://h5krrqlsb64u" path="res://entities/ink/bubble/ink_hollow_64_two.png" id="4_uofug"]
 [ext_resource type="AudioStream" uid="uid://y0tme6ipf4q4" path="res://entities/ink/bubble/gloop.wav" id="5_3flsh"]
 [ext_resource type="Texture2D" uid="uid://b0barcaqhxomy" path="res://levels/small_ball.png" id="6_0u66b"]
+[ext_resource type="AudioStream" uid="uid://bmx8rs4d2ems7" path="res://small_bloop.wav" id="7_m8i7s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ucv5s"]
 
@@ -95,6 +96,11 @@ orbit_velocity_min = -0.5
 orbit_velocity_max = 0.5
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_6m0ec")
+
+[node name="FizzleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_m8i7s")
+volume_db = -10.0
+pitch_scale = 0.9
 
 [connection signal="body_entered" from="HitDetection" to="." method="_on_hit_detection_body_entered"]
 [connection signal="area_entered" from="InkDetection" to="." method="_on_ink_detection_area_entered"]

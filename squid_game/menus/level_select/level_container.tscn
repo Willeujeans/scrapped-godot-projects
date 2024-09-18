@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c77rya46ib0rg"]
+[gd_scene load_steps=15 format=3 uid="uid://c77rya46ib0rg"]
 
 [ext_resource type="Shader" path="res://menus/level_select/level_container.gdshader" id="1_5ncna"]
 [ext_resource type="Script" path="res://menus/level_select/level_container.gd" id="1_csrqu"]
@@ -8,7 +8,8 @@
 [ext_resource type="StyleBox" uid="uid://sioc4scbj8tj" path="res://menus/level_select/level_container_button_flipped.tres" id="4_g683n"]
 [ext_resource type="StyleBox" uid="uid://dly1bk12aei4i" path="res://menus/level_select/level_container_button_4Star.tres" id="5_p182h"]
 [ext_resource type="AudioStream" uid="uid://ce6xsgjdkpp1k" path="res://entities/squid/pop.wav" id="6_0p7hj"]
-[ext_resource type="AudioStream" uid="uid://dt0ecaox8pf86" path="res://menus/single_shuffle.wav" id="7_ounao"]
+[ext_resource type="Material" uid="uid://27wciaj36i0u" path="res://2D_shine_canvas.tres" id="6_y8b6i"]
+[ext_resource type="AudioStream" uid="uid://bs8j7hjmo3eew" path="res://menus/light_paper_turn.wav" id="10_y4xhy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d02en"]
 shader = ExtResource("1_5ncna")
@@ -302,6 +303,7 @@ script = ExtResource("1_csrqu")
 normal_theme = ExtResource("2_4123d")
 flipped_theme = ExtResource("4_g683n")
 golden_theme = ExtResource("5_p182h")
+shine_material = ExtResource("6_y8b6i")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -356,7 +358,6 @@ theme_override_colors/default_color = Color(1, 0.682353, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_lh7uk")
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
-text = "+++"
 
 [node name="StarCount2" type="RichTextLabel" parent="Control"]
 layout_mode = 0
@@ -415,8 +416,10 @@ stream = ExtResource("6_0p7hj")
 volume_db = -15.0
 
 [node name="Shuffle" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ounao")
 volume_db = -5.0
+
+[node name="Flip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_y4xhy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

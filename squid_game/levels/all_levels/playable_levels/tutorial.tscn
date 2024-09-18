@@ -24,7 +24,7 @@ _data = {
 
 [node name="#FC7753_#AFD5AA_#F28482" type="Node" parent="." index="0"]
 
-[node name="25*10*5*3" type="Node" parent="." index="1"]
+[node name="25*10*5*4" type="Node" parent="." index="1"]
 
 [node name="Squid" parent="." index="3"]
 position = Vector2(861, -407)

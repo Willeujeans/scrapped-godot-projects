@@ -71,13 +71,13 @@ func explode():
 
 func fizzle():
 	if not splatted:
+		$FizzleSound.play()
 		call_deferred("set_freeze_enabled", true)
 		$InkDetection.queue_free()
 		$HitDetection.queue_free()
 		$AnimatedSprite2D.visible = false
 		splatted = true
 		$Fizzle.emitting = true
-
 
 func _on_hit_detection_body_entered(body):
 	if not body.is_in_group("player"):
