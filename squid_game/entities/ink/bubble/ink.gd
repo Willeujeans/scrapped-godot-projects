@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @export var ink_color = Color(1.0,1.0,1.0,1.0)
 @export var ink_size = 1.0
-@onready var force = 1200.0
+@onready var force = 1300.0
 @export var ink_splatter_scene: PackedScene
 @onready var splatted = false
 var can_explode = false
