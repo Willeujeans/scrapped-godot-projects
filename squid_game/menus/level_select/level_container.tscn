@@ -133,7 +133,19 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2.08165e-12, -157.3)]
+"values": [Vector2(79, 625)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Control/StarCount2:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(79, 639)]
 }
 
 [sub_resource type="Animation" id="Animation_l38m6"]
@@ -182,7 +194,7 @@ tracks/3/path = NodePath("Control:rotation")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.7),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 3.14159]
@@ -197,7 +209,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(2.08165e-12, 50), Vector2(2.08165e-12, -100), Vector2(2.08165e-12, 50), Vector2(2.08165e-12, 2.08165e-12)]
+"values": [Vector2(0, 0), Vector2(2.08165e-12, 100), Vector2(2.08165e-12, -150), Vector2(2.08165e-12, 100), Vector2(2.08165e-12, 2.08165e-12)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -209,7 +221,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-48, 748), Vector2(-48, 686), Vector2(-48, 748)]
+"values": [Vector2(-48, 748), Vector2(-48, 686), Vector2(-48.0008, 732.999)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -257,7 +269,19 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2.08165e-12, -70), Vector2(2.08165e-12, -73.52)]
+"values": [Vector2(79, 625), Vector2(92.9994, 626)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Control/StarCount2:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(79, 639), Vector2(92.9994, 612)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sc81a"]
@@ -319,17 +343,35 @@ bbcode_enabled = true
 text = "[center]name[/center]"
 
 [node name="StarCount" type="RichTextLabel" parent="Control"]
+z_index = 1
 layout_mode = 0
-offset_top = -157.3
-offset_right = 400.0
-offset_bottom = -67.3
+offset_left = 79.0
+offset_top = 625.0
+offset_right = 321.0
+offset_bottom = 728.0
 pivot_offset = Vector2(200, 45)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/default_color = Color(1, 0.909804, 0.239216, 1)
+theme_override_colors/default_color = Color(1, 0.682353, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
+text = "+++"
+
+[node name="StarCount2" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 639.0
+offset_right = 321.0
+offset_bottom = 742.0
+pivot_offset = Vector2(200, 45)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.466667, 0.309804, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_lh7uk")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "+++"
 
 [node name="Button" type="Button" parent="Control"]
 z_index = -1
@@ -354,7 +396,7 @@ layout_mode = 0
 offset_left = -3.05176e-05
 offset_top = 241.0
 offset_right = 400.0
-offset_bottom = 391.0
+offset_bottom = 390.999
 mouse_filter = 2
 color = Color(1, 0.34902, 1, 1)
 
@@ -362,7 +404,7 @@ color = Color(1, 0.34902, 1, 1)
 layout_mode = 0
 offset_top = 390.0
 offset_right = 400.0
-offset_bottom = 539.997
+offset_bottom = 539.994
 mouse_filter = 2
 color = Color(1, 0.34902, 1, 1)
 

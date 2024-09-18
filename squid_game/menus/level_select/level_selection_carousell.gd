@@ -33,13 +33,13 @@ func _ready():
 			var stars_from_level = 0
 			if saved_time_in_seconds <= int(stars_list[0]):
 				stars_from_level += 1
-				level_container.get_node("Control").get_node("StarCount").set_text("[center]" + "+" + "[/center]")
+				level_container.get_node("Control").get_node("StarCount").set_text("+")
 			if saved_time_in_seconds <= int(stars_list[1]):
 				stars_from_level += 1
-				level_container.get_node("Control").get_node("StarCount").set_text("[center]" + "++" + "[/center]")
+				level_container.get_node("Control").get_node("StarCount").set_text("++")
 			if saved_time_in_seconds <= int(stars_list[2]):
 				stars_from_level += 1
-				level_container.get_node("Control").get_node("StarCount").set_text("[center]" + "+++" + "[/center]")
+				level_container.get_node("Control").get_node("StarCount").set_text("+++")
 			if saved_time_in_seconds <= int(stars_list[3]):
 				stars_from_level += 1
 				level_container.get_node("Control").get_node("Button").set("theme_override_styles/normal", load("res://menus/level_select/level_container_button_4Star.tres"))
