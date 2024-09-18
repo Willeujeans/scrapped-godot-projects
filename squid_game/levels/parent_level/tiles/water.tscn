@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmaqcb63vyvd6"]
 
-[ext_resource type="Script" path="res://levels/parent_level/tiles/zero_gravity.gd" id="1_md2ha"]
+[ext_resource type="Script" path="res://levels/parent_level/tiles/water.gd" id="1_47h08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnnta"]
 size = Vector2(128, 128)
@@ -19,9 +19,9 @@ fill_from = Vector2(0.5, 0.5)
 offsets = PackedFloat32Array(0.0104167, 0.489583, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="ZeroGravityBlock" type="Node2D"]
+[node name="Water" type="Node2D"]
 modulate = Color(0, 0.858824, 0.921569, 1)
-script = ExtResource("1_md2ha")
+script = ExtResource("1_47h08")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 3

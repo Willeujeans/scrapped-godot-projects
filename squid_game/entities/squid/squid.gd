@@ -15,6 +15,7 @@ var world_position
 var is_controller = false
 var is_on_floor = false
 
+
 func _ready():
 	world_position = get_tree().get_first_node_in_group("world").global_position
 	get_tree().get_first_node_in_group("AnimationHandler").animate.connect(play_next_frame)

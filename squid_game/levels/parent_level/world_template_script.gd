@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var flipped = false
 @export var color_pal: Array[Vector3] = []
 @export var transition_scene: PackedScene
 @onready var can_restart = true
@@ -7,7 +8,12 @@ var escape_time_bank = 1.0
 
 
 func _ready():
-	print(name)
+	if flipped:
+		$TileMap.set_rotation_degrees(180)
+		var rectangle = $TileMap.get_used_rect()
+		var adjustment = Vector2($TileMap.scale.x * $TileMap.tile_set.tile_size.x * rectangle.size.x - rectangle.position.x, -1 * $TileMap.scale.y * $TileMap.tile_set.tile_size.y * (rectangle.size.y - rectangle.position.y))
+		$TileMap.position = Vector2(adjustment.x, adjustment.y/2)
+	$Squid.get_node("PlayerCamera").set_limits()
 	$SceneChangeNode.next_scene = load("res://menus/level_select/level_selection_carousell.tscn")
 	var color_string = get_children()[0].name
 	var colors_string_as_list = color_string.split("_")
@@ -15,7 +21,10 @@ func _ready():
 	for each in colors_string_as_list:
 		color_list.append(Color(each))
 	$Squid.color_list = color_list
-
+	$TileMap.fill_background_with_black()
+	$TileMap.add_black_tiles()
+	$TileMap.replace_tiles_with_objects()
+	$Squid.global_position = $TileMap/SpawnPoint.global_position
 
 func _process(delta):
 	if Input.is_action_just_pressed("reset") and $TimerReset.is_stopped() and can_restart:
@@ -26,7 +35,7 @@ func _process(delta):
 	if escape_time_bank <= 0:
 			$SceneChangeNode.go_next_scene()
 	if Input.is_action_just_released("escape") and escape_time_bank > 0:
-		escape_time_bank = 5.0
+		escape_time_bank = 1.0
 		$UI/Control/HoldForLevelSelect.visible = false
 
 

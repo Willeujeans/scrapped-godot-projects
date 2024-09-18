@@ -3,8 +3,13 @@ extends Camera2D
 @export var smoothing = 5.0
 @export var stops_at_ceiling: bool = true
 
+
 func _ready():
 	set_position_smoothing_speed(smoothing)
+	set_limits()
+
+
+func set_limits():
 	var tile_map_node = self
 	var tile_map_array: Array = []
 	while(tile_map_array.is_empty() and get_parent()):
@@ -19,7 +24,6 @@ func _ready():
 		if stops_at_ceiling:
 			limit_top = bounding_box.position.y * scalar.y
 		limit_bottom = bounding_box.end.y * scalar.y
-
 
 func findByClass(node: Node, className : String, result : Array) -> void:
 	if !node:

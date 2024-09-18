@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj05q824o8ern"]
+[gd_scene load_steps=4 format=3 uid="uid://dj05q824o8ern"]
 
 [ext_resource type="Script" path="res://levels/parent_level/fan_area.gd" id="1_eot7k"]
+[ext_resource type="PackedScene" uid="uid://dpuod0wo8eece" path="res://entities/wave_particles.tscn" id="2_okhsd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_see61"]
 size = Vector2(336, 848)
@@ -19,6 +20,7 @@ position = Vector2(-1, -414)
 shape = SubResource("RectangleShape2D_see61")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
 z_index = 5
 amount = 25
 lifetime = 2.35
@@ -31,3 +33,8 @@ scale_amount_max = 20.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(2.08165e-12, -50)
+
+[node name="Wave_Part" parent="." instance=ExtResource("2_okhsd")]
+
+[node name="Wave_Part2" parent="." instance=ExtResource("2_okhsd")]
+position = Vector2(158, 0)

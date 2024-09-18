@@ -11,12 +11,6 @@ var end_time
 var full_black_atlas_coordinate = Vector2(1,9)
 
 
-func _ready():
-	fill_background_with_black()
-	add_black_tiles()
-	replace_tiles_with_objects()
-
-
 func fill_background_with_black(background_layer: int = 1):
 	var start_x = get_used_rect().position.x
 	var start_y = get_used_rect().position.y
