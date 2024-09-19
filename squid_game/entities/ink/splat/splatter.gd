@@ -7,7 +7,7 @@ var size_factor = 1.0
 
 func _ready():
 	var my_circle = CircleShape2D.new()
-	my_circle.set_radius(300.0 * (size_factor/2))
+	my_circle.set_radius(350.0 * (size_factor/2))
 	$PaintArea/CollisionShape2D.call_deferred("set_shape", my_circle)
 	$Splat.scale *= size_factor
 	$Explosion.scale *= size_factor

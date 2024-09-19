@@ -11,7 +11,7 @@ var instance_number = 0
 
 func _ready():
 	var tween = get_tree().create_tween()
-	tween.tween_property($AnimatedSprite2D, "scale", Vector2($AnimatedSprite2D.scale.x + 2, $AnimatedSprite2D.scale.y + 2), 0.8).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($AnimatedSprite2D, "scale", Vector2($AnimatedSprite2D.scale.x + 0.2, $AnimatedSprite2D.scale.y + 0.2), 0.8).set_trans(Tween.TRANS_ELASTIC)
 	
 	get_tree().get_first_node_in_group("AnimationHandler").animate.connect(play_next_frame)
 	var hit_circle = CircleShape2D.new()
