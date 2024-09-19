@@ -374,7 +374,8 @@ theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
 text = "+++"
 
-[node name="Button" type="Button" parent="Control"]
+[node name="LevelButton" type="Button" parent="Control"]
+unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
 offset_right = 400.0
@@ -430,5 +431,5 @@ libraries = {
 wait_time = 0.7
 one_shot = true
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/LevelButton" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

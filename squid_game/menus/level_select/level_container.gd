@@ -64,9 +64,9 @@ func set_level_star_count():
 		star_string = "+++"
 	$Control/StarCount.set_text(star_string)
 	if level_star_count >= 4:
-		$Control/Button.set("theme_override_styles/normal", golden_theme)
-		$Control/Button.set("theme_override_styles/focus", golden_theme)
-		$Control/Button.material = shine_material
+		%LevelButton.set("theme_override_styles/normal", golden_theme)
+		%LevelButton.set("theme_override_styles/focus", golden_theme)
+		%LevelButton.material = shine_material
 
 
 func set_color_swatches():
@@ -83,13 +83,13 @@ func _on_button_pressed():
 
 
 func _process(delta):
-	if $Control/Button.has_focus() and can_play:
+	if %LevelButton.has_focus() and can_play:
 		can_play = false
 		$FipThrough.pitch_scale = randf_range(0.7, 1.1)
 		$FipThrough.play()
 		$Shuffle.pitch_scale = randf_range(0.7, 1.1)
 		$Shuffle.play()
-	if not $Control/Button.has_focus():
+	if not %LevelButton.has_focus():
 		can_play = true
 
 
@@ -106,8 +106,8 @@ func flip():
 		var black = Color(0.0,0.0,0.0,1.0)
 		$Control/Time.set("theme_override_colors/default_color", black)
 		$Control/Name.set("theme_override_colors/default_color", black)
-		$Control/Button.set("theme_override_styles/normal", normal_theme)
-		$Control/Button.set("theme_override_styles/focus", normal_theme)
+		%LevelButton.set("theme_override_styles/normal", normal_theme)
+		%LevelButton.set("theme_override_styles/focus", normal_theme)
 		is_flipped = false
 	else:
 		$AnimationPlayer.play("flip")
@@ -116,8 +116,8 @@ func flip():
 		var white = Color(1.0,1.0,1.0,1.0)
 		$Control/Time.set("theme_override_colors/default_color", white)
 		$Control/Name.set("theme_override_colors/default_color", white)
-		$Control/Button.set("theme_override_styles/normal", flipped_theme)
-		$Control/Button.set("theme_override_styles/focus", flipped_theme)
+		%LevelButton.set("theme_override_styles/normal", flipped_theme)
+		%LevelButton.set("theme_override_styles/focus", flipped_theme)
 		is_flipped = true
 
 

@@ -51,5 +51,6 @@ func finish_restart():
 	var parent_node = get_parent()
 	parent_node.remove_child(self)
 	var scene = load(self.get_scene_file_path()).instantiate()
+	scene.flipped = flipped
 	parent_node.call_deferred("add_child", scene)
 	queue_free()

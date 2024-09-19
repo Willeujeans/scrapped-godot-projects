@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bn2nl2mfog3nf"]
+[gd_scene load_steps=12 format=3 uid="uid://bn2nl2mfog3nf"]
 
 [ext_resource type="Script" path="res://menus/level_select/level_selection_carousell.gd" id="1_f0fc4"]
 [ext_resource type="PackedScene" uid="uid://c3l43bw5i6lk2" path="res://levels/all_levels/playable_levels/tutorial.tscn" id="3_1rj3e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://3jpcjagtscq7" path="res://levels/all_levels/playable_levels/sewers.tscn" id="7_cf4ur"]
 [ext_resource type="PackedScene" uid="uid://b5vru4haa8lv3" path="res://levels/all_levels/playable_levels/cave.tscn" id="8_rn3t1"]
 [ext_resource type="PackedScene" uid="uid://dkbp4olhd8emd" path="res://levels/all_levels/playable_levels/bubbleShoot.tscn" id="9_ycccx"]
+[ext_resource type="AudioStream" uid="uid://cj6834otcc4jc" path="res://menus/paper.wav" id="11_duies"]
 
 [node name="SelectionPage" type="Control"]
 layout_mode = 3
@@ -26,3 +27,7 @@ level_container_scene = ExtResource("3_54qhh")
 anchors_preset = 0
 offset_top = 243.0
 offset_bottom = 243.0
+
+[node name="Paper" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_duies")
+autoplay = true

@@ -163,14 +163,6 @@ stream = ExtResource("13_j77fx")
 volume_db = -15.0
 autoplay = true
 
-[node name="SceneChangeNode" parent="." instance=ExtResource("6_tnd1p")]
-transition_speed = 2.0
-current_parent_scene = NodePath("..")
-
-[node name="TillNextScene" type="Timer" parent="SceneChangeNode"]
-wait_time = 0.5
-one_shot = true
-
 [node name="TimerEndGame" type="Timer" parent="."]
 one_shot = true
 
@@ -192,3 +184,11 @@ root_node = NodePath("../Cursor")
 libraries = {
 "": SubResource("AnimationLibrary_d53l8")
 }
+
+[node name="SceneChangeNode" parent="." instance=ExtResource("6_tnd1p")]
+transition_speed = 2.0
+current_parent_scene = NodePath("..")
+
+[node name="TillNextScene" type="Timer" parent="SceneChangeNode"]
+wait_time = 0.5
+one_shot = true
