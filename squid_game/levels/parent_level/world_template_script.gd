@@ -26,6 +26,7 @@ func _ready():
 	$TileMap.replace_tiles_with_objects()
 	$Squid.global_position = $TileMap/SpawnPoint.global_position
 
+
 func _process(delta):
 	if Input.is_action_just_pressed("reset") and $TimerReset.is_stopped() and can_restart:
 		restart()
@@ -54,3 +55,9 @@ func finish_restart():
 	scene.flipped = flipped
 	parent_node.call_deferred("add_child", scene)
 	queue_free()
+
+
+func go_back_to_level_select():
+	$SceneChangeNode/TillNextScene.start()
+	await $SceneChangeNode/TillNextScene.timeout
+	$SceneChangeNode.go_next_scene()

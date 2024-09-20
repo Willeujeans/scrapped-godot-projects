@@ -35,8 +35,8 @@ func play_next_frame(current_frame):
 func _process(delta):
 	if grow:
 		if $Splat.scale.x < 2.5:
-			$Splat.scale.x = lerp($Splat.scale.x, 2.0, 12.0 * delta)
-			$Splat.scale.y = lerp($Splat.scale.y, 2.0, 10.0 * delta)
+			$Splat.scale.x = lerp($Splat.scale.x, 1.0, 12.0 * delta)
+			$Splat.scale.y = lerp($Splat.scale.y, 1.0, 10.0 * delta)
 		else:
 			grow = false
 

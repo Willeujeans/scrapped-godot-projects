@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://c77rya46ib0rg"]
+[gd_scene load_steps=17 format=3 uid="uid://c77rya46ib0rg"]
 
 [ext_resource type="Shader" path="res://menus/level_select/level_container.gdshader" id="1_5ncna"]
 [ext_resource type="Script" path="res://menus/level_select/level_container.gd" id="1_csrqu"]
-[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="1_lh7uk"]
 [ext_resource type="StyleBox" uid="uid://c8splfuvu8vq2" path="res://menus/level_select/level_container_button.tres" id="2_4123d"]
 [ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="3_v8mbk"]
 [ext_resource type="StyleBox" uid="uid://sioc4scbj8tj" path="res://menus/level_select/level_container_button_flipped.tres" id="4_g683n"]
 [ext_resource type="StyleBox" uid="uid://dly1bk12aei4i" path="res://menus/level_select/level_container_button_4Star.tres" id="5_p182h"]
 [ext_resource type="AudioStream" uid="uid://ce6xsgjdkpp1k" path="res://entities/squid/pop.wav" id="6_0p7hj"]
 [ext_resource type="Material" uid="uid://27wciaj36i0u" path="res://2D_shine_canvas.tres" id="6_y8b6i"]
+[ext_resource type="FontFile" uid="uid://82rtrwrx8hd7" path="res://menus/Neucha-Regular.ttf" id="7_kl275"]
+[ext_resource type="FontFile" uid="uid://udefm06tsf15" path="res://menus/Delius_Unicase/DeliusUnicase-Bold.ttf" id="7_ma7tk"]
+[ext_resource type="Texture2D" uid="uid://c8lldklj8f0wh" path="res://entities/ink/splat/splat_64_one.png" id="9_jw36w"]
 [ext_resource type="AudioStream" uid="uid://bs8j7hjmo3eew" path="res://menus/light_paper_turn.wav" id="10_y4xhy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d02en"]
@@ -86,7 +88,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-48, 748)]
+"values": [Vector2(-48, 718)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -134,19 +136,43 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(79, 625)]
+"values": [Vector2(9, 520)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Control/StarCount2:position")
+tracks/10/path = NodePath("Control/StarShadow:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(79, 639)]
+"values": [Vector2(9, 528)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Control/StarShadow:size")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 348)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Control/StarCount:size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(397, 356)]
 }
 
 [sub_resource type="Animation" id="Animation_l38m6"]
@@ -222,7 +248,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-48, 748), Vector2(-48, 686), Vector2(-48.0008, 732.999)]
+"values": [Vector2(-48, 703), Vector2(-48, 686), Vector2(-48.0008, 732.999)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -270,19 +296,19 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(79, 625), Vector2(92.9994, 626)]
+"values": [Vector2(6, 520), Vector2(14.9997, 530)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Control/StarCount2:position")
+tracks/10/path = NodePath("Control/StarShadow:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(79, 639), Vector2(92.9994, 612)]
+"values": [Vector2(6, 528), Vector2(14.9988, 526)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sc81a"]
@@ -311,6 +337,27 @@ offset_right = 400.0
 offset_bottom = 800.0
 pivot_offset = Vector2(200, 400)
 
+[node name="Color1Splat" type="Sprite2D" parent="Control"]
+z_index = 1
+position = Vector2(206, 164)
+rotation = 8.32883
+scale = Vector2(0.363575, 0.370044)
+texture = ExtResource("9_jw36w")
+
+[node name="Color2Splat" type="Sprite2D" parent="Control"]
+z_index = 1
+position = Vector2(207, 368)
+rotation = 4.27544
+scale = Vector2(0.200762, 0.234775)
+texture = ExtResource("9_jw36w")
+
+[node name="Color3Splat" type="Sprite2D" parent="Control"]
+z_index = 1
+position = Vector2(210, 495)
+rotation = 3.53316
+scale = Vector2(0.259051, 0.259832)
+texture = ExtResource("9_jw36w")
+
 [node name="Time" type="RichTextLabel" parent="Control"]
 z_index = 4
 custom_minimum_size = Vector2(500, 50)
@@ -323,8 +370,8 @@ pivot_offset = Vector2(250, 89)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_fonts/normal_font = ExtResource("7_kl275")
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center]0.0 s[/center]"
 
@@ -332,47 +379,48 @@ text = "[center]0.0 s[/center]"
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 offset_left = -48.0
-offset_top = 748.0
+offset_top = 718.0
 offset_right = 452.0
-offset_bottom = 798.0
+offset_bottom = 908.0
 pivot_offset = Vector2(250, 25)
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("7_kl275")
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center]name[/center]"
 
 [node name="StarCount" type="RichTextLabel" parent="Control"]
 z_index = 1
 layout_mode = 0
-offset_left = 79.0
-offset_top = 625.0
-offset_right = 321.0
-offset_bottom = 728.0
+offset_left = 9.0
+offset_top = 520.0
+offset_right = 406.0
+offset_bottom = 876.0
 pivot_offset = Vector2(200, 45)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/default_color = Color(1, 0.682353, 0, 1)
-theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 75
+theme_override_fonts/normal_font = ExtResource("7_ma7tk")
+theme_override_font_sizes/normal_font_size = 270
 bbcode_enabled = true
 
-[node name="StarCount2" type="RichTextLabel" parent="Control"]
+[node name="StarShadow" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = 79.0
-offset_top = 639.0
-offset_right = 321.0
-offset_bottom = 742.0
+offset_left = 9.0
+offset_top = 528.0
+offset_right = 409.0
+offset_bottom = 876.0
 pivot_offset = Vector2(200, 45)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/default_color = Color(0.466667, 0.309804, 0, 1)
-theme_override_fonts/normal_font = ExtResource("1_lh7uk")
-theme_override_font_sizes/normal_font_size = 75
+theme_override_fonts/normal_font = ExtResource("7_ma7tk")
+theme_override_font_sizes/normal_font_size = 270
 bbcode_enabled = true
-text = "+++"
+text = "***"
+fit_content = true
 
 [node name="LevelButton" type="Button" parent="Control"]
 unique_name_in_owner = true
@@ -400,15 +448,15 @@ offset_top = 241.0
 offset_right = 400.0
 offset_bottom = 390.999
 mouse_filter = 2
-color = Color(1, 0.34902, 1, 1)
+color = Color(0, 0.796078, 0.529412, 1)
 
 [node name="Color3" type="ColorRect" parent="Control"]
 layout_mode = 0
 offset_top = 390.0
 offset_right = 400.0
-offset_bottom = 539.994
+offset_bottom = 539.993
 mouse_filter = 2
-color = Color(1, 0.34902, 1, 1)
+color = Color(0.854902, 0.631373, 0, 1)
 
 [node name="SceneChangeNode" parent="." instance=ExtResource("3_v8mbk")]
 

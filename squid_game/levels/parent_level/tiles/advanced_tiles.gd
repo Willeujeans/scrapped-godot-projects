@@ -57,18 +57,23 @@ func update_paint_percent():
 		level_completed = true
 		world_timer_active = false
 		can_change_scene = false
-		end_time = Time.get_ticks_msec()
-		world_time = end_time - start_time
-		if get_tree().get_first_node_in_group("level_progress").level_times.has($"..".name):
-			if world_time < get_tree().get_first_node_in_group("level_progress").level_times[$"..".name]:
-				get_tree().get_first_node_in_group("level_progress").level_times[$"..".name] = world_time
-				get_tree().get_first_node_in_group("level_progress").save_data_to_disc()
-		else:
-			get_tree().get_first_node_in_group("level_progress").level_times[$"..".name] = world_time
+		save_level_time()
+		$"..".go_back_to_level_select()
+
+
+func save_level_time():
+	end_time = Time.get_ticks_msec()
+	world_time = end_time - start_time
+	var level_name = $"..".name
+	if $"..".flipped:
+		level_name += "(f)"
+	if get_tree().get_first_node_in_group("level_progress").level_times.has(level_name):
+		if world_time < get_tree().get_first_node_in_group("level_progress").level_times[level_name]:
+			get_tree().get_first_node_in_group("level_progress").level_times[level_name] = world_time
 			get_tree().get_first_node_in_group("level_progress").save_data_to_disc()
-		$"../SceneChangeNode/TillNextScene".start()
-		await $"../SceneChangeNode/TillNextScene".timeout
-		$"../SceneChangeNode".go_next_scene()
+	else:
+		get_tree().get_first_node_in_group("level_progress").level_times[level_name] = world_time
+		get_tree().get_first_node_in_group("level_progress").save_data_to_disc()
 
 
 func _process(delta):

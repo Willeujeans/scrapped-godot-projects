@@ -12,6 +12,7 @@ var is_flipping = false
 var level_scene: PackedScene
 var level_name = ""
 var level_time: int = -1
+var level_time_flipped: int = -1
 var level_star_count = 0
 
 
@@ -46,7 +47,7 @@ func format_time(milliseconds: int) -> String:
 	var total_seconds = milliseconds / 1000
 	var seconds = total_seconds
 	var ms = milliseconds % 1000
-	return str(seconds) + "." + str(ms)[0] + " s"
+	return str(seconds) + "." + str(ms)[0] + str(ms)[1] + "s"
 
 
 func set_level_star_count():
@@ -58,11 +59,11 @@ func set_level_star_count():
 	for star_time in list_of_star_times:
 		if level_time/1000 < int(star_time):
 			level_star_count += 1
-			star_string += "+"
+			star_string += "*"
 	
-	if star_string == "++++":
-		star_string = "+++"
-	$Control/StarCount.set_text(star_string)
+	if star_string == "****":
+		star_string = "***"
+	$Control/StarCount.set_text("[wave amp=50.0]" + star_string + "[/wave]")
 	if level_star_count >= 4:
 		%LevelButton.set("theme_override_styles/normal", golden_theme)
 		%LevelButton.set("theme_override_styles/focus", golden_theme)
@@ -73,8 +74,17 @@ func set_color_swatches():
 	var colors_in_node_name = level_scene.get_state().get_node_name(1)
 	var list_of_colors = colors_in_node_name.split("_")
 	$Control/Color1.color = list_of_colors[0]
+	$Control/Color1Splat.rotation = deg_to_rad(randf_range(0,360))
+	$Control/Color1Splat.position.x += randf_range(-60, 60)
+	$Control/Color1Splat.modulate = list_of_colors[0]
 	$Control/Color2.color = list_of_colors[1]
+	$Control/Color2Splat.rotation = deg_to_rad(randf_range(0,360))
+	$Control/Color2Splat.position.x += randf_range(-60, 60)
+	$Control/Color2Splat.modulate = list_of_colors[1]
 	$Control/Color3.color = list_of_colors[2]
+	$Control/Color3Splat.rotation = deg_to_rad(randf_range(0,360))
+	$Control/Color3Splat.position.x += randf_range(-60, 60)
+	$Control/Color3Splat.modulate = list_of_colors[2]
 
 
 func _on_button_pressed():
@@ -109,6 +119,7 @@ func flip():
 		%LevelButton.set("theme_override_styles/normal", normal_theme)
 		%LevelButton.set("theme_override_styles/focus", normal_theme)
 		is_flipped = false
+		$Control/Name.set_text("[center]" + level_name + "[/center]")
 	else:
 		$AnimationPlayer.play("flip")
 		$AnimationPlayer/Timer.start()
@@ -119,6 +130,7 @@ func flip():
 		%LevelButton.set("theme_override_styles/normal", flipped_theme)
 		%LevelButton.set("theme_override_styles/focus", flipped_theme)
 		is_flipped = true
+		$Control/Name.set_text("[center]" + level_name.reverse() + "[/center]")
 
 
 func _on_animation_player_animation_finished(anim_name):

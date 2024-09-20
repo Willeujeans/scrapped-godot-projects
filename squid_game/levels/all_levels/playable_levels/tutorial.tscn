@@ -200,11 +200,11 @@ position = Vector2(1664, -486)
 scale = Vector2(2.81, 2.81)
 texture = ExtResource("5_0hq1c")
 
-[node name="SceneChangeNode" parent="." index="7"]
-transition_speed = 1.0
-
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="10"]
 libraries = {
 "": SubResource("AnimationLibrary_0f7hy")
 }
 autoplay = "movement_left_to_right"
+
+[node name="SceneChangeNode" parent="." index="12"]
+transition_speed = 1.0
