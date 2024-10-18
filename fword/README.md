@@ -1,3 +1,3 @@
-# game_template
+# fword
 
-A godot project with templates for features to help kickstart game creation.
+A 2D puzzle game where you play a frog with a massive sword used to kill monsters and create new platforms.
