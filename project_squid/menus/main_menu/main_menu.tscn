@@ -2,13 +2,13 @@
 
 [ext_resource type="Theme" uid="uid://cuvxlqe8nntqg" path="res://menus/main_menu/main_theme.tres" id="2_iplyl"]
 [ext_resource type="Script" path="res://menus/main_menu/main_menu.gd" id="2_l7mek"]
-[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="3_bq5rj"]
-[ext_resource type="FontFile" uid="uid://82rtrwrx8hd7" path="res://menus/Neucha-Regular.ttf" id="3_rt5uc"]
-[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="4_e5jas"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://scene_change/scene_change_node/scene_change_node.tscn" id="3_bq5rj"]
+[ext_resource type="FontFile" uid="uid://82rtrwrx8hd7" path="res://fonts/Neucha-Regular.ttf" id="3_rt5uc"]
+[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://fonts/Daydream.ttf" id="4_e5jas"]
 [ext_resource type="Texture2D" uid="uid://cka2cpgvj7jwp" path="res://menus/main_menu/stars_one.png" id="6_57hwv"]
 [ext_resource type="Texture2D" uid="uid://cfwy45cpt6evx" path="res://menus/main_menu/stars_two.png" id="7_dnmuh"]
-[ext_resource type="AudioStream" uid="uid://nskwytaosy10" path="res://menus/crickets.wav" id="8_jauqe"]
-[ext_resource type="PackedScene" uid="uid://bn2nl2mfog3nf" path="res://menus/level_select/level_selection_carousell.tscn" id="9_46qq5"]
+[ext_resource type="AudioStream" uid="uid://nskwytaosy10" path="res://menus/main_menu/crickets.wav" id="8_jauqe"]
+[ext_resource type="PackedScene" uid="uid://bn2nl2mfog3nf" path="res://menus/carousell_menu/carousell_selection/selection_carousell.tscn" id="9_46qq5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfic5"]
 

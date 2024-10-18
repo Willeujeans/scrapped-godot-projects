@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://level_selection/all_discs.gd" id="1_v1rvl"]
 [ext_resource type="PackedScene" uid="uid://b02x3b8suhefa" path="res://level_selection/disc_storage.tscn" id="1_yg8h7"]
-[ext_resource type="PackedScene" uid="uid://b5obtk0knj0n3" path="res://levels/0/tutorial_level.tscn" id="3_jbckt"]
+[ext_resource type="PackedScene" uid="uid://b5obtk0knj0n3" path="res://levels/tutorial_level.tscn" id="3_jbckt"]
 [ext_resource type="PackedScene" uid="uid://ntkkvjeanumh" path="res://levels/0/lvl_ground_platforming.tscn" id="4_l7uxj"]
 [ext_resource type="PackedScene" uid="uid://dtn16nrg6gyy" path="res://levels/0/lvl_simple_spikes.tscn" id="5_3c6bk"]
 [ext_resource type="PackedScene" uid="uid://goriygde8x4i" path="res://levels/0/lvl_spikes_and_leaves.tscn" id="6_fgewc"]

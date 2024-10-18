@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbds20sju0fbq"]
 
 [ext_resource type="PackedScene" uid="uid://badlkawr8cbbh" path="res://user_interfaces/scene_change_button/scene_change_button.tscn" id="1_dxxmf"]
-[ext_resource type="PackedScene" uid="uid://b5obtk0knj0n3" path="res://levels/0/tutorial_level.tscn" id="2_8wo3b"]
+[ext_resource type="PackedScene" uid="uid://b5obtk0knj0n3" path="res://levels/tutorial_level.tscn" id="2_8wo3b"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3

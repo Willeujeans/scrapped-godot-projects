@@ -49,6 +49,7 @@ func set_current_save(key: String):
 	current_save_path = SAVE_PATH + "save" + key + ".tres"
 	set_current_storage(ResourceLoader.load(current_save_path))
 
+
 func set_current_save_by_path(path: String):
 	current_save_path = path
 

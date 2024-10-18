@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=8 format=3 uid="uid://d11labxuh1as2"]
 
-[ext_resource type="PackedScene" uid="uid://bmaqcb63vyvd6" path="res://levels/parent_level/tiles/water.tscn" id="1_qw0kp"]
-[ext_resource type="PackedScene" uid="uid://d0ymxfeme5luf" path="res://levels/parent_level/tiles/ink_detector.tscn" id="2_1woy1"]
-[ext_resource type="PackedScene" uid="uid://r8f8d4p6hdck" path="res://levels/parent_level/tiles/ink_remover.tscn" id="3_wpgv2"]
-[ext_resource type="Texture2D" uid="uid://dd3anbjl07owm" path="res://levels/parent_level/tiles/tiles_white.png" id="4_yduqv"]
-[ext_resource type="Texture2D" uid="uid://dkx1wew58bn48" path="res://levels/parent_level/tiles/tiles_black.png" id="5_7p7y6"]
+[ext_resource type="PackedScene" uid="uid://bmaqcb63vyvd6" path="res://entities/objects/water_block/water_block.tscn" id="1_qw0kp"]
+[ext_resource type="PackedScene" uid="uid://d0ymxfeme5luf" path="res://entities/objects/checkered_block/checkered_block.tscn" id="2_1woy1"]
+[ext_resource type="PackedScene" uid="uid://r8f8d4p6hdck" path="res://entities/objects/non_ink_block/non_ink_block.tscn" id="3_wpgv2"]
+[ext_resource type="Texture2D" uid="uid://dd3anbjl07owm" path="res://levels/parent_level/tiles/Sprites/tiles_white.png" id="4_yduqv"]
+[ext_resource type="Texture2D" uid="uid://dkx1wew58bn48" path="res://levels/parent_level/tiles/Sprites/tiles_black.png" id="5_7p7y6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1xen"]
 resource_name = "white"

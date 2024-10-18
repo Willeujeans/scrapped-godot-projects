@@ -1,0 +1,38 @@
+[gd_scene load_steps=17 format=3 uid="uid://bn2nl2mfog3nf"]
+
+[ext_resource type="Script" path="res://menus/carousell_menu/carousell_selection/selection_carousell.gd" id="1_iuxwv"]
+[ext_resource type="PackedScene" uid="uid://c3l43bw5i6lk2" path="res://levels/playable_levels/Debut.tscn" id="2_0rvfr"]
+[ext_resource type="PackedScene" uid="uid://03jyht8wcgyo" path="res://levels/playable_levels/sep22.tscn" id="3_tb8yh"]
+[ext_resource type="PackedScene" uid="uid://f7ylrin73saf" path="res://levels/playable_levels/Straw.tscn" id="4_fb03k"]
+[ext_resource type="PackedScene" uid="uid://dp1bdkrvmq0bx" path="res://levels/playable_levels/step23-2.tscn" id="5_xjmby"]
+[ext_resource type="PackedScene" uid="uid://bge24x8jreuqp" path="res://levels/playable_levels/Looter.tscn" id="6_ny04c"]
+[ext_resource type="PackedScene" uid="uid://cvr08fog6msw7" path="res://levels/playable_levels/Gateman.tscn" id="7_6q4aq"]
+[ext_resource type="PackedScene" uid="uid://c5ngfveyp23ka" path="res://levels/playable_levels/Desserts.tscn" id="8_b05ix"]
+[ext_resource type="PackedScene" uid="uid://3jpcjagtscq7" path="res://levels/playable_levels/Pools.tscn" id="9_y4d5d"]
+[ext_resource type="PackedScene" uid="uid://b5vru4haa8lv3" path="res://levels/playable_levels/Mined.tscn" id="10_txpna"]
+[ext_resource type="PackedScene" uid="uid://dkbp4olhd8emd" path="res://levels/playable_levels/Reviled.tscn" id="11_kis3b"]
+[ext_resource type="PackedScene" uid="uid://dlgu7meowib4i" path="res://levels/playable_levels/sep23-1.tscn" id="12_cgf1u"]
+[ext_resource type="PackedScene" uid="uid://degqi7p5s5s47" path="res://levels/playable_levels/sep23-3.tscn" id="13_tq37h"]
+[ext_resource type="PackedScene" uid="uid://c1uvp6ylym72f" path="res://levels/playable_levels/sep23-4.tscn" id="14_250ke"]
+[ext_resource type="PackedScene" uid="uid://c77rya46ib0rg" path="res://menus/carousell_menu/carousell_card/carousell_card.tscn" id="15_bbxrn"]
+[ext_resource type="AudioStream" uid="uid://cj6834otcc4jc" path="res://menus/carousell_menu/carousell_selection/paper.wav" id="16_274et"]
+
+[node name="SelectionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iuxwv")
+levels = Array[PackedScene]([ExtResource("2_0rvfr"), ExtResource("3_tb8yh"), ExtResource("4_fb03k"), ExtResource("5_xjmby"), ExtResource("6_ny04c"), ExtResource("7_6q4aq"), ExtResource("8_b05ix"), ExtResource("9_y4d5d"), ExtResource("10_txpna"), ExtResource("11_kis3b"), ExtResource("12_cgf1u"), ExtResource("13_tq37h"), ExtResource("14_250ke")])
+level_container_scene = ExtResource("15_bbxrn")
+
+[node name="Carousell" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 243.0
+offset_bottom = 243.0
+
+[node name="IntroSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_274et")
+autoplay = true

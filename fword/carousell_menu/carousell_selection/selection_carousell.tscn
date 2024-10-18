@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn2nl2mfog3nf"]
+
+[ext_resource type="Script" path="res://carousell_menu/carousell_selection/selection_carousell.gd" id="1_iuxwv"]
+[ext_resource type="PackedScene" uid="uid://d2esrse5atu6c" path="res://levels/tutorial_new.tscn" id="2_0ixgt"]
+[ext_resource type="PackedScene" uid="uid://c77rya46ib0rg" path="res://carousell_menu/carousell_card/carousell_card.tscn" id="15_bbxrn"]
+[ext_resource type="AudioStream" uid="uid://cj6834otcc4jc" path="res://carousell_menu/carousell_selection/paper.wav" id="16_274et"]
+
+[node name="SelectionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iuxwv")
+levels = Array[PackedScene]([ExtResource("2_0ixgt"), ExtResource("2_0ixgt")])
+level_container_scene = ExtResource("15_bbxrn")
+
+[node name="Carousell" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 243.0
+offset_bottom = 243.0
+
+[node name="IntroSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_274et")
+autoplay = true

@@ -1,21 +1,21 @@
 [gd_scene load_steps=15 format=3 uid="uid://beos0mhvg5ym6"]
 
 [ext_resource type="Script" path="res://levels/parent_level/world_template_script.gd" id="1_lmbtd"]
-[ext_resource type="PackedScene" uid="uid://2eu1nrarx4ce" path="res://menus/transition.tscn" id="2_t6sg4"]
+[ext_resource type="PackedScene" uid="uid://2eu1nrarx4ce" path="res://scene_change/transition/transition.tscn" id="2_2hdht"]
 [ext_resource type="Script" path="res://levels/parent_level/tiles/advanced_tiles.gd" id="3_ukm8o"]
 [ext_resource type="Script" path="res://levels/parent_level/animation_handler.gd" id="4_iqln3"]
+[ext_resource type="PackedScene" uid="uid://b5n0n5cillp8g" path="res://entities/player/squid/squid.tscn" id="4_m6gqh"]
 [ext_resource type="TileSet" uid="uid://d11labxuh1as2" path="res://levels/parent_level/tiles/tile_set.tres" id="5_5455h"]
-[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://menus/daydream_3/Daydream.ttf" id="5_vmk3t"]
-[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://menus/scene_change_node.tscn" id="6_tnd1p"]
-[ext_resource type="Texture2D" uid="uid://dq2n4a8rsli2n" path="res://levels/parent_level/cursor.png" id="10_3xd6r"]
-[ext_resource type="Script" path="res://levels/parent_level/Cursor.gd" id="10_ns07l"]
-[ext_resource type="PackedScene" uid="uid://b5n0n5cillp8g" path="res://entities/squid/squid.tscn" id="14_spfy5"]
+[ext_resource type="FontFile" uid="uid://brxcmskbwk081" path="res://fonts/Daydream.ttf" id="5_vmk3t"]
+[ext_resource type="Texture2D" uid="uid://dq2n4a8rsli2n" path="res://entities/player/cursor/cursor.png" id="8_bmg4g"]
+[ext_resource type="Script" path="res://entities/player/cursor/Cursor.gd" id="9_62rtp"]
+[ext_resource type="PackedScene" uid="uid://cyukkc7p2ok7i" path="res://scene_change/scene_change_node/scene_change_node.tscn" id="10_1rpp6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vv4i5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_3xd6r")
+"texture": ExtResource("8_bmg4g")
 }],
 "loop": true,
 "name": &"one",
@@ -23,7 +23,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_3xd6r")
+"texture": ExtResource("8_bmg4g")
 }],
 "loop": true,
 "name": &"two",
@@ -70,7 +70,7 @@ _data = {
 [node name="WorldTemplate" type="Node2D" groups=["world"]]
 script = ExtResource("1_lmbtd")
 color_pal = Array[Vector3]([Vector3(1, 2.08165e-12, 2.08165e-12), Vector3(2.08165e-12, 1, 2.08165e-12), Vector3(2.08165e-12, 2.08165e-12, 1)])
-transition_scene = ExtResource("2_t6sg4")
+transition_scene = ExtResource("2_2hdht")
 metadata/colors = Vector3(1, 2, 3)
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -131,7 +131,7 @@ bbcode_enabled = true
 text = "0:0"
 autowrap_mode = 0
 
-[node name="Squid" parent="." instance=ExtResource("14_spfy5")]
+[node name="Squid" parent="." instance=ExtResource("4_m6gqh")]
 position = Vector2(197, -186)
 
 [node name="TileMap" type="TileMap" parent="." groups=["paint_tiles"]]
@@ -175,7 +175,7 @@ z_index = 6
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_vv4i5")
 animation = &"one"
-script = ExtResource("10_ns07l")
+script = ExtResource("9_62rtp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Cursor")
@@ -183,7 +183,7 @@ libraries = {
 "": SubResource("AnimationLibrary_d53l8")
 }
 
-[node name="SceneChangeNode" parent="." instance=ExtResource("6_tnd1p")]
+[node name="SceneChangeNode" parent="." instance=ExtResource("10_1rpp6")]
 transition_speed = 2.0
 current_parent_scene = NodePath("..")
 

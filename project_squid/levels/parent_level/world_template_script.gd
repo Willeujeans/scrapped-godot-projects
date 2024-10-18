@@ -14,7 +14,7 @@ func _ready():
 		var adjustment = Vector2($TileMap.scale.x * $TileMap.tile_set.tile_size.x * rectangle.size.x - rectangle.position.x, -1 * $TileMap.scale.y * $TileMap.tile_set.tile_size.y * (rectangle.size.y - rectangle.position.y))
 		$TileMap.position = Vector2(adjustment.x, adjustment.y/2)
 	$Squid.get_node("PlayerCamera").set_limits()
-	$SceneChangeNode.next_scene = load("res://menus/level_select/level_selection_carousell.tscn")
+	$SceneChangeNode.next_scene = load("res://menus/carousell_menu/carousell_selection/selection_carousell.tscn")
 	var color_string = get_children()[0].name
 	var colors_string_as_list = color_string.split("_")
 	var color_list = []
