@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj57rn7tlu3j2"]
-
-[ext_resource type="Script" path="res://levels/level_save/level_progress.gd" id="1_geekv"]
-
-[node name="LevelProgress" type="Node" groups=["level_progress"]]
-script = ExtResource("1_geekv")
