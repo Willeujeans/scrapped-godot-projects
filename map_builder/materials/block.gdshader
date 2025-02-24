@@ -1,4 +1,4 @@
-shader_type spatial; 
+shader_type spatial;
 
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec2 fade(vec2 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}
@@ -20,7 +20,7 @@ float cnoise(vec2 P){
   vec2 g10 = vec2(gx.y,gy.y);
   vec2 g01 = vec2(gx.z,gy.z);
   vec2 g11 = vec2(gx.w,gy.w);
-  vec4 norm = 1.79284291400159 - 0.85373472095314 * 
+  vec4 norm = 1.79284291400159 - 0.85373472095314 *
     vec4(dot(g00, g00), dot(g01, g01), dot(g10, g10), dot(g11, g11));
   g00 *= norm.x;
   g01 *= norm.y;
@@ -39,7 +39,7 @@ const float adjustment = 0.0;
 const float speed = 0.2;
 
 void fragment(){
-//	ALBEDO = vec3(cnoise(UV*14.0)); 
+//	ALBEDO = vec3(cnoise(UV*14.0));
 	vec3 guy = vec3(cnoise(TIME*speed+UV*20.0));
 	ALBEDO = guy;
 	ALPHA = guy.r+adjustment+guy.g/guy.b;
